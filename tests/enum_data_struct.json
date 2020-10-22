@@ -1,0 +1,27 @@
+[
+  {
+    "type": "data",
+    "name": "Spam",
+    "properties": [
+      {
+        "name": "message",
+        "type": "string",
+        "mandatory": true,
+        "documentation" : "The message content"
+      },
+      {
+        "name": "level",
+        "type": "string",
+        "choice": ["debug", "info", "warning", "error"],
+        "mandatory": false,
+        "documentation" : "Defines the message level"
+      },
+      {
+        "name": "keep",
+        "type": "boolean",
+        "documentation" : "Whether the message should be kept"
+      }
+    ],
+    "documentation" : "A spam message"
+  }
+]

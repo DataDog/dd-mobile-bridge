@@ -1,0 +1,23 @@
+[
+  {
+    "type": "data",
+    "name": "Spam",
+    "properties": [
+      {
+        "name": "message",
+        "type": "string",
+        "mandatory": true,
+        "documentation" : "Stores a message"
+      },
+      {
+        "name": "id",
+        "type": "int",
+        "mandatory": false
+      },
+      {
+        "name": "keep",
+        "type": "boolean"
+      }
+    ]
+  }
+]

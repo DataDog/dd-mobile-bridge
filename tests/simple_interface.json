@@ -1,0 +1,32 @@
+[
+  {
+    "type": "interface",
+    "name": "Foo",
+    "methods": [
+      {
+        "name": "withoutParams",
+        "type": "void",
+        "parameters": [],
+        "documentation" : "Performs an operation without parameters, no return type"
+      },
+      {
+        "name": "getBar",
+        "type": "int",
+        "parameters": [],
+        "documentation" : "Performs an operation without parameters, returns int"
+      },
+      {
+        "name": "setBar",
+        "type": "void",
+        "parameters": [
+            {
+                "name": "bar",
+                "mandatory": true,
+                "type": "string"
+            }
+        ],
+        "documentation" : "Performs an operation without parameters, returns int"
+      }
+    ]
+  }
+]

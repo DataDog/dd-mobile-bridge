@@ -42,7 +42,8 @@
       },
       "required": [
         "type",
-        "name"
+        "name",
+        "documentation"
       ]
     },
     "method": {
@@ -72,7 +73,8 @@
       "required": [
         "type",
         "name",
-        "parameters"
+        "parameters",
+        "documentation"
       ]
     },
     "parameter": {
@@ -94,7 +96,8 @@
       },
       "required": [
         "type",
-        "name"
+        "name",
+        "documentation"
       ]
     },
     "data": {
@@ -123,7 +126,8 @@
       },
       "required": [
         "type",
-        "name"
+        "name",
+        "documentation"
       ]
     },
     "property": {
@@ -156,7 +160,8 @@
       },
       "required": [
         "type",
-        "name"
+        "name",
+        "documentation"
       ]
     }
   }

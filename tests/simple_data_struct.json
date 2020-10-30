@@ -7,17 +7,20 @@
         "name": "message",
         "type": "string",
         "mandatory": true,
-        "documentation" : "Stores a message"
+        "documentation" : "The message content"
       },
       {
         "name": "id",
         "type": "int",
-        "mandatory": false
+        "mandatory": false,
+        "documentation" : "The message id"
       },
       {
         "name": "keep",
-        "type": "boolean"
+        "type": "boolean",
+        "documentation" : "Whether the message should be kept"
       }
-    ]
+    ],
+    "documentation" : "A spam message"
   }
 ]

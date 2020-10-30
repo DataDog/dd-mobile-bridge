@@ -21,12 +21,13 @@
         "parameters": [
             {
                 "name": "bar",
-                "mandatory": true,
-                "type": "string"
+                "type": "string",
+                "documentation" : "A string param"
             }
         ],
-        "documentation" : "Performs an operation without parameters, returns int"
+        "documentation" : "Performs an operation with string param, returns void"
       }
-    ]
+    ],
+    "documentation" : "An interface to be used in an API"
   }
 ]

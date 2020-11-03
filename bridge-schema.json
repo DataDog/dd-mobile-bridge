@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "bridge-format.json",
+  "$id": "bridge-schema.json",
   "title": "Mobile Bridge API",
   "description": "The format used by the Mobile Bridge API. This format is used for all cross-platform and hybrid mobile frameworks.",
   "type": "array",

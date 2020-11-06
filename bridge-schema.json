@@ -161,7 +161,8 @@
       "required": [
         "type",
         "name",
-        "documentation"
+        "documentation",
+        "mandatory"
       ]
     }
   }

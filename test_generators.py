@@ -10,6 +10,8 @@ import shutil
 import subprocess
 import sys
 
+PROJECTS = ['reactnative', 'android']
+
 
 def _report_file_diff(output_file_path, expected_file_path):
     with open(output_file_path, 'r') as output_file:
@@ -27,10 +29,11 @@ def _report_file_diff(output_file_path, expected_file_path):
 def _compare_folders(output_dir_path, expected_dir_path):
     comparison = filecmp.dircmp(output_dir_path, expected_dir_path)
     common = sorted(comparison.common)
+    output = sorted(comparison.left_list)
     expected = sorted(comparison.right_list)
     invalid_count = 0
 
-    if common != expected:
+    if (len(output) != len(expected)) or (output != expected):
         print("  ✘ Invalid output in " + output_dir_path)
         print("     Missing the following files: " + repr(comparison.right_only))
         print("     Unexpected generated files:  " + repr(comparison.left_only))
@@ -64,11 +67,12 @@ def _validate_generator_case(platform, test_case):
     result = subprocess.call(cmd_args, shell=False, stdout=subprocess.DEVNULL)
     if result > 0:
         print("✘ generation failed for " + platform + "/" + test_case)
-        return
+        return 1
 
     print("… Verifying generated code for " + platform + "/" + test_case)
     result = _compare_folders(output_dir_path, expected_dir_path)
 
+    # Clear output unless test failed
     if result == 0:
         shutil.rmtree(output_dir_path, ignore_errors=True)
     return result
@@ -89,7 +93,9 @@ def _validate_generator(platform):
 
 
 def _validate_project():
-    invalid_count = _validate_generator("reactnative")
+    invalid_count = 0
+    for project in PROJECTS:
+        invalid_count = invalid_count + _validate_generator(project)
     return invalid_count
 
 

@@ -1,0 +1,52 @@
+[
+  {
+    "type": "data",
+    "name": "ComplexDataStructure",
+    "documentation": "A data structure to test data transfer through the bridge",
+    "properties": [
+      {
+        "name": "someInt",
+        "type": "int",
+        "mandatory": true,
+        "documentation": "A mandatory int property"
+      },
+      {
+        "name": "someString",
+        "type": "string",
+        "mandatory": false,
+        "documentation": "An optional string property"
+      },
+      {
+        "name": "someMap",
+        "type": "map",
+        "mandatory": true,
+        "documentation": "A mandatory map property"
+      }
+    ]
+  },
+  {
+    "type": "interface",
+    "name": "BridgeWithData",
+    "documentation": "An interface to test transferring complex types",
+    "methods": [
+      {
+        "name": "setData",
+        "type": "void",
+        "documentation": "Empty method, ComplexDataStructure param, returns void",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "ComplexDataStructure",
+            "documentation": "A ComplexDataStructure param"
+          }
+        ]
+      },
+      {
+        "name": "getData",
+        "type": "ComplexDataStructure",
+        "parameters": [],
+        "documentation": "Empty method, returns ComplexDataStructure"
+      }
+    ]
+  }
+]

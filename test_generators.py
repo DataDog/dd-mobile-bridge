@@ -3,8 +3,6 @@
 
 import difflib
 import filecmp
-import json
-import jsonschema
 import os
 import shutil
 import subprocess

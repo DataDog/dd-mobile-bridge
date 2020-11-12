@@ -11,50 +11,36 @@ import android.content.Context
 /**
  * An interface to test setting types
  */
-class Setter(context: Context) {
-
-    private val appContext = context.applicationContext
+interface Setter {
 
     /**
      * Empty method, boolean param, returns void
      */
-    fun setBoolean(value: Boolean): Unit {
-        TODO()
-    }
+    fun setBoolean(value: Boolean): Unit
 
     /**
      * Empty method, int param, returns void
      */
-    fun setInt(value: Int): Unit {
-        TODO()
-    }
+    fun setInt(value: Int): Unit
 
     /**
      * Empty method, float param, returns void
      */
-    fun setFloat(value: Float): Unit {
-        TODO()
-    }
+    fun setFloat(value: Float): Unit
 
     /**
      * Empty method, string param, returns void
      */
-    fun setString(value: String): Unit {
-        TODO()
-    }
+    fun setString(value: String): Unit
 
     /**
      * Empty method, map param, returns void
      */
-    fun setMap(value: Map<String, Any?>): Unit {
-        TODO()
-    }
+    fun setMap(value: Map<String, Any?>): Unit
 
     /**
      * Empty method, list param, returns void
      */
-    fun setList(value: List<Any?>): Unit {
-        TODO()
-    }
+    fun setList(value: List<Any?>): Unit
 
 }

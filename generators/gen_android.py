@@ -41,11 +41,11 @@ class AndroidGenerator:
     def generate(self, definitions: list):
         for definition in definitions:
             if definition['type'] == "interface":
-                self._generate_and_implementation(definition)
+                self._generate_and_interface(definition)
             elif definition['type'] == "data":
                 self._generate_and_data(definition)
 
-    def _generate_and_implementation(self, definition: dict):
+    def _generate_and_interface(self, definition: dict):
         output_folder_path = os.path.join(self.output_folder, OUTPUT_AND_FOLDER)
         if not os.path.exists(output_folder_path):
             os.makedirs(output_folder_path)
@@ -63,8 +63,7 @@ class AndroidGenerator:
                 output.write(" * " + definition['documentation'] + '\n')
                 output.write(" */\n")
 
-            output.write("class " + definition['name'] + "(context: Context) {\n\n")
-            output.write("    private val appContext = context.applicationContext\n\n")
+            output.write("interface " + definition['name'] + " {\n\n")
 
             for method in definition['methods']:
                 if 'documentation' in method:
@@ -80,9 +79,7 @@ class AndroidGenerator:
                     output.write(param['name'] + ": " + _get_and_type(param['type']))
                 output.write("): ")
                 output.write(_get_and_type(method['type']))
-                output.write(" {\n")
-                output.write("        TODO()\n")
-                output.write("    }\n\n")
+                output.write("\n\n")
 
             output.write("}\n")
 

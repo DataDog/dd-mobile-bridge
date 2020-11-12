@@ -11,57 +11,41 @@ import android.content.Context
 /**
  * An interface to test return types
  */
-class Getter(context: Context) {
-
-    private val appContext = context.applicationContext
+interface Getter {
 
     /**
      * Empty method, returns void
      */
-    fun emptyMethod(): Unit {
-        TODO()
-    }
+    fun emptyMethod(): Unit
 
     /**
      * Empty method, returns int
      */
-    fun getBoolean(): Boolean {
-        TODO()
-    }
+    fun getBoolean(): Boolean
 
     /**
      * Empty method, returns int
      */
-    fun getInt(): Int {
-        TODO()
-    }
+    fun getInt(): Int
 
     /**
      * Empty method, returns float
      */
-    fun getFloat(): Float {
-        TODO()
-    }
+    fun getFloat(): Float
 
     /**
      * Empty method, returns string
      */
-    fun getString(): String {
-        TODO()
-    }
+    fun getString(): String
 
     /**
      * Empty method, returns map
      */
-    fun getMap(): Map<String, Any?> {
-        TODO()
-    }
+    fun getMap(): Map<String, Any?>
 
     /**
      * Empty method, returns list
      */
-    fun getList(): List<Any?> {
-        TODO()
-    }
+    fun getList(): List<Any?>
 
 }

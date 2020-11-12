@@ -11,22 +11,16 @@ import android.content.Context
 /**
  * An interface to test transferring complex types
  */
-class BridgeWithData(context: Context) {
-
-    private val appContext = context.applicationContext
+interface BridgeWithData {
 
     /**
      * Empty method, ComplexDataStructure param, returns void
      */
-    fun setData(value: ComplexDataStructure): Unit {
-        TODO()
-    }
+    fun setData(value: ComplexDataStructure): Unit
 
     /**
      * Empty method, returns ComplexDataStructure
      */
-    fun getData(): ComplexDataStructure {
-        TODO()
-    }
+    fun getData(): ComplexDataStructure
 
 }

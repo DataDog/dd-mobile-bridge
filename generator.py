@@ -36,6 +36,9 @@ def load_generator(platform: str, output_folder: str) -> Any:
     if platform == PLATFORM_AND:
         from generators.gen_android import AndroidGenerator
         return AndroidGenerator(output_folder)
+    if platform == PLATFORM_IOS:
+        from generators.gen_ios import IOSGenerator
+        return IOSGenerator(output_folder)
     else:
         raise RuntimeError("Unknown platform " + platform)
 

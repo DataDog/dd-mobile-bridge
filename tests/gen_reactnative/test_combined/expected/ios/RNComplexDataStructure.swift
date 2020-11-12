@@ -9,7 +9,7 @@ import Foundation
 extension NSDictionary {
 
     func asComplexDataStructure() -> ComplexDataStructure {
-        let someInt = object(forKey: "someInt") as? NSInteger
+        let someInt = object(forKey: "someInt") as? Int
         let someString = object(forKey: "someString") as? NSString
         let someMap = object(forKey: "someMap") as? NSDictionary
         return ComplexDataStructure(

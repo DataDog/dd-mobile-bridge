@@ -35,9 +35,9 @@ AND_TYPES = {
 }
 
 IOS_TYPES_SWIFT = {
-    'void': 'void',
+    'void': 'Void',
     'boolean': 'Bool',
-    'int': 'NSInteger',
+    'int': 'Int',
     'float': 'Float',
     'map': 'NSDictionary',
     'list': 'NSArray',

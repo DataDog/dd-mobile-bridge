@@ -10,7 +10,7 @@ import shutil
 import subprocess
 import sys
 
-PROJECTS = ['reactnative', 'android']
+PROJECTS = ['reactnative', 'android', 'ios']
 
 
 def _report_file_diff(output_file_path, expected_file_path):
@@ -62,14 +62,12 @@ def _validate_generator_case(platform, test_case):
     # Clear any previous data
     shutil.rmtree(output_dir_path, ignore_errors=True)
 
-    print("… Generating code for " + platform + "/" + test_case)
     cmd_args = ['./generator.py', '-s', source_path, '-o', output_dir_path, '-p', platform]
     result = subprocess.call(cmd_args, shell=False, stdout=subprocess.DEVNULL)
     if result > 0:
         print("✘ generation failed for " + platform + "/" + test_case)
         return 1
 
-    print("… Verifying generated code for " + platform + "/" + test_case)
     result = _compare_folders(output_dir_path, expected_dir_path)
 
     # Clear output unless test failed
@@ -97,24 +95,6 @@ def _validate_project():
     for project in PROJECTS:
         invalid_count = invalid_count + _validate_generator(project)
     return invalid_count
-
-
-# schema_path = 'bridge-schema.json'
-# api_path = 'mobile-bridge-api.json'
-# test_folder_path = 'tests/format'
-#
-# current_path = os.path.abspath(os.path.dirname(__file__))
-# test_file_names = [f for f in os.listdir(test_folder_path) if f.endswith(".json")]
-#
-# with open(schema_path) as file_object:
-#     schema = json.load(file_object)
-#     resolver = jsonschema.RefResolver(base_uri='file://' + current_path + '/', referrer=schema)
-#
-#     for test_file_name in test_file_names:
-#         test_file_path = test_folder_path + "/" + test_file_name
-#         _validate_file(test_file_path, schema, resolver)
-#
-#     _validate_file(api_path, schema, resolver)
 
 
 if __name__ == "__main__":

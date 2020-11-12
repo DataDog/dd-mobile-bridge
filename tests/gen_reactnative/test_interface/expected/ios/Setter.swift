@@ -18,7 +18,7 @@ class RNSetter: NSObject {
     }
 
     @objc(setInt:withResolver:withRejecter:)
-    func setInt(value: NSInteger, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
+    func setInt(value: Int, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
         nativeInstance.setInt(value: value)
         resolve(nil)
     }

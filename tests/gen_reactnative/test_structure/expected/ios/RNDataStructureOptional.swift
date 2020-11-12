@@ -10,7 +10,7 @@ extension NSDictionary {
 
     func asDataStructureOptional() -> DataStructureOptional {
         let someBoolean = object(forKey: "someBoolean") as? Bool
-        let someInt = object(forKey: "someInt") as? NSInteger
+        let someInt = object(forKey: "someInt") as? Int
         let someFloat = object(forKey: "someFloat") as? Float
         let someString = object(forKey: "someString") as? NSString
         let someList = object(forKey: "someList") as? NSArray

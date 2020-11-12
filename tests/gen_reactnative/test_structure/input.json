@@ -1,0 +1,88 @@
+[
+  {
+    "type": "data",
+    "name": "DataStructure",
+    "documentation": "A data structure to test data transfer through the bridge",
+    "properties": [
+      {
+        "name": "someBoolean",
+        "type": "boolean",
+        "mandatory": true,
+        "documentation": "A mandatory boolean property"
+      },
+      {
+        "name": "someInt",
+        "type": "int",
+        "mandatory": true,
+        "documentation": "A mandatory int property"
+      },
+      {
+        "name": "someFloat",
+        "type": "float",
+        "mandatory": true,
+        "documentation": "A mandatory float property"
+      },
+      {
+        "name": "someString",
+        "type": "string",
+        "mandatory": true,
+        "documentation": "A mandatory string property"
+      },
+      {
+        "name": "someList",
+        "type": "list",
+        "mandatory": true,
+        "documentation": "A mandatory list property"
+      },
+      {
+        "name": "someMap",
+        "type": "map",
+        "mandatory": true,
+        "documentation": "A mandatory map property"
+      }
+    ]
+  },
+  {
+    "type": "data",
+    "name": "DataStructureOptional",
+    "documentation": "A data structure to test data transfer with optional properties",
+    "properties": [
+      {
+        "name": "someBoolean",
+        "type": "boolean",
+        "mandatory": false,
+        "documentation": "An optional boolean property"
+      },
+      {
+        "name": "someInt",
+        "type": "int",
+        "mandatory": false,
+        "documentation": "An optional int property"
+      },
+      {
+        "name": "someFloat",
+        "type": "float",
+        "mandatory": false,
+        "documentation": "An optional float property"
+      },
+      {
+        "name": "someString",
+        "type": "string",
+        "mandatory": false,
+        "documentation": "An optional string property"
+      },
+      {
+        "name": "someList",
+        "type": "list",
+        "mandatory": false,
+        "documentation": "An optional list property"
+      },
+      {
+        "name": "someMap",
+        "type": "map",
+        "mandatory": false,
+        "documentation": "An optional map property"
+      }
+    ]
+  }
+]

@@ -10,55 +10,41 @@ import Foundation
    An interface to test return types
  */
 @objc(Getter)
-class Getter: NSObject {
+protocol Getter {
 
     /**
        Empty method, returns void
      */
-    func emptyMethod() -> Void {
-        // TODO
-    }
+    func emptyMethod() -> Void
 
     /**
        Empty method, returns int
      */
-    func getBoolean() -> Bool {
-        // TODO
-    }
+    func getBoolean() -> Bool
 
     /**
        Empty method, returns int
      */
-    func getInt() -> Int {
-        // TODO
-    }
+    func getInt() -> Int
 
     /**
        Empty method, returns float
      */
-    func getFloat() -> Float {
-        // TODO
-    }
+    func getFloat() -> Float
 
     /**
        Empty method, returns string
      */
-    func getString() -> NSString {
-        // TODO
-    }
+    func getString() -> NSString
 
     /**
        Empty method, returns map
      */
-    func getMap() -> NSDictionary {
-        // TODO
-    }
+    func getMap() -> NSDictionary
 
     /**
        Empty method, returns list
      */
-    func getList() -> NSArray {
-        // TODO
-    }
+    func getList() -> NSArray
 
 }

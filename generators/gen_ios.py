@@ -41,11 +41,11 @@ class IOSGenerator:
     def generate(self, definitions: list):
         for definition in definitions:
             if definition['type'] == "interface":
-                self._generate_ios_implementation(definition)
+                self._generate_ios_interface(definition)
             elif definition['type'] == "data":
                 self._generate_ios_data(definition)
 
-    def _generate_ios_implementation(self, definition: dict):
+    def _generate_ios_interface(self, definition: dict):
         output_folder_path = os.path.join(self.output_folder, OUTPUT_IOS_FOLDER)
         if not os.path.exists(output_folder_path):
             os.makedirs(output_folder_path)
@@ -61,7 +61,7 @@ class IOSGenerator:
                 output.write(" */\n")
 
             output.write("@objc(" + definition['name'] + ")\n")
-            output.write("class " + definition['name'] + ": NSObject {\n\n")
+            output.write("protocol " + definition['name'] + " {\n\n")
 
             for method in definition['methods']:
                 if 'documentation' in method:
@@ -77,9 +77,7 @@ class IOSGenerator:
                     output.write(param['name'] + ": " + _get_ios_type_swift(param['type']))
                 output.write(") -> ")
                 output.write(_get_ios_type_swift(method['type']))
-                output.write(" {\n")
-                output.write("        // TODO\n")
-                output.write("    }\n\n")
+                output.write("\n\n")
 
             output.write("}\n")
 

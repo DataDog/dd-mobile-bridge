@@ -10,48 +10,36 @@ import Foundation
    An interface to test setting types
  */
 @objc(Setter)
-class Setter: NSObject {
+protocol Setter {
 
     /**
        Empty method, boolean param, returns void
      */
-    func setBoolean(value: Bool) -> Void {
-        // TODO
-    }
+    func setBoolean(value: Bool) -> Void
 
     /**
        Empty method, int param, returns void
      */
-    func setInt(value: Int) -> Void {
-        // TODO
-    }
+    func setInt(value: Int) -> Void
 
     /**
        Empty method, float param, returns void
      */
-    func setFloat(value: Float) -> Void {
-        // TODO
-    }
+    func setFloat(value: Float) -> Void
 
     /**
        Empty method, string param, returns void
      */
-    func setString(value: NSString) -> Void {
-        // TODO
-    }
+    func setString(value: NSString) -> Void
 
     /**
        Empty method, map param, returns void
      */
-    func setMap(value: NSDictionary) -> Void {
-        // TODO
-    }
+    func setMap(value: NSDictionary) -> Void
 
     /**
        Empty method, list param, returns void
      */
-    func setList(value: NSArray) -> Void {
-        // TODO
-    }
+    func setList(value: NSArray) -> Void
 
 }

@@ -10,20 +10,16 @@ import Foundation
    An interface to test transferring complex types
  */
 @objc(BridgeWithData)
-class BridgeWithData: NSObject {
+protocol BridgeWithData {
 
     /**
        Empty method, ComplexDataStructure param, returns void
      */
-    func setData(value: ComplexDataStructure) -> Void {
-        // TODO
-    }
+    func setData(value: ComplexDataStructure) -> Void
 
     /**
        Empty method, returns ComplexDataStructure
      */
-    func getData() -> ComplexDataStructure {
-        // TODO
-    }
+    func getData() -> ComplexDataStructure
 
 }

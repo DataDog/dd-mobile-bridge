@@ -2,26 +2,19 @@
 # -*- coding: utf-8 -*-
 
 import os
+from .gen_utils import *
 
 OUTPUT_AND_FOLDER = os.path.join("dd-sdk-android", "src", "main", "java", "com", "datadog", "android", "bridge")
 
 AND_TYPES = {
-    'void': 'Unit',
-    'boolean': 'Boolean',
-    'int': 'Int',
-    'float': 'Float',
-    'map': 'Map<String, Any?>',
-    'list': 'List<Any?>',
-    'string': 'String'
+    TYPE_VOID: 'Unit',
+    TYPE_BOOL: 'Boolean',
+    TYPE_INT: 'Int',
+    TYPE_FLOAT: 'Float',
+    TYPE_MAP: 'Map<String, Any?>',
+    TYPE_LIST: 'List<Any?>',
+    TYPE_STRING: 'String'
 }
-
-LICENSE_HEADER = """/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache License Version 2.0.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2016-Present Datadog, Inc.
- */
-
-"""
 
 
 def _get_and_type(typename: str, default: str = None) -> str:
@@ -46,11 +39,8 @@ class AndroidGenerator:
                 self._generate_and_data(definition)
 
     def _generate_and_interface(self, definition: dict):
-        output_folder_path = os.path.join(self.output_folder, OUTPUT_AND_FOLDER)
-        if not os.path.exists(output_folder_path):
-            os.makedirs(output_folder_path)
-
-        output_path = os.path.join(output_folder_path, definition['name'] + ".kt")
+        file_name = definition['name'] + ".kt"
+        output_path = prepare_output_path(self.output_folder, OUTPUT_AND_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("package com.datadog.android.bridge\n\n")
@@ -84,11 +74,8 @@ class AndroidGenerator:
             output.write("}\n")
 
     def _generate_and_data(self, definition: dict):
-        output_folder_path = os.path.join(self.output_folder, OUTPUT_AND_FOLDER)
-        if not os.path.exists(output_folder_path):
-            os.makedirs(output_folder_path)
-
-        output_path = os.path.join(output_folder_path, definition['name'] + ".kt")
+        file_name = definition['name'] + ".kt"
+        output_path = prepare_output_path(self.output_folder, OUTPUT_AND_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("package com.datadog.android.bridge\n\n")

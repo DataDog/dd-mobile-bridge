@@ -30,16 +30,16 @@ protocol Setter {
     /**
        Empty method, string param, returns void
      */
-    func setString(value: NSString) -> Void
+    func setString(value: String) -> Void
 
     /**
        Empty method, map param, returns void
      */
-    func setMap(value: NSDictionary) -> Void
+    func setMap(value: Dictionary<String, Any?>) -> Void
 
     /**
        Empty method, list param, returns void
      */
-    func setList(value: NSArray) -> Void
+    func setList(value: Array<Any?>) -> Void
 
 }

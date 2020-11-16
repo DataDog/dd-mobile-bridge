@@ -35,16 +35,16 @@ protocol Getter {
     /**
        Empty method, returns string
      */
-    func getString() -> NSString
+    func getString() -> String
 
     /**
        Empty method, returns map
      */
-    func getMap() -> NSDictionary
+    func getMap() -> Dictionary<String, Any?>
 
     /**
        Empty method, returns list
      */
-    func getList() -> NSArray
+    func getList() -> Array<Any?>
 
 }

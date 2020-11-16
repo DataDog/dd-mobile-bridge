@@ -96,7 +96,7 @@ class IOSGenerator:
             output.write("{\n")
             for i, prop in enumerate(definition['properties']):
                 if i > 0:
-                    output.write(",\n")
+                    output.write("\n")
                 property_name = prop['name']
                 property_type = prop['type']
                 property_mandatory = prop['mandatory']

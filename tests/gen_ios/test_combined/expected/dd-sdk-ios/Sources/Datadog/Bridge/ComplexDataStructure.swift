@@ -14,7 +14,7 @@ import Foundation
      - someMap: A mandatory map property
  */
 struct ComplexDataStructure{
-    let someInt: Int,
-    var someString: String? = nil,
+    let someInt: Int
+    var someString: String? = nil
     let someMap: Dictionary<String, Any?>
 }

@@ -17,10 +17,10 @@ import Foundation
      - someMap: A mandatory map property
  */
 struct DataStructure{
-    let someBoolean: Bool,
-    let someInt: Int,
-    let someFloat: Float,
-    let someString: String,
-    let someList: Array<Any?>,
+    let someBoolean: Bool
+    let someInt: Int
+    let someFloat: Float
+    let someString: String
+    let someList: Array<Any?>
     let someMap: Dictionary<String, Any?>
 }

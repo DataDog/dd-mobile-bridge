@@ -17,10 +17,10 @@ import Foundation
      - someMap: An optional map property
  */
 struct DataStructureOptional{
-    var someBoolean: Bool? = nil,
-    var someInt: Int? = nil,
-    var someFloat: Float? = nil,
-    var someString: String? = nil,
-    var someList: Array<Any?>? = nil,
+    var someBoolean: Bool? = nil
+    var someInt: Int? = nil
+    var someFloat: Float? = nil
+    var someString: String? = nil
+    var someList: Array<Any?>? = nil
     var someMap: Dictionary<String, Any?>? = nil
 }

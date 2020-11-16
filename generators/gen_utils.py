@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import os
+
+TYPE_VOID = 'void'
+TYPE_BOOL = 'boolean'
+TYPE_INT = 'int'
+TYPE_FLOAT = 'float'
+TYPE_STRING = 'string'
+TYPE_MAP = 'map'
+TYPE_LIST = 'list'
+
+LICENSE_HEADER = """/*
+ * Unless explicitly stated otherwise all files in this repository are licensed under the Apache License Version 2.0.
+ * This product includes software developed at Datadog (https://www.datadoghq.com/).
+ * Copyright 2016-Present Datadog, Inc.
+ */
+
+"""
+
+
+def prepare_output_path(root_folder: str, output_folder: str, file_name: str) -> str:
+    output_folder_path = os.path.join(root_folder, output_folder)
+    if not os.path.exists(output_folder_path):
+        os.makedirs(output_folder_path)
+    return os.path.join(output_folder_path, file_name)

@@ -20,7 +20,7 @@ struct DataStructureOptional{
     var someBoolean: Bool? = nil,
     var someInt: Int? = nil,
     var someFloat: Float? = nil,
-    var someString: NSString? = nil,
-    var someList: NSArray? = nil,
-    var someMap: NSDictionary? = nil
+    var someString: String? = nil,
+    var someList: Array<Any?>? = nil,
+    var someMap: Dictionary<String, Any?>? = nil
 }

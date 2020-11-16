@@ -15,6 +15,6 @@ import Foundation
  */
 struct ComplexDataStructure{
     let someInt: Int,
-    var someString: NSString? = nil,
-    let someMap: NSDictionary
+    var someString: String? = nil,
+    let someMap: Dictionary<String, Any?>
 }

@@ -3,6 +3,7 @@
 
 import os
 from typing import TextIO
+from .gen_utils import *
 
 OUTPUT_TS_FOLDER = "src"
 OUTPUT_TS_TYPES = "types.tsx"
@@ -15,52 +16,44 @@ OUTPUT_AND_BRIDGE = "DdSdkBridgeExt.kt"
 OUTPUT_IOS_FOLDER = "ios"
 
 TS_TYPES = {
-    'void': 'void',
-    'boolean': 'boolean',
-    'int': 'number',
-    'float': 'number',
-    'map': 'object',
-    'list': 'array',
-    'string': 'string'
+    TYPE_VOID: 'void',
+    TYPE_BOOL: 'boolean',
+    TYPE_INT: 'number',
+    TYPE_FLOAT: 'number',
+    TYPE_MAP: 'object',
+    TYPE_LIST: 'array',
+    TYPE_STRING: 'string'
 }
 
 AND_TYPES = {
-    'void': 'Unit',
-    'boolean': 'Boolean',
-    'int': 'Int',
-    'float': 'Float',
-    'map': 'ReadableMap',
-    'list': 'ReadableArray',
-    'string': 'String'
+    TYPE_VOID: 'Unit',
+    TYPE_BOOL: 'Boolean',
+    TYPE_INT: 'Int',
+    TYPE_FLOAT: 'Float',
+    TYPE_MAP: 'ReadableMap',
+    TYPE_LIST: 'ReadableArray',
+    TYPE_STRING: 'String'
 }
 
 IOS_TYPES_SWIFT = {
-    'void': 'Void',
-    'boolean': 'Bool',
-    'int': 'Int',
-    'float': 'Float',
-    'map': 'NSDictionary',
-    'list': 'NSArray',
-    'string': 'NSString'
+    TYPE_VOID: 'Void',
+    TYPE_BOOL: 'Bool',
+    TYPE_INT: 'Int',
+    TYPE_FLOAT: 'Float',
+    TYPE_MAP: 'NSDictionary',
+    TYPE_LIST: 'NSArray',
+    TYPE_STRING: 'NSString'
 }
 
 IOS_TYPES_OBJC = {
-    'void': 'void',
-    'boolean': 'BOOL',
-    'int': 'NSInteger',
-    'float': 'float',
-    'map': 'NSDictionary',
-    'list': 'NSArray',
-    'string': 'NSString'
+    TYPE_VOID: 'void',
+    TYPE_BOOL: 'BOOL',
+    TYPE_INT: 'NSInteger',
+    TYPE_FLOAT: 'float',
+    TYPE_MAP: 'NSDictionary',
+    TYPE_LIST: 'NSArray',
+    TYPE_STRING: 'NSString'
 }
-
-LICENSE_HEADER = """/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache License Version 2.0.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2016-Present Datadog, Inc.
- */
-
-"""
 
 
 def _get_ts_type(typename: str) -> str:
@@ -118,11 +111,7 @@ class RNGenerator:
                 self._generate_ios_struct_ext(definition)
 
     def _generate_ts_index(self, definitions: list):
-        output_folder_path = os.path.join(self.output_folder, OUTPUT_TS_FOLDER)
-        if not os.path.exists(output_folder_path):
-            os.makedirs(output_folder_path)
-
-        output_path = os.path.join(output_folder_path, OUTPUT_TS_INDEX)
+        output_path = prepare_output_path(self.output_folder, OUTPUT_TS_FOLDER, OUTPUT_TS_INDEX)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("import { NativeModules } from 'react-native';\n")
@@ -157,11 +146,7 @@ class RNGenerator:
             output.write(" };\n")
 
     def _generate_ts_types(self, definitions: list):
-        output_folder_path = os.path.join(self.output_folder, OUTPUT_TS_FOLDER)
-        if not os.path.exists(output_folder_path):
-            os.makedirs(output_folder_path)
-
-        output_path = os.path.join(output_folder_path, OUTPUT_TS_TYPES)
+        output_path = prepare_output_path(self.output_folder, OUTPUT_TS_FOLDER, OUTPUT_TS_TYPES)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             for definition in definitions:
@@ -227,11 +212,8 @@ class RNGenerator:
         output.write("};\n\n")
 
     def _generate_and_implementation(self, definition: dict):
-        output_folder_path = os.path.join(self.output_folder, OUTPUT_AND_FOLDER)
-        if not os.path.exists(output_folder_path):
-            os.makedirs(output_folder_path)
-
-        output_path = os.path.join(output_folder_path, "RN" + definition['name'] + ".kt")
+        file_name = "RN" + definition['name'] + ".kt"
+        output_path = prepare_output_path(self.output_folder, OUTPUT_AND_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("package com.datadog.reactnative\n\n")
@@ -290,7 +272,7 @@ class RNGenerator:
         output.write("promise: Promise) {\n")
 
         output.write("        ")
-        if return_type != "void":
+        if return_type != TYPE_VOID:
             output.write("        val result = ")
         output.write("nativeInstance.")
         output.write(method['name'])
@@ -299,9 +281,9 @@ class RNGenerator:
             if i > 0:
                 output.write(", ")
             output.write(param['name'])
-            if param['type'] == 'map':
+            if param['type'] == TYPE_MAP:
                 output.write('.toHashMap()')
-            elif param['type'] == 'list':
+            elif param['type'] == TYPE_LIST:
                 output.write('.toArrayList()')
             elif param['type'] not in AND_TYPES:
                 output.write('.as')
@@ -309,24 +291,20 @@ class RNGenerator:
                 output.write('()')
         output.write(')\n')
 
-        if return_type == 'void':
+        if return_type == TYPE_VOID:
             output.write("        promise.resolve(null)\n")
-        elif return_type == 'map':
+        elif return_type == TYPE_MAP:
             output.write("        promise.resolve(result.toWritableMap())\n")
-        elif return_type == 'list':
+        elif return_type == TYPE_LIST:
             output.write("        promise.resolve(result.toWritableArray())\n")
-        elif return_type in ['boolean', 'int', 'float', 'string']:
+        elif return_type in [TYPE_BOOL, TYPE_INT, TYPE_FLOAT, TYPE_STRING]:
             output.write("        promise.resolve(result)\n")
         else:
             output.write("        promise.resolve(result.toReadableMap())\n")
         output.write("    }\n\n")
 
     def _generate_and_bridge_ext(self, definitions: list):
-        output_folder_path = os.path.join(self.output_folder, OUTPUT_AND_FOLDER)
-        if not os.path.exists(output_folder_path):
-            os.makedirs(output_folder_path)
-
-        output_path = os.path.join(output_folder_path, OUTPUT_AND_BRIDGE)
+        output_path = prepare_output_path(self.output_folder, OUTPUT_AND_FOLDER, OUTPUT_AND_BRIDGE)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("package com.datadog.reactnative\n\n")
@@ -374,11 +352,8 @@ class RNGenerator:
                     pass
 
     def _generate_and_data_ext(self, definition: dict):
-        output_folder_path = os.path.join(self.output_folder, OUTPUT_AND_FOLDER)
-        if not os.path.exists(output_folder_path):
-            os.makedirs(output_folder_path)
-
-        output_path = os.path.join(output_folder_path, "RN" + definition['name'] + ".kt")
+        file_name = "RN" + definition['name'] + ".kt"
+        output_path = prepare_output_path(self.output_folder, OUTPUT_AND_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("package com.datadog.reactnative\n\n")
@@ -411,17 +386,17 @@ class RNGenerator:
             output.write("        ")
             output.write(property_name)
             output.write(" = ")
-            if property_type == "string":
+            if property_type == TYPE_STRING:
                 output.write("getString(\"")
                 output.write(property_name)
                 output.write("\")")
                 if property_mandatory:
                     output.write(".orEmpty()")
-            elif property_type == "boolean":
+            elif property_type == TYPE_BOOL:
                 output.write("getBoolean(\"")
                 output.write(property_name)
                 output.write("\")")
-            elif property_type == "int":
+            elif property_type == TYPE_INT:
                 output.write("getInt(\"")
                 output.write(property_name)
                 output.write("\")")
@@ -429,17 +404,17 @@ class RNGenerator:
                 output.write("getDouble(\"")
                 output.write(property_name)
                 output.write("\")")
-            elif property_type == "float":
+            elif property_type == TYPE_FLOAT:
                 output.write("getDouble(\"")
                 output.write(property_name)
                 output.write("\").toFloat()")
-            elif property_type == "list":
+            elif property_type == TYPE_LIST:
                 output.write("getArray(\"")
                 output.write(property_name)
                 output.write("\")?.toArrayList()")
                 if property_mandatory:
                     output.write("!!")
-            elif property_type == "map":
+            elif property_type == TYPE_MAP:
                 output.write("getMap(\"")
                 output.write(property_name)
                 output.write("\")?.toHashMap()")
@@ -474,19 +449,19 @@ class RNGenerator:
                 output.write(property_name)
                 output.write(" != null) ")
 
-            if property_type == "string":
+            if property_type == TYPE_STRING:
                 output.write("map.putString(\"")
                 output.write(property_name)
                 output.write("\", ")
                 output.write(property_name)
                 output.write(")")
-            elif property_type == "boolean":
+            elif property_type == TYPE_BOOL:
                 output.write("map.putBoolean(\"")
                 output.write(property_name)
                 output.write("\", ")
                 output.write(property_name)
                 output.write(")")
-            elif property_type == "int":
+            elif property_type == TYPE_INT:
                 output.write("map.putInt(\"")
                 output.write(property_name)
                 output.write("\", ")
@@ -498,19 +473,19 @@ class RNGenerator:
                 output.write("\", ")
                 output.write(property_name)
                 output.write(")")
-            elif property_type == "float":
+            elif property_type == TYPE_FLOAT:
                 output.write("map.putDouble(\"")
                 output.write(property_name)
                 output.write("\", ")
                 output.write(property_name)
                 output.write(".toDouble())")
-            elif property_type == "list":
+            elif property_type == TYPE_LIST:
                 output.write("map.putArray(\"")
                 output.write(property_name)
                 output.write("\", ")
                 output.write(property_name)
                 output.write(".toWritableArray())")
-            elif property_type == "map":
+            elif property_type == TYPE_MAP:
                 output.write("map.putMap(\"")
                 output.write(property_name)
                 output.write("\", ")
@@ -527,11 +502,7 @@ class RNGenerator:
         output.write("}\n")
 
     def _generate_and_package(self, definitions: list):
-        output_folder_path = os.path.join(self.output_folder, OUTPUT_AND_FOLDER)
-        if not os.path.exists(output_folder_path):
-            os.makedirs(output_folder_path)
-
-        output_path = os.path.join(output_folder_path, OUTPUT_AND_PACKAGE)
+        output_path = prepare_output_path(self.output_folder, OUTPUT_AND_FOLDER, OUTPUT_AND_PACKAGE)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("package com.datadog.reactnative\n\n")
@@ -567,11 +538,8 @@ class RNGenerator:
             output.write("}\n")
 
     def _generate_ios_interface(self, definition: dict):
-        output_folder_path = os.path.join(self.output_folder, OUTPUT_IOS_FOLDER)
-        if not os.path.exists(output_folder_path):
-            os.makedirs(output_folder_path)
-
-        output_path = os.path.join(output_folder_path, definition['name'] + ".m")
+        file_name = definition['name'] + ".m"
+        output_path = prepare_output_path(self.output_folder, OUTPUT_IOS_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("#import <React/RCTBridgeModule.h>\n\n")
@@ -601,11 +569,8 @@ class RNGenerator:
         output.write(")\n\n")
 
     def _generate_ios_swift_implementation(self, definition: dict):
-        output_folder_path = os.path.join(self.output_folder, OUTPUT_IOS_FOLDER)
-        if not os.path.exists(output_folder_path):
-            os.makedirs(output_folder_path)
-
-        output_path = os.path.join(output_folder_path, definition['name'] + ".swift")
+        file_name = definition['name'] + ".swift"
+        output_path = prepare_output_path(self.output_folder, OUTPUT_IOS_FOLDER, file_name)
         print("writing to " + output_path)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
@@ -643,7 +608,7 @@ class RNGenerator:
         output.write(" -> Void {\n")
 
         output.write("        ")
-        if return_type != "void":
+        if return_type != TYPE_VOID:
             output.write("let result = ")
         output.write("nativeInstance.")
         output.write(method['name'])
@@ -660,7 +625,7 @@ class RNGenerator:
                 output.write('()')
         output.write(')\n')
 
-        if return_type == 'void':
+        if return_type == TYPE_VOID:
             output.write("        resolve(nil)\n")
         else:
             output.write("        resolve(result)\n")
@@ -668,11 +633,8 @@ class RNGenerator:
         output.write("    }\n\n")
 
     def _generate_ios_struct_ext(self, definition: dict):
-        output_folder_path = os.path.join(self.output_folder, OUTPUT_IOS_FOLDER)
-        if not os.path.exists(output_folder_path):
-            os.makedirs(output_folder_path)
-
-        output_path = os.path.join(output_folder_path, "RN" + definition['name'] + ".swift")
+        file_name = "RN" + definition['name'] + ".swift"
+        output_path = prepare_output_path(self.output_folder, OUTPUT_IOS_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("import Foundation\n\n")
@@ -719,17 +681,17 @@ class RNGenerator:
                 output.write(" != nil) ? ")
                 output.write(property_name)
                 output.write("! : ")
-                if property_type == "string":
+                if property_type == TYPE_STRING:
                     output.write("NSString()")
-                elif property_type == "boolean":
+                elif property_type == TYPE_BOOL:
                     output.write("false")
-                elif property_type == "int":
+                elif property_type == TYPE_INT:
                     output.write("0")
-                elif property_type == "float":
+                elif property_type == TYPE_FLOAT:
                     output.write("0.0")
-                elif property_type == "list":
+                elif property_type == TYPE_LIST:
                     output.write("NSArray()")
-                elif property_type == "map":
+                elif property_type == TYPE_MAP:
                     output.write("NSDictionary()")
 
             else:

@@ -2,26 +2,19 @@
 # -*- coding: utf-8 -*-
 
 import os
+from .gen_utils import *
 
 OUTPUT_IOS_FOLDER = os.path.join("dd-sdk-ios", "Sources", "Datadog", "Bridge")
 
 IOS_TYPES_SWIFT = {
-    'void': 'Void',
-    'boolean': 'Bool',
-    'int': 'Int',
-    'float': 'Float',
-    'map': 'NSDictionary',
-    'list': 'NSArray',
-    'string': 'NSString'
+    TYPE_VOID: 'Void',
+    TYPE_BOOL: 'Bool',
+    TYPE_INT: 'Int',
+    TYPE_FLOAT: 'Float',
+    TYPE_MAP: 'Dictionary<String, Any?>',
+    TYPE_LIST: 'Array<Any?>',
+    TYPE_STRING: 'String'
 }
-
-LICENSE_HEADER = """/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache License Version 2.0.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2016-Present Datadog, Inc.
- */
-
-"""
 
 
 def _get_ios_type_swift(typename: str, default: str = None) -> str:
@@ -46,11 +39,8 @@ class IOSGenerator:
                 self._generate_ios_data(definition)
 
     def _generate_ios_interface(self, definition: dict):
-        output_folder_path = os.path.join(self.output_folder, OUTPUT_IOS_FOLDER)
-        if not os.path.exists(output_folder_path):
-            os.makedirs(output_folder_path)
-
-        output_path = os.path.join(output_folder_path, definition['name'] + ".swift")
+        file_name = definition['name'] + ".swift"
+        output_path = prepare_output_path(self.output_folder, OUTPUT_IOS_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("import Foundation\n\n")
@@ -82,11 +72,8 @@ class IOSGenerator:
             output.write("}\n")
 
     def _generate_ios_data(self, definition: dict):
-        output_folder_path = os.path.join(self.output_folder, OUTPUT_IOS_FOLDER)
-        if not os.path.exists(output_folder_path):
-            os.makedirs(output_folder_path)
-
-        output_path = os.path.join(output_folder_path, definition['name'] + ".swift")
+        file_name = definition['name'] + ".swift"
+        output_path = prepare_output_path(self.output_folder, OUTPUT_IOS_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("import Foundation\n\n")

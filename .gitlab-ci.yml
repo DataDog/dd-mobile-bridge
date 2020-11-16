@@ -1,0 +1,42 @@
+# SETUP
+
+variables:
+  GIT_DEPTH: 5
+  CI_IMAGE_DOCKER: 486234852809.dkr.ecr.us-east-1.amazonaws.com/ci/dd-mobile-bridge:$CURRENT_CI_IMAGE
+  CURRENT_CI_IMAGE: 1
+
+stages:
+  - ci-image
+  - test
+
+# CI IMAGE
+
+ci-image:
+  stage: ci-image
+  when: manual
+  except: [tags, schedules]
+  tags: ["runner:docker", "size:large"]
+  image: 486234852809.dkr.ecr.us-east-1.amazonaws.com/docker:18.03.1
+  script:
+    - docker build --tag $CI_IMAGE_DOCKER -f Dockerfile.gitlab .
+    - docker push $CI_IMAGE_DOCKER
+
+# TESTS
+
+test:format:
+  tags: [ "runner:main", "size:large" ]
+  image: $CI_IMAGE_DOCKER
+  stage: test
+  timeout: 1h
+  script:
+    - pip3 install -r requirements/format.txt
+    - python3 test_format.py
+
+test:generators:
+  tags: [ "runner:main", "size:large" ]
+  image: $CI_IMAGE_DOCKER
+  stage: test
+  timeout: 1h
+  script:
+    - pip3 install -r requirements/generators.txt
+    - python3 test_generators.py

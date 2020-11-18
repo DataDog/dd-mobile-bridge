@@ -1,1 +1,390 @@
-[]
+[
+  {
+    "type": "data",
+    "name": "DatadogConfiguration",
+    "documentation": "A configuration object to initialize Datadog's features.",
+    "properties": [
+      {
+        "name": "clientToken",
+        "type": "string",
+        "documentation": "A valid Datadog client token.",
+        "mandatory": true
+      },
+      {
+        "name": "env",
+        "type": "string",
+        "documentation": "The application’s environment, for example: prod, pre-prod, staging, etc.",
+        "mandatory": true
+      },
+      {
+        "name": "applicationId",
+        "type": "string",
+        "documentation": "The RUM application ID.",
+        "mandatory": false
+      }
+    ]
+  },
+  {
+    "type": "interface",
+    "name": "Datadog",
+    "documentation": "The entry point to initialize Datadog's features.",
+    "methods": [
+      {
+        "name": "initialize",
+        "type": "void",
+        "documentation": "Initializes Datadog's features.",
+        "parameters": [
+          {
+            "name": "configuration",
+            "type": "DatadogConfiguration",
+            "documentation": "The configuration to use."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "interface",
+    "name": "DdLogs",
+    "documentation": "The entry point to use Datadog's Logs feature.",
+    "methods": [
+      {
+        "name": "debug",
+        "type": "void",
+        "documentation": "Send a log with level debug.",
+        "parameters": [
+          {
+            "name": "message",
+            "type": "string",
+            "documentation": "The message to send."
+          },
+          {
+            "name": "context",
+            "type": "map",
+            "documentation": "The additional context to send."
+          }
+        ]
+      },
+      {
+        "name": "info",
+        "type": "void",
+        "documentation": "Send a log with level info.",
+        "parameters": [
+          {
+            "name": "message",
+            "type": "string",
+            "documentation": "The message to send."
+          },
+          {
+            "name": "context",
+            "type": "map",
+            "documentation": "The additional context to send."
+          }
+        ]
+      },
+      {
+        "name": "warn",
+        "type": "void",
+        "documentation": "Send a log with level warn.",
+        "parameters": [
+          {
+            "name": "message",
+            "type": "string",
+            "documentation": "The message to send."
+          },
+          {
+            "name": "context",
+            "type": "map",
+            "documentation": "The additional context to send."
+          }
+        ]
+      },
+      {
+        "name": "error",
+        "type": "void",
+        "documentation": "Send a log with level error.",
+        "parameters": [
+          {
+            "name": "message",
+            "type": "string",
+            "documentation": "The message to send."
+          },
+          {
+            "name": "context",
+            "type": "map",
+            "documentation": "The additional context to send."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "interface",
+    "name": "DdTrace",
+    "documentation": "The entry point to use Datadog's Trace feature.",
+    "methods": [
+      {
+        "name": "startSpan",
+        "type": "string",
+        "documentation": "Start a span, and returns a unique identifier for the span.",
+        "parameters": [
+          {
+            "name": "operation",
+            "type": "string",
+            "documentation": "The operation name of the span."
+          },
+          {
+            "name": "timestamp",
+            "type": "int",
+            "documentation": "The timestamp when the operation started."
+          },
+          {
+            "name": "context",
+            "type": "map",
+            "documentation": "The additional context to send."
+          }
+        ]
+      },
+      {
+        "name": "finishSpan",
+        "type": "void",
+        "documentation": "Finish a started span.",
+        "parameters": [
+          {
+            "name": "spanId",
+            "type": "string",
+            "documentation": "The unique identifier of the span."
+          },
+          {
+            "name": "timestamp",
+            "type": "int",
+            "documentation": "The timestamp when the operation stopped."
+          },
+          {
+            "name": "context",
+            "type": "map",
+            "documentation": "The additional context to send."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "interface",
+    "name": "DdRum",
+    "documentation": "The entry point to use Datadog's RUM feature.",
+    "methods": [
+      {
+        "name": "startView",
+        "type": "void",
+        "documentation": "Start tracking a RUM View.",
+        "parameters": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "The view unique key identifier."
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "The view name."
+          },
+          {
+            "name": "timestamp",
+            "type": "int",
+            "documentation": "The timestamp when the view started."
+          },
+          {
+            "name": "context",
+            "type": "map",
+            "documentation": "The additional context to send."
+          }
+        ]
+      },
+      {
+        "name": "stopView",
+        "type": "void",
+        "documentation": "Stop tracking a RUM View.",
+        "parameters": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "The view unique key identifier."
+          },
+          {
+            "name": "timestamp",
+            "type": "int",
+            "documentation": "The timestamp when the view stopped."
+          },
+          {
+            "name": "context",
+            "type": "map",
+            "documentation": "The additional context to send."
+          }
+        ]
+      },
+      {
+        "name": "startAction",
+        "type": "void",
+        "documentation": "Start tracking a RUM Action.",
+        "parameters": [
+          {
+            "name": "type",
+            "type": "string",
+            "documentation": "The action type (tap, scroll, swipe, click, custom)."
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "The action name."
+          },
+          {
+            "name": "timestamp",
+            "type": "int",
+            "documentation": "The timestamp when the action started."
+          },
+          {
+            "name": "context",
+            "type": "map",
+            "documentation": "The additional context to send."
+          }
+        ]
+      },
+      {
+        "name": "stopAction",
+        "type": "void",
+        "documentation": "Stop tracking the ongoing RUM Action.",
+        "parameters": [
+          {
+            "name": "timestamp",
+            "type": "int",
+            "documentation": "The timestamp when the action stopped."
+          },
+          {
+            "name": "context",
+            "type": "map",
+            "documentation": "The additional context to send."
+          }
+        ]
+      },
+      {
+        "name": "addAction",
+        "type": "void",
+        "documentation": "Add a RUM Action.",
+        "parameters": [
+          {
+            "name": "type",
+            "type": "string",
+            "documentation": "The action type (tap, scroll, swipe, click, custom)."
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "The action name."
+          },
+          {
+            "name": "timestamp",
+            "type": "int",
+            "documentation": "The timestamp when the action occured."
+          },
+          {
+            "name": "context",
+            "type": "map",
+            "documentation": "The additional context to send."
+          }
+        ]
+      },
+      {
+        "name": "startResource",
+        "type": "void",
+        "documentation": "Start tracking a RUM Resource.",
+        "parameters": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "The resource unique key identifier."
+          },
+          {
+            "name": "method",
+            "type": "string",
+            "documentation": "The resource method (GET, POST, …)."
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "documentation": "The resource url."
+          },
+          {
+            "name": "timestamp",
+            "type": "int",
+            "documentation": "The timestamp when the resource started."
+          },
+          {
+            "name": "context",
+            "type": "map",
+            "documentation": "The additional context to send."
+          }
+        ]
+      },
+      {
+        "name": "stopResource",
+        "type": "void",
+        "documentation": "Stop tracking a RUM Resource.",
+        "parameters": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "The resource unique key identifier."
+          },
+          {
+            "name": "timestamp",
+            "type": "int",
+            "documentation": "The timestamp when the resource stopped."
+          },
+          {
+            "name": "statusCode",
+            "type": "int",
+            "documentation": "The resource status code."
+          },
+          {
+            "name": "context",
+            "type": "map",
+            "documentation": "The additional context to send."
+          }
+        ]
+      },
+      {
+        "name": "addError",
+        "type": "void",
+        "documentation": "Add a RUM Error.",
+        "parameters": [
+          {
+            "name": "message",
+            "type": "string",
+            "documentation": "The error message."
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "documentation": "The error source (network, source, console, logger, …)."
+          },
+          {
+            "name": "stacktrace",
+            "type": "string",
+            "documentation": "The error stacktrace."
+          },
+          {
+            "name": "timestamp",
+            "type": "int",
+            "documentation": "The timestamp when the error occured."
+          },
+          {
+            "name": "context",
+            "type": "map",
+            "documentation": "The additional context to send."
+          }
+        ]
+      }
+    ]
+  }
+]

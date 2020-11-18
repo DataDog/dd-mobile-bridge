@@ -2,6 +2,7 @@
   {
     "type": "data",
     "name": "Spam",
+    "documentation" : "A spam message",
     "properties": [
       {
         "name": "message",
@@ -18,9 +19,9 @@
       {
         "name": "keep",
         "type": "boolean",
+        "mandatory": false,
         "documentation" : "Whether the message should be kept"
       }
-    ],
-    "documentation" : "A spam message"
+    ]
   }
 ]

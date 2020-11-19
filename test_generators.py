@@ -8,7 +8,7 @@ import shutil
 import subprocess
 import sys
 
-PROJECTS = ['reactnative', 'android', 'ios']
+PROJECTS = ['readme', 'android', 'ios', 'reactnative']
 
 
 def _report_file_diff(output_file_path, expected_file_path):

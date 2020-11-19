@@ -9,11 +9,11 @@ OUTPUT_TS_FOLDER = "src"
 OUTPUT_TS_TYPES = "types.tsx"
 OUTPUT_TS_INDEX = "index.tsx"
 
-OUTPUT_AND_FOLDER = "android/src/main/java/com/datadog/reactnative"
+OUTPUT_RN_AND_FOLDER = os.path.join("android", "src", "main", "java", "com", "datadog", "reactnative")
 OUTPUT_AND_PACKAGE = "DdSdkReactNativePackage.kt"
 OUTPUT_AND_BRIDGE = "DdSdkBridgeExt.kt"
 
-OUTPUT_IOS_FOLDER = "ios"
+OUTPUT_RN_IOS_FOLDER = "ios"
 
 TS_TYPES = {
     TYPE_VOID: 'void',
@@ -212,13 +212,15 @@ class RNGenerator:
         output.write("};\n\n")
 
     def _generate_and_implementation(self, definition: dict):
-        file_name = "RN" + definition['name'] + ".kt"
-        output_path = prepare_output_path(self.output_folder, OUTPUT_AND_FOLDER, file_name)
+        class_name = definition['name']
+        file_name = class_name + ".kt"
+        output_path = prepare_output_path(self.output_folder, OUTPUT_RN_AND_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("package com.datadog.reactnative\n\n")
 
-            output.write("import com.datadog.android.bridge." + definition['name'] + "\n")
+            output.write("import com.datadog.android.bridge.DdBridge\n")
+            output.write("import com.datadog.android.bridge." + class_name + " as SDK" + class_name + "\n")
             output.write("import com.facebook.react.bridge.Promise\n")
             output.write("import com.facebook.react.bridge.ReactApplicationContext\n")
             output.write("import com.facebook.react.bridge.ReactContextBaseJavaModule\n")
@@ -231,17 +233,17 @@ class RNGenerator:
             output.write(" * " + definition['documentation'] + '\n')
             output.write(" */\n")
 
-            output.write("class RN" + definition['name'])
+            output.write("class " + class_name)
             output.write("(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {\n\n")
 
-            output.write("    private val nativeInstance: ")
-            output.write(definition['name'])
-            output.write(" = ")
-            output.write(definition['name'])
+            output.write("    private val nativeInstance: SDK")
+            output.write(class_name)
+            output.write(" = DdBridge.get")
+            output.write(class_name)
             output.write("(reactContext)\n\n")
 
             output.write("    override fun getName(): String = \"")
-            output.write(definition['name'])
+            output.write(class_name)
             output.write("\"\n\n")
 
             for method in definition['methods']:
@@ -304,7 +306,7 @@ class RNGenerator:
         output.write("    }\n\n")
 
     def _generate_and_bridge_ext(self, definitions: list):
-        output_path = prepare_output_path(self.output_folder, OUTPUT_AND_FOLDER, OUTPUT_AND_BRIDGE)
+        output_path = prepare_output_path(self.output_folder, OUTPUT_RN_AND_FOLDER, OUTPUT_AND_BRIDGE)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("package com.datadog.reactnative\n\n")
@@ -352,8 +354,8 @@ class RNGenerator:
                     pass
 
     def _generate_and_data_ext(self, definition: dict):
-        file_name = "RN" + definition['name'] + ".kt"
-        output_path = prepare_output_path(self.output_folder, OUTPUT_AND_FOLDER, file_name)
+        file_name = definition['name'] + "Ext.kt"
+        output_path = prepare_output_path(self.output_folder, OUTPUT_RN_AND_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("package com.datadog.reactnative\n\n")
@@ -502,7 +504,7 @@ class RNGenerator:
         output.write("}\n")
 
     def _generate_and_package(self, definitions: list):
-        output_path = prepare_output_path(self.output_folder, OUTPUT_AND_FOLDER, OUTPUT_AND_PACKAGE)
+        output_path = prepare_output_path(self.output_folder, OUTPUT_RN_AND_FOLDER, OUTPUT_AND_PACKAGE)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("package com.datadog.reactnative\n\n")
@@ -522,15 +524,15 @@ class RNGenerator:
             output.write("    override fun createNativeModules(\n")
             output.write("        reactContext: ReactApplicationContext\n")
             output.write("    ): List<NativeModule> {\n")
-            output.write("        return listOf(\n")
+            output.write("        return listOf(")
 
             i = 0
             for definition in definitions:
                 if definition['type'] == "interface":
                     if i > 0:
-                        output.write(",\n")
+                        output.write(",")
                     i = i + 1
-                    output.write("            RN" + definition['name'] + "(reactContext)")
+                    output.write("\n            " + definition['name'] + "(reactContext)")
 
             output.write("\n        )\n")
             output.write("    }\n")
@@ -539,7 +541,7 @@ class RNGenerator:
 
     def _generate_ios_interface(self, definition: dict):
         file_name = definition['name'] + ".m"
-        output_path = prepare_output_path(self.output_folder, OUTPUT_IOS_FOLDER, file_name)
+        output_path = prepare_output_path(self.output_folder, OUTPUT_RN_IOS_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("#import <React/RCTBridgeModule.h>\n\n")
@@ -570,8 +572,7 @@ class RNGenerator:
 
     def _generate_ios_swift_implementation(self, definition: dict):
         file_name = definition['name'] + ".swift"
-        output_path = prepare_output_path(self.output_folder, OUTPUT_IOS_FOLDER, file_name)
-        print("writing to " + output_path)
+        output_path = prepare_output_path(self.output_folder, OUTPUT_RN_IOS_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("import Foundation\n\n")
@@ -634,7 +635,7 @@ class RNGenerator:
 
     def _generate_ios_struct_ext(self, definition: dict):
         file_name = "RN" + definition['name'] + ".swift"
-        output_path = prepare_output_path(self.output_folder, OUTPUT_IOS_FOLDER, file_name)
+        output_path = prepare_output_path(self.output_folder, OUTPUT_RN_IOS_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("import Foundation\n\n")

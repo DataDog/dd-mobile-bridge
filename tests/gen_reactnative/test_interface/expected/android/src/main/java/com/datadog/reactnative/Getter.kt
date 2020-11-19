@@ -6,7 +6,8 @@
 
 package com.datadog.reactnative
 
-import com.datadog.android.bridge.Getter
+import com.datadog.android.bridge.DdBridge
+import com.datadog.android.bridge.Getter as SDKGetter
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
@@ -17,9 +18,9 @@ import com.facebook.react.bridge.ReadableMap
 /**
  * An interface to test return types
  */
-class RNGetter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class Getter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
-    private val nativeInstance: Getter = Getter(reactContext)
+    private val nativeInstance: SDKGetter = DdBridge.getGetter(reactContext)
 
     override fun getName(): String = "Getter"
 

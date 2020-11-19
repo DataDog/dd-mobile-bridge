@@ -6,7 +6,8 @@
 
 package com.datadog.reactnative
 
-import com.datadog.android.bridge.Setter
+import com.datadog.android.bridge.DdBridge
+import com.datadog.android.bridge.Setter as SDKSetter
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
@@ -17,9 +18,9 @@ import com.facebook.react.bridge.ReadableMap
 /**
  * An interface to test setting types
  */
-class RNSetter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class Setter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
-    private val nativeInstance: Setter = Setter(reactContext)
+    private val nativeInstance: SDKSetter = DdBridge.getSetter(reactContext)
 
     override fun getName(): String = "Setter"
 

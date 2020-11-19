@@ -23,8 +23,8 @@ class DdSdkReactNativePackage : ReactPackage {
         reactContext: ReactApplicationContext
     ): List<NativeModule> {
         return listOf(
-            RNGetter(reactContext),
-            RNSetter(reactContext)
+            Getter(reactContext),
+            Setter(reactContext)
         )
     }
 }

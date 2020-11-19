@@ -47,11 +47,9 @@ def load_generator(platform: str, output_folder: str) -> Any:
         raise RuntimeError("Unknown platform " + platform)
 
 
-def run_main() -> int:
-    cli_args = parse_arguments(sys.argv[1:])
-
-    generator = load_generator(cli_args.platform, cli_args.output)
-    definitions = load_definition_from_path(cli_args.source)
+def run_generator(platform: str, output_folder: str, definition_path: str) -> int:
+    generator = load_generator(platform, output_folder)
+    definitions = load_definition_from_path(definition_path)
 
     if isinstance(definitions, list):
         generator.generate(definitions)
@@ -59,6 +57,11 @@ def run_main() -> int:
         raise RuntimeError("Expected definitions to be a list, but was  " + str(type(definitions)))
 
     return 0
+
+
+def run_main() -> int:
+    cli_args = parse_arguments(sys.argv[1:])
+    return run_generator(cli_args.platform, cli_args.output, cli_args.source)
 
 
 if __name__ == "__main__":

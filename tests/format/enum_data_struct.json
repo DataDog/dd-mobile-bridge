@@ -2,26 +2,32 @@
   {
     "type": "data",
     "name": "Spam",
+    "documentation": "A spam message",
     "properties": [
       {
         "name": "message",
         "type": "string",
         "mandatory": true,
-        "documentation" : "The message content"
+        "documentation": "The message content"
       },
       {
         "name": "level",
         "type": "string",
-        "choice": ["debug", "info", "warning", "error"],
+        "choice": [
+          "debug",
+          "info",
+          "warning",
+          "error"
+        ],
         "mandatory": false,
-        "documentation" : "Defines the message level"
+        "documentation": "Defines the message level"
       },
       {
         "name": "keep",
         "type": "boolean",
-        "documentation" : "Whether the message should be kept"
+        "mandatory": false,
+        "documentation": "Whether the message should be kept"
       }
-    ],
-    "documentation" : "A spam message"
+    ]
   }
 ]

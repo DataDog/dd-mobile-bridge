@@ -2,6 +2,7 @@
   {
     "type": "interface",
     "name": "Foo",
+    "documentation" : "An interface to be used in an API",
     "methods": [
       {
         "name": "withoutParams",
@@ -18,16 +19,15 @@
       {
         "name": "setBar",
         "type": "void",
+        "documentation" : "Performs an operation with string param, returns void",
         "parameters": [
-            {
-                "name": "bar",
-                "type": "string",
-                "documentation" : "A string param"
-            }
-        ],
-        "documentation" : "Performs an operation with string param, returns void"
+          {
+            "name": "bar",
+            "type": "string",
+            "documentation" : "A string param"
+          }
+        ]
       }
-    ],
-    "documentation" : "An interface to be used in an API"
+    ]
   }
 ]

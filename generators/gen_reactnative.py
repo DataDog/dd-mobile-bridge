@@ -124,7 +124,7 @@ class RNGenerator:
                     output.write(definition['name'] + "Type")
                 elif definition['type'] == "data":
                     output.write(definition['name'])
-            output.write(" }  from './types';\n\n")
+            output.write(" } from './types';\n\n")
 
             for definition in definitions:
                 if definition['type'] == "interface":
@@ -134,7 +134,7 @@ class RNGenerator:
                     output.write(definition['name'] + "Type")
                     output.write(" = NativeModules.")
                     output.write(definition['name'])
-                    output.write('\n')
+                    output.write(';\n')
 
             output.write('\n')
 
@@ -209,7 +209,7 @@ class RNGenerator:
             output.write(prop['name'] + ": " + _get_ts_type(prop['type']))
 
         output.write("\n  ) {}\n")
-        output.write("};\n\n")
+        output.write("}\n\n")
 
     def _generate_and_implementation(self, definition: dict):
         class_name = definition['name']

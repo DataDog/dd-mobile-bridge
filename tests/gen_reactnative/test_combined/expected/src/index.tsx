@@ -5,8 +5,8 @@
  */
 
 import { NativeModules } from 'react-native';
-import { ComplexDataStructure, BridgeWithDataType }  from './types';
+import { ComplexDataStructure, BridgeWithDataType } from './types';
 
-const BridgeWithData: BridgeWithDataType = NativeModules.BridgeWithData
+const BridgeWithData: BridgeWithDataType = NativeModules.BridgeWithData;
 
 export { ComplexDataStructure, BridgeWithData };

@@ -13,7 +13,7 @@ export class ComplexDataStructure {
     readonly someString: string,
     readonly someMap: object
   ) {}
-};
+}
 
 /**
  * An interface to test transferring complex types

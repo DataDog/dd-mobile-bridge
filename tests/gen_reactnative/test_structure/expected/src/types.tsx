@@ -16,7 +16,7 @@ export class DataStructure {
     readonly someList: array,
     readonly someMap: object
   ) {}
-};
+}
 
 /**
  * A data structure to test data transfer with optional properties
@@ -30,5 +30,5 @@ export class DataStructureOptional {
     readonly someList: array,
     readonly someMap: object
   ) {}
-};
+}
 

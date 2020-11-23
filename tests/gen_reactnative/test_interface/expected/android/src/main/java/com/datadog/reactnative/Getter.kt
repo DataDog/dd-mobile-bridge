@@ -34,7 +34,7 @@ class Getter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule
     }
 
     /**
-     * Empty method, returns int
+     * Empty method, returns boolean
      */
     @ReactMethod
     fun getBoolean(promise: Promise) {
@@ -43,20 +43,20 @@ class Getter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule
     }
 
     /**
-     * Empty method, returns int
+     * Empty method, returns long
      */
     @ReactMethod
-    fun getInt(promise: Promise) {
-                val result = nativeInstance.getInt()
+    fun getLong(promise: Promise) {
+                val result = nativeInstance.getLong()
         promise.resolve(result)
     }
 
     /**
-     * Empty method, returns float
+     * Empty method, returns double
      */
     @ReactMethod
-    fun getFloat(promise: Promise) {
-                val result = nativeInstance.getFloat()
+    fun getDouble(promise: Promise) {
+                val result = nativeInstance.getDouble()
         promise.resolve(result)
     }
 

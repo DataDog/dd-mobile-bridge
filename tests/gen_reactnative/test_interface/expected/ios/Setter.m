@@ -12,11 +12,11 @@ RCT_EXTERN_METHOD(setBoolean:(BOOL)value
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(setInt:(NSInteger)value
+RCT_EXTERN_METHOD(setLong:(NSInteger)value
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(setFloat:(float)value
+RCT_EXTERN_METHOD(setDouble:(float)value
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 

@@ -8,12 +8,12 @@ package com.datadog.android.bridge
 
 /**
  * A data structure to test data transfer through the bridge
- * @param someInt A mandatory int property
+ * @param someLong A mandatory long property
  * @param someString An optional string property
  * @param someMap A mandatory map property
  */
 data class ComplexDataStructure(
-    val someInt: Int,
+    val someLong: Long,
     val someString: String? = null,
     val someMap: Map<String, Any?>
 )

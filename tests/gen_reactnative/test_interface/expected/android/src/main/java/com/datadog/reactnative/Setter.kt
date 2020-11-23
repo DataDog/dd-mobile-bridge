@@ -35,22 +35,22 @@ class Setter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule
     }
 
     /**
-     * Empty method, int param, returns void
-     * @param value An int param
+     * Empty method, long param, returns void
+     * @param value A long param
      */
     @ReactMethod
-    fun setInt(value: Int, promise: Promise) {
-        nativeInstance.setInt(value)
+    fun setLong(value: Long, promise: Promise) {
+        nativeInstance.setLong(value)
         promise.resolve(null)
     }
 
     /**
-     * Empty method, float param, returns void
-     * @param value A float param
+     * Empty method, double param, returns void
+     * @param value A double param
      */
     @ReactMethod
-    fun setFloat(value: Float, promise: Promise) {
-        nativeInstance.setFloat(value)
+    fun setDouble(value: Double, promise: Promise) {
+        nativeInstance.setDouble(value)
         promise.resolve(null)
     }
 

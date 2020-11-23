@@ -9,7 +9,7 @@
  */
 export class ComplexDataStructure {
   constructor(
-    readonly someInt: number,
+    readonly someLong: number,
     readonly someString: string,
     readonly someMap: object
   ) {}

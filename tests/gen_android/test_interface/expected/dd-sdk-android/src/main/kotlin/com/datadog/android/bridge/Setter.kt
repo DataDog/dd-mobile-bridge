@@ -19,14 +19,14 @@ interface Setter {
     fun setBoolean(value: Boolean): Unit
 
     /**
-     * Empty method, int param, returns void
+     * Empty method, long param, returns void
      */
-    fun setInt(value: Int): Unit
+    fun setLong(value: Long): Unit
 
     /**
-     * Empty method, float param, returns void
+     * Empty method, double param, returns void
      */
-    fun setFloat(value: Float): Unit
+    fun setDouble(value: Double): Unit
 
     /**
      * Empty method, string param, returns void

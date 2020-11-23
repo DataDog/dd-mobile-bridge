@@ -9,11 +9,11 @@ import Foundation
 extension NSDictionary {
 
     func asComplexDataStructure() -> ComplexDataStructure {
-        let someInt = object(forKey: "someInt") as? Int
+        let someLong = object(forKey: "someLong") as? Int64
         let someString = object(forKey: "someString") as? NSString
         let someMap = object(forKey: "someMap") as? NSDictionary
         return ComplexDataStructure(
-            someInt: (someInt != nil) ? someInt! : 0,
+            someLong: (someLong != nil) ? someLong! : 0,
             someString: someString,
             someMap: (someMap != nil) ? someMap! : NSDictionary()
         )

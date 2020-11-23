@@ -18,8 +18,8 @@ OUTPUT_RN_IOS_FOLDER = "ios"
 TS_TYPES = {
     TYPE_VOID: 'void',
     TYPE_BOOL: 'boolean',
-    TYPE_INT: 'number',
-    TYPE_FLOAT: 'number',
+    TYPE_LONG: 'number',
+    TYPE_DOUBLE: 'number',
     TYPE_MAP: 'object',
     TYPE_LIST: 'array',
     TYPE_STRING: 'string'
@@ -28,8 +28,8 @@ TS_TYPES = {
 AND_TYPES = {
     TYPE_VOID: 'Unit',
     TYPE_BOOL: 'Boolean',
-    TYPE_INT: 'Int',
-    TYPE_FLOAT: 'Float',
+    TYPE_LONG: 'Long',
+    TYPE_DOUBLE: 'Double',
     TYPE_MAP: 'ReadableMap',
     TYPE_LIST: 'ReadableArray',
     TYPE_STRING: 'String'
@@ -38,8 +38,8 @@ AND_TYPES = {
 IOS_TYPES_SWIFT = {
     TYPE_VOID: 'Void',
     TYPE_BOOL: 'Bool',
-    TYPE_INT: 'Int',
-    TYPE_FLOAT: 'Float',
+    TYPE_LONG: 'Int64',
+    TYPE_DOUBLE: 'Double',
     TYPE_MAP: 'NSDictionary',
     TYPE_LIST: 'NSArray',
     TYPE_STRING: 'NSString'
@@ -48,8 +48,8 @@ IOS_TYPES_SWIFT = {
 IOS_TYPES_OBJC = {
     TYPE_VOID: 'void',
     TYPE_BOOL: 'BOOL',
-    TYPE_INT: 'NSInteger',
-    TYPE_FLOAT: 'float',
+    TYPE_LONG: 'NSInteger',
+    TYPE_DOUBLE: 'float',
     TYPE_MAP: 'NSDictionary',
     TYPE_LIST: 'NSArray',
     TYPE_STRING: 'NSString'
@@ -299,7 +299,7 @@ class RNGenerator:
             output.write("        promise.resolve(result.toWritableMap())\n")
         elif return_type == TYPE_LIST:
             output.write("        promise.resolve(result.toWritableArray())\n")
-        elif return_type in [TYPE_BOOL, TYPE_INT, TYPE_FLOAT, TYPE_STRING]:
+        elif return_type in [TYPE_BOOL, TYPE_LONG, TYPE_DOUBLE, TYPE_STRING]:
             output.write("        promise.resolve(result)\n")
         else:
             output.write("        promise.resolve(result.toReadableMap())\n")
@@ -321,7 +321,9 @@ class RNGenerator:
             output.write("        when (it) {\n")
             output.write("            null -> list.pushNull()\n")
             output.write("            is Int -> list.pushInt(it)\n")
+            output.write("            is Long -> list.pushDouble(it.toDouble())\n")
             output.write("            is Float -> list.pushDouble(it.toDouble())\n")
+            output.write("            is Double -> list.pushDouble(it)\n")
             output.write("            is String -> list.pushString(it)\n")
             output.write("            is List<*> -> list.pushArray(it.toWritableArray())\n")
             output.write("            is Map<*, *> -> list.pushMap(it.toWritableMap())\n")
@@ -338,6 +340,7 @@ class RNGenerator:
             output.write("        when (v) {\n")
             output.write("            null -> map.putNull(key)\n")
             output.write("            is Int -> map.putInt(key, v)\n")
+            output.write("            is Long -> map.putDouble(key, v.toDouble())\n")
             output.write("            is Float -> map.putDouble(key, v.toDouble())\n")
             output.write("            is Double -> map.putDouble(key, v)\n")
             output.write("            is String -> map.putString(key, v)\n")
@@ -398,18 +401,14 @@ class RNGenerator:
                 output.write("getBoolean(\"")
                 output.write(property_name)
                 output.write("\")")
-            elif property_type == TYPE_INT:
-                output.write("getInt(\"")
+            elif property_type == TYPE_LONG:
+                output.write("getDouble(\"")
                 output.write(property_name)
-                output.write("\")")
-            elif property_type == "double":
+                output.write("\").toLong()")
+            elif property_type == TYPE_DOUBLE:
                 output.write("getDouble(\"")
                 output.write(property_name)
                 output.write("\")")
-            elif property_type == TYPE_FLOAT:
-                output.write("getDouble(\"")
-                output.write(property_name)
-                output.write("\").toFloat()")
             elif property_type == TYPE_LIST:
                 output.write("getArray(\"")
                 output.write(property_name)
@@ -463,19 +462,19 @@ class RNGenerator:
                 output.write("\", ")
                 output.write(property_name)
                 output.write(")")
-            elif property_type == TYPE_INT:
-                output.write("map.putInt(\"")
+            elif property_type == TYPE_LONG:
+                output.write("map.putDouble(\"")
                 output.write(property_name)
                 output.write("\", ")
                 output.write(property_name)
-                output.write(")")
+                output.write(".toDouble())")
             elif property_type == "double":
                 output.write("map.putDouble(\"")
                 output.write(property_name)
                 output.write("\", ")
                 output.write(property_name)
                 output.write(")")
-            elif property_type == TYPE_FLOAT:
+            elif property_type == TYPE_DOUBLE:
                 output.write("map.putDouble(\"")
                 output.write(property_name)
                 output.write("\", ")
@@ -686,9 +685,9 @@ class RNGenerator:
                     output.write("NSString()")
                 elif property_type == TYPE_BOOL:
                     output.write("false")
-                elif property_type == TYPE_INT:
+                elif property_type == TYPE_LONG:
                     output.write("0")
-                elif property_type == TYPE_FLOAT:
+                elif property_type == TYPE_DOUBLE:
                     output.write("0.0")
                 elif property_type == TYPE_LIST:
                     output.write("NSArray()")

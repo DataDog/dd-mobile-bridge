@@ -15,7 +15,9 @@ fun List<*>.toWritableArray(): WritableNativeArray {
         when (it) {
             null -> list.pushNull()
             is Int -> list.pushInt(it)
+            is Long -> list.pushDouble(it.toDouble())
             is Float -> list.pushDouble(it.toDouble())
+            is Double -> list.pushDouble(it)
             is String -> list.pushString(it)
             is List<*> -> list.pushArray(it.toWritableArray())
             is Map<*, *> -> list.pushMap(it.toWritableMap())
@@ -32,6 +34,7 @@ fun Map<*, *>.toWritableMap(): WritableNativeMap {
         when (v) {
             null -> map.putNull(key)
             is Int -> map.putInt(key, v)
+            is Long -> map.putDouble(key, v.toDouble())
             is Float -> map.putDouble(key, v.toDouble())
             is Double -> map.putDouble(key, v)
             is String -> map.putString(key, v)

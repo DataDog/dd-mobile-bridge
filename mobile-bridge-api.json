@@ -135,7 +135,7 @@
           },
           {
             "name": "timestamp",
-            "type": "int",
+            "type": "long",
             "documentation": "The timestamp when the operation started."
           },
           {
@@ -157,7 +157,7 @@
           },
           {
             "name": "timestamp",
-            "type": "int",
+            "type": "long",
             "documentation": "The timestamp when the operation stopped."
           },
           {
@@ -191,7 +191,7 @@
           },
           {
             "name": "timestamp",
-            "type": "int",
+            "type": "long",
             "documentation": "The timestamp when the view started."
           },
           {
@@ -213,7 +213,7 @@
           },
           {
             "name": "timestamp",
-            "type": "int",
+            "type": "long",
             "documentation": "The timestamp when the view stopped."
           },
           {
@@ -240,7 +240,7 @@
           },
           {
             "name": "timestamp",
-            "type": "int",
+            "type": "long",
             "documentation": "The timestamp when the action started."
           },
           {
@@ -257,7 +257,7 @@
         "parameters": [
           {
             "name": "timestamp",
-            "type": "int",
+            "type": "long",
             "documentation": "The timestamp when the action stopped."
           },
           {
@@ -284,7 +284,7 @@
           },
           {
             "name": "timestamp",
-            "type": "int",
+            "type": "long",
             "documentation": "The timestamp when the action occured."
           },
           {
@@ -316,7 +316,7 @@
           },
           {
             "name": "timestamp",
-            "type": "int",
+            "type": "long",
             "documentation": "The timestamp when the resource started."
           },
           {
@@ -338,12 +338,12 @@
           },
           {
             "name": "timestamp",
-            "type": "int",
+            "type": "long",
             "documentation": "The timestamp when the resource stopped."
           },
           {
             "name": "statusCode",
-            "type": "int",
+            "type": "long",
             "documentation": "The resource status code."
           },
           {
@@ -375,7 +375,7 @@
           },
           {
             "name": "timestamp",
-            "type": "int",
+            "type": "long",
             "documentation": "The timestamp when the error occured."
           },
           {

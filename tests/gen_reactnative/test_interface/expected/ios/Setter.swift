@@ -17,15 +17,15 @@ class RNSetter: NSObject {
         resolve(nil)
     }
 
-    @objc(setInt:withResolver:withRejecter:)
-    func setInt(value: Int, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
-        nativeInstance.setInt(value: value)
+    @objc(setLong:withResolver:withRejecter:)
+    func setLong(value: Int64, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
+        nativeInstance.setLong(value: value)
         resolve(nil)
     }
 
-    @objc(setFloat:withResolver:withRejecter:)
-    func setFloat(value: Float, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
-        nativeInstance.setFloat(value: value)
+    @objc(setDouble:withResolver:withRejecter:)
+    func setDouble(value: Double, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
+        nativeInstance.setDouble(value: value)
         resolve(nil)
     }
 

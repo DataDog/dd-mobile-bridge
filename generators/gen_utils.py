@@ -5,8 +5,8 @@ import os
 
 TYPE_VOID = 'void'
 TYPE_BOOL = 'boolean'
-TYPE_INT = 'int'
-TYPE_FLOAT = 'float'
+TYPE_LONG = 'long'
+TYPE_DOUBLE = 'double'
 TYPE_STRING = 'string'
 TYPE_MAP = 'map'
 TYPE_LIST = 'list'

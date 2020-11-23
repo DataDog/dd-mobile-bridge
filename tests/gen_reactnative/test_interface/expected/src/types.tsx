@@ -14,19 +14,19 @@ export type GetterType = {
   emptyMethod(): Promise<void>;
 
   /**
-   * Empty method, returns int
+   * Empty method, returns boolean
    */
   getBoolean(): Promise<boolean>;
 
   /**
-   * Empty method, returns int
+   * Empty method, returns long
    */
-  getInt(): Promise<number>;
+  getLong(): Promise<number>;
 
   /**
-   * Empty method, returns float
+   * Empty method, returns double
    */
-  getFloat(): Promise<number>;
+  getDouble(): Promise<number>;
 
   /**
    * Empty method, returns string
@@ -56,16 +56,16 @@ export type SetterType = {
   setBoolean(value: boolean): Promise<void>;
 
   /**
-   * Empty method, int param, returns void
-   * value: An int param
+   * Empty method, long param, returns void
+   * value: A long param
    */
-  setInt(value: number): Promise<void>;
+  setLong(value: number): Promise<void>;
 
   /**
-   * Empty method, float param, returns void
-   * value: A float param
+   * Empty method, double param, returns void
+   * value: A double param
    */
-  setFloat(value: number): Promise<void>;
+  setDouble(value: number): Promise<void>;
 
   /**
    * Empty method, string param, returns void

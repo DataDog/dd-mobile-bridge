@@ -12,7 +12,7 @@
       },
       {
         "name": "getBar",
-        "type": "int",
+        "type": "long",
         "parameters": [],
         "documentation" : "Performs an operation without parameters, returns int"
       },

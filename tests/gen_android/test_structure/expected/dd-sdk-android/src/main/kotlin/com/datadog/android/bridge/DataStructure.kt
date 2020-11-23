@@ -9,16 +9,16 @@ package com.datadog.android.bridge
 /**
  * A data structure to test data transfer through the bridge
  * @param someBoolean A mandatory boolean property
- * @param someInt A mandatory int property
- * @param someFloat A mandatory float property
+ * @param someLong A mandatory long property
+ * @param someDouble A mandatory double property
  * @param someString A mandatory string property
  * @param someList A mandatory list property
  * @param someMap A mandatory map property
  */
 data class DataStructure(
     val someBoolean: Boolean,
-    val someInt: Int,
-    val someFloat: Float,
+    val someLong: Long,
+    val someDouble: Double,
     val someString: String,
     val someList: List<Any?>,
     val someMap: Map<String, Any?>

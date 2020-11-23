@@ -10,8 +10,8 @@
 export class DataStructure {
   constructor(
     readonly someBoolean: boolean,
-    readonly someInt: number,
-    readonly someFloat: number,
+    readonly someLong: number,
+    readonly someDouble: number,
     readonly someString: string,
     readonly someList: array,
     readonly someMap: object
@@ -24,8 +24,8 @@ export class DataStructure {
 export class DataStructureOptional {
   constructor(
     readonly someBoolean: boolean,
-    readonly someInt: number,
-    readonly someFloat: number,
+    readonly someLong: number,
+    readonly someDouble: number,
     readonly someString: string,
     readonly someList: array,
     readonly someMap: object

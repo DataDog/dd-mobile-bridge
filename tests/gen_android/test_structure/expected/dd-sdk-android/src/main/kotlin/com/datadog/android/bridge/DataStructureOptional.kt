@@ -9,16 +9,16 @@ package com.datadog.android.bridge
 /**
  * A data structure to test data transfer with optional properties
  * @param someBoolean An optional boolean property
- * @param someInt An optional int property
- * @param someFloat An optional float property
+ * @param someLong An optional long property
+ * @param someDouble An optional double property
  * @param someString An optional string property
  * @param someList An optional list property
  * @param someMap An optional map property
  */
 data class DataStructureOptional(
     val someBoolean: Boolean? = null,
-    val someInt: Int? = null,
-    val someFloat: Float? = null,
+    val someLong: Long? = null,
+    val someDouble: Double? = null,
     val someString: String? = null,
     val someList: List<Any?>? = null,
     val someMap: Map<String, Any?>? = null

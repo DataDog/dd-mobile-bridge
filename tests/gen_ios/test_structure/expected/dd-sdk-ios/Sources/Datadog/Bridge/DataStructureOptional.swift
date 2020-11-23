@@ -10,16 +10,16 @@ import Foundation
  A data structure to test data transfer with optional properties
  - Parameters:
      - someBoolean: An optional boolean property
-     - someInt: An optional int property
-     - someFloat: An optional float property
+     - someLong: An optional long property
+     - someDouble: An optional double property
      - someString: An optional string property
      - someList: An optional list property
      - someMap: An optional map property
  */
 struct DataStructureOptional{
     var someBoolean: Bool? = nil
-    var someInt: Int? = nil
-    var someFloat: Float? = nil
+    var someLong: Int64? = nil
+    var someDouble: Double? = nil
     var someString: String? = nil
     var someList: Array<Any?>? = nil
     var someMap: Dictionary<String, Any?>? = nil

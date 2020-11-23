@@ -1,0 +1,130 @@
+[
+  {
+    "type": "interface",
+    "name": "Getter",
+    "documentation": "An interface to test return types",
+    "methods": [
+      {
+        "name": "emptyMethod",
+        "type": "void",
+        "parameters": [],
+        "documentation": "Empty method, returns void"
+      },
+      {
+        "name": "getBoolean",
+        "type": "boolean",
+        "parameters": [],
+        "documentation": "Empty method, returns int"
+      },
+      {
+        "name": "getInt",
+        "type": "int",
+        "parameters": [],
+        "documentation": "Empty method, returns int"
+      },
+      {
+        "name": "getFloat",
+        "type": "float",
+        "parameters": [],
+        "documentation": "Empty method, returns float"
+      },
+      {
+        "name": "getString",
+        "type": "string",
+        "parameters": [],
+        "documentation": "Empty method, returns string"
+      },
+      {
+        "name": "getMap",
+        "type": "map",
+        "parameters": [],
+        "documentation": "Empty method, returns map"
+      },
+      {
+        "name": "getList",
+        "type": "list",
+        "parameters": [],
+        "documentation": "Empty method, returns list"
+      }
+    ]
+  },
+  {
+    "type": "interface",
+    "name": "Setter",
+    "documentation": "An interface to test setting types",
+    "methods": [
+      {
+        "name": "setBoolean",
+        "type": "void",
+        "documentation": "Empty method, boolean param, returns void",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "boolean",
+            "documentation": "A boolean param"
+          }
+        ]
+      },
+      {
+        "name": "setInt",
+        "type": "void",
+        "documentation": "Empty method, int param, returns void",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "int",
+            "documentation": "An int param"
+          }
+        ]
+      },
+      {
+        "name": "setFloat",
+        "type": "void",
+        "documentation": "Empty method, float param, returns void",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "float",
+            "documentation": "A float param"
+          }
+        ]
+      },
+      {
+        "name": "setString",
+        "type": "void",
+        "documentation": "Empty method, string param, returns void",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "string",
+            "documentation": "A string param"
+          }
+        ]
+      },
+      {
+        "name": "setMap",
+        "type": "void",
+        "documentation": "Empty method, map param, returns void",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "map",
+            "documentation": "A map param"
+          }
+        ]
+      },
+      {
+        "name": "setList",
+        "type": "void",
+        "documentation": "Empty method, list param, returns void",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "list",
+            "documentation": "A list param"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -40,3 +40,12 @@ test:generators:
   script:
     - pip3 install -r requirements/generators.txt
     - python3 test_generators.py
+
+test:readme:
+  tags: [ "runner:main", "size:large" ]
+  image: $CI_IMAGE_DOCKER
+  stage: test
+  timeout: 1h
+  script:
+    - pip3 install -r requirements/readme.txt
+    - python3 test_readme.py

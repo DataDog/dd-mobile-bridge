@@ -337,14 +337,19 @@
             "documentation": "The resource unique key identifier."
           },
           {
-            "name": "timestamp",
-            "type": "long",
-            "documentation": "The timestamp when the resource stopped."
-          },
-          {
             "name": "statusCode",
             "type": "long",
             "documentation": "The resource status code."
+          },
+          {
+            "name": "kind",
+            "type": "string",
+            "documentation": "The resource's kind (xhr, document, image, css, font, …)."
+          },
+          {
+            "name": "timestamp",
+            "type": "long",
+            "documentation": "The timestamp when the resource stopped."
           },
           {
             "name": "context",

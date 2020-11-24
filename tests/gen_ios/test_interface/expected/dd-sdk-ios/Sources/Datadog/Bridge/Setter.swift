@@ -18,14 +18,14 @@ protocol Setter {
     func setBoolean(value: Bool) -> Void
 
     /**
-       Empty method, int param, returns void
+       Empty method, long param, returns void
      */
-    func setInt(value: Int) -> Void
+    func setLong(value: Int64) -> Void
 
     /**
-       Empty method, float param, returns void
+       Empty method, double param, returns void
      */
-    func setFloat(value: Float) -> Void
+    func setDouble(value: Double) -> Void
 
     /**
        Empty method, string param, returns void

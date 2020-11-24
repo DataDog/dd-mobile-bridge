@@ -14,8 +14,8 @@ import com.facebook.react.bridge.WritableNativeMap
 fun ReadableMap.asDataStructure(): DataStructure{
     return DataStructure(
         someBoolean = getBoolean("someBoolean"),
-        someInt = getInt("someInt"),
-        someFloat = getDouble("someFloat").toFloat(),
+        someLong = getDouble("someLong").toLong(),
+        someDouble = getDouble("someDouble"),
         someString = getString("someString").orEmpty(),
         someList = getArray("someList")?.toArrayList()!!,
         someMap = getMap("someMap")?.toHashMap()!!
@@ -25,8 +25,8 @@ fun ReadableMap.asDataStructure(): DataStructure{
 fun DataStructure.toReadableMap(): WritableNativeMap {
     val map = WritableNativeMap()
     map.putBoolean("someBoolean", someBoolean)
-    map.putInt("someInt", someInt)
-    map.putDouble("someFloat", someFloat.toDouble())
+    map.putDouble("someLong", someLong.toDouble())
+    map.putDouble("someDouble", someDouble)
     map.putString("someString", someString)
     map.putArray("someList", someList.toWritableArray())
     map.putMap("someMap", someMap.toWritableMap())

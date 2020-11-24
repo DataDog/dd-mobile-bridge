@@ -23,15 +23,15 @@ class RNGetter: NSObject {
         resolve(result)
     }
 
-    @objc(getIntwithResolver:withRejecter:)
-    func getInt(resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
-        let result = nativeInstance.getInt()
+    @objc(getLongwithResolver:withRejecter:)
+    func getLong(resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
+        let result = nativeInstance.getLong()
         resolve(result)
     }
 
-    @objc(getFloatwithResolver:withRejecter:)
-    func getFloat(resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
-        let result = nativeInstance.getFloat()
+    @objc(getDoublewithResolver:withRejecter:)
+    func getDouble(resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
+        let result = nativeInstance.getDouble()
         resolve(result)
     }
 

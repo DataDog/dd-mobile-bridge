@@ -10,15 +10,15 @@ extension NSDictionary {
 
     func asDataStructureOptional() -> DataStructureOptional {
         let someBoolean = object(forKey: "someBoolean") as? Bool
-        let someInt = object(forKey: "someInt") as? Int
-        let someFloat = object(forKey: "someFloat") as? Float
+        let someLong = object(forKey: "someLong") as? Int64
+        let someDouble = object(forKey: "someDouble") as? Double
         let someString = object(forKey: "someString") as? NSString
         let someList = object(forKey: "someList") as? NSArray
         let someMap = object(forKey: "someMap") as? NSDictionary
         return DataStructureOptional(
             someBoolean: someBoolean,
-            someInt: someInt,
-            someFloat: someFloat,
+            someLong: someLong,
+            someDouble: someDouble,
             someString: someString,
             someList: someList,
             someMap: someMap

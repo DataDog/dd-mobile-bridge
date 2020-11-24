@@ -10,16 +10,16 @@ import Foundation
  A data structure to test data transfer through the bridge
  - Parameters:
      - someBoolean: A mandatory boolean property
-     - someInt: A mandatory int property
-     - someFloat: A mandatory float property
+     - someLong: A mandatory long property
+     - someDouble: A mandatory double property
      - someString: A mandatory string property
      - someList: A mandatory list property
      - someMap: A mandatory map property
  */
 struct DataStructure{
     let someBoolean: Bool
-    let someInt: Int
-    let someFloat: Float
+    let someLong: Int64
+    let someDouble: Double
     let someString: String
     let someList: Array<Any?>
     let someMap: Dictionary<String, Any?>

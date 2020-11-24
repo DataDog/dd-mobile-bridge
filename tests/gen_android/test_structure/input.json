@@ -11,16 +11,16 @@
         "documentation": "A mandatory boolean property"
       },
       {
-        "name": "someInt",
-        "type": "int",
+        "name": "someLong",
+        "type": "long",
         "mandatory": true,
-        "documentation": "A mandatory int property"
+        "documentation": "A mandatory long property"
       },
       {
-        "name": "someFloat",
-        "type": "float",
+        "name": "someDouble",
+        "type": "double",
         "mandatory": true,
-        "documentation": "A mandatory float property"
+        "documentation": "A mandatory double property"
       },
       {
         "name": "someString",
@@ -54,16 +54,16 @@
         "documentation": "An optional boolean property"
       },
       {
-        "name": "someInt",
-        "type": "int",
+        "name": "someLong",
+        "type": "long",
         "mandatory": false,
-        "documentation": "An optional int property"
+        "documentation": "An optional long property"
       },
       {
-        "name": "someFloat",
-        "type": "float",
+        "name": "someDouble",
+        "type": "double",
         "mandatory": false,
-        "documentation": "An optional float property"
+        "documentation": "An optional double property"
       },
       {
         "name": "someString",

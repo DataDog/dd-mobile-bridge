@@ -14,19 +14,19 @@
         "name": "getBoolean",
         "type": "boolean",
         "parameters": [],
-        "documentation": "Empty method, returns int"
+        "documentation": "Empty method, returns boolean"
       },
       {
-        "name": "getInt",
-        "type": "int",
+        "name": "getLong",
+        "type": "long",
         "parameters": [],
-        "documentation": "Empty method, returns int"
+        "documentation": "Empty method, returns long"
       },
       {
-        "name": "getFloat",
-        "type": "float",
+        "name": "getDouble",
+        "type": "double",
         "parameters": [],
-        "documentation": "Empty method, returns float"
+        "documentation": "Empty method, returns double"
       },
       {
         "name": "getString",
@@ -66,26 +66,26 @@
         ]
       },
       {
-        "name": "setInt",
+        "name": "setLong",
         "type": "void",
-        "documentation": "Empty method, int param, returns void",
+        "documentation": "Empty method, long param, returns void",
         "parameters": [
           {
             "name": "value",
-            "type": "int",
-            "documentation": "An int param"
+            "type": "long",
+            "documentation": "An long param"
           }
         ]
       },
       {
-        "name": "setFloat",
+        "name": "setDouble",
         "type": "void",
-        "documentation": "Empty method, float param, returns void",
+        "documentation": "Empty method, double param, returns void",
         "parameters": [
           {
             "name": "value",
-            "type": "float",
-            "documentation": "A float param"
+            "type": "double",
+            "documentation": "A double param"
           }
         ]
       },

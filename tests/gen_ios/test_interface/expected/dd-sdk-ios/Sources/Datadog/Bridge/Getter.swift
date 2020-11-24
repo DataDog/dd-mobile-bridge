@@ -18,19 +18,19 @@ protocol Getter {
     func emptyMethod() -> Void
 
     /**
-       Empty method, returns int
+       Empty method, returns boolean
      */
     func getBoolean() -> Bool
 
     /**
-       Empty method, returns int
+       Empty method, returns long
      */
-    func getInt() -> Int
+    func getLong() -> Int64
 
     /**
-       Empty method, returns float
+       Empty method, returns double
      */
-    func getFloat() -> Float
+    func getDouble() -> Double
 
     /**
        Empty method, returns string

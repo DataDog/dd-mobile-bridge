@@ -6,7 +6,8 @@
 
 package com.datadog.reactnative
 
-import com.datadog.android.bridge.Getter
+import com.datadog.android.bridge.DdBridge
+import com.datadog.android.bridge.Getter as SDKGetter
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
@@ -17,9 +18,9 @@ import com.facebook.react.bridge.ReadableMap
 /**
  * An interface to test return types
  */
-class RNGetter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class Getter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
-    private val nativeInstance: Getter = Getter(reactContext)
+    private val nativeInstance: SDKGetter = DdBridge.getGetter(reactContext)
 
     override fun getName(): String = "Getter"
 
@@ -33,7 +34,7 @@ class RNGetter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModu
     }
 
     /**
-     * Empty method, returns int
+     * Empty method, returns boolean
      */
     @ReactMethod
     fun getBoolean(promise: Promise) {
@@ -42,20 +43,20 @@ class RNGetter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModu
     }
 
     /**
-     * Empty method, returns int
+     * Empty method, returns long
      */
     @ReactMethod
-    fun getInt(promise: Promise) {
-                val result = nativeInstance.getInt()
+    fun getLong(promise: Promise) {
+                val result = nativeInstance.getLong()
         promise.resolve(result)
     }
 
     /**
-     * Empty method, returns float
+     * Empty method, returns double
      */
     @ReactMethod
-    fun getFloat(promise: Promise) {
-                val result = nativeInstance.getFloat()
+    fun getDouble(promise: Promise) {
+                val result = nativeInstance.getDouble()
         promise.resolve(result)
     }
 

@@ -4,13 +4,13 @@
 import os
 from .gen_utils import *
 
-OUTPUT_AND_FOLDER = os.path.join("dd-sdk-android", "src", "main", "java", "com", "datadog", "android", "bridge")
+OUTPUT_AND_FOLDER = os.path.join("dd-sdk-android", "src", "main", "kotlin", "com", "datadog", "android", "bridge")
 
 AND_TYPES = {
     TYPE_VOID: 'Unit',
     TYPE_BOOL: 'Boolean',
-    TYPE_INT: 'Int',
-    TYPE_FLOAT: 'Float',
+    TYPE_LONG: 'Long',
+    TYPE_DOUBLE: 'Double',
     TYPE_MAP: 'Map<String, Any?>',
     TYPE_LIST: 'List<Any?>',
     TYPE_STRING: 'String'

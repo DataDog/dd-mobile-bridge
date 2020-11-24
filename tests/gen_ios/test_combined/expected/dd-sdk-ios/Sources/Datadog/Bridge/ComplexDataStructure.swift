@@ -9,12 +9,12 @@ import Foundation
 /**
  A data structure to test data transfer through the bridge
  - Parameters:
-     - someInt: A mandatory int property
+     - someLong: A mandatory long property
      - someString: An optional string property
      - someMap: A mandatory map property
  */
 struct ComplexDataStructure{
-    let someInt: Int
+    let someLong: Int64
     var someString: String? = nil
     let someMap: Dictionary<String, Any?>
 }

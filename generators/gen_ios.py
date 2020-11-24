@@ -9,8 +9,8 @@ OUTPUT_IOS_FOLDER = os.path.join("dd-sdk-ios", "Sources", "Datadog", "Bridge")
 IOS_TYPES_SWIFT = {
     TYPE_VOID: 'Void',
     TYPE_BOOL: 'Bool',
-    TYPE_INT: 'Int',
-    TYPE_FLOAT: 'Float',
+    TYPE_LONG: 'Int64',
+    TYPE_DOUBLE: 'Double',
     TYPE_MAP: 'Dictionary<String, Any?>',
     TYPE_LIST: 'Array<Any?>',
     TYPE_STRING: 'String'

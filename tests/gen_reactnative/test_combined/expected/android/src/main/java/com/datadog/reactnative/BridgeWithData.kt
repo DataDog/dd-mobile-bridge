@@ -6,7 +6,8 @@
 
 package com.datadog.reactnative
 
-import com.datadog.android.bridge.BridgeWithData
+import com.datadog.android.bridge.DdBridge
+import com.datadog.android.bridge.BridgeWithData as SDKBridgeWithData
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
@@ -17,9 +18,9 @@ import com.facebook.react.bridge.ReadableMap
 /**
  * An interface to test transferring complex types
  */
-class RNBridgeWithData(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class BridgeWithData(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
-    private val nativeInstance: BridgeWithData = BridgeWithData(reactContext)
+    private val nativeInstance: SDKBridgeWithData = DdBridge.getBridgeWithData(reactContext)
 
     override fun getName(): String = "BridgeWithData"
 

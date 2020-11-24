@@ -12,7 +12,7 @@
       },
       {
         "name": "id",
-        "type": "int",
+        "type": "long",
         "mandatory": false,
         "documentation" : "The message id"
       },

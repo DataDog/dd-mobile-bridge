@@ -19,19 +19,19 @@ interface Getter {
     fun emptyMethod(): Unit
 
     /**
-     * Empty method, returns int
+     * Empty method, returns boolean
      */
     fun getBoolean(): Boolean
 
     /**
-     * Empty method, returns int
+     * Empty method, returns long
      */
-    fun getInt(): Int
+    fun getLong(): Long
 
     /**
-     * Empty method, returns float
+     * Empty method, returns double
      */
-    fun getFloat(): Float
+    fun getDouble(): Double
 
     /**
      * Empty method, returns string

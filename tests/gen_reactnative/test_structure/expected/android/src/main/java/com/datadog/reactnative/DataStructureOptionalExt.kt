@@ -14,8 +14,8 @@ import com.facebook.react.bridge.WritableNativeMap
 fun ReadableMap.asDataStructureOptional(): DataStructureOptional{
     return DataStructureOptional(
         someBoolean = getBoolean("someBoolean"),
-        someInt = getInt("someInt"),
-        someFloat = getDouble("someFloat").toFloat(),
+        someLong = getDouble("someLong").toLong(),
+        someDouble = getDouble("someDouble"),
         someString = getString("someString"),
         someList = getArray("someList")?.toArrayList(),
         someMap = getMap("someMap")?.toHashMap()
@@ -25,8 +25,8 @@ fun ReadableMap.asDataStructureOptional(): DataStructureOptional{
 fun DataStructureOptional.toReadableMap(): WritableNativeMap {
     val map = WritableNativeMap()
     if (someBoolean != null) map.putBoolean("someBoolean", someBoolean)
-    if (someInt != null) map.putInt("someInt", someInt)
-    if (someFloat != null) map.putDouble("someFloat", someFloat.toDouble())
+    if (someLong != null) map.putDouble("someLong", someLong.toDouble())
+    if (someDouble != null) map.putDouble("someDouble", someDouble)
     if (someString != null) map.putString("someString", someString)
     if (someList != null) map.putArray("someList", someList.toWritableArray())
     if (someMap != null) map.putMap("someMap", someMap.toWritableMap())

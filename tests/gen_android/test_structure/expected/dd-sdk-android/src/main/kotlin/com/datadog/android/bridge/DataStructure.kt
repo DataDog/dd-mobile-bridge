@@ -8,12 +8,18 @@ package com.datadog.android.bridge
 
 /**
  * A data structure to test data transfer through the bridge
- * @param someInt A mandatory int property
- * @param someString An optional string property
+ * @param someBoolean A mandatory boolean property
+ * @param someLong A mandatory long property
+ * @param someDouble A mandatory double property
+ * @param someString A mandatory string property
+ * @param someList A mandatory list property
  * @param someMap A mandatory map property
  */
-data class ComplexDataStructure(
-    val someInt: Int,
-    val someString: String? = null,
+data class DataStructure(
+    val someBoolean: Boolean,
+    val someLong: Long,
+    val someDouble: Double,
+    val someString: String,
+    val someList: List<Any?>,
     val someMap: Map<String, Any?>
 )

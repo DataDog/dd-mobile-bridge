@@ -52,7 +52,7 @@ The entry point to use Datadog's Logs feature.
 
 The entry point to use Datadog's Trace feature.
 
-- `startSpan(operation: string, timestamp: int, context: map)`
+- `startSpan(operation: string, timestamp: long, context: map)`
 
     Start a span, and returns a unique identifier for the span.
 
@@ -60,7 +60,7 @@ The entry point to use Datadog's Trace feature.
     - `timestamp`: The timestamp when the operation started.
     - `context`: The additional context to send.
 
-- `finishSpan(spanId: string, timestamp: int, context: map)`
+- `finishSpan(spanId: string, timestamp: long, context: map)`
 
     Finish a started span.
 
@@ -72,7 +72,7 @@ The entry point to use Datadog's Trace feature.
 
 The entry point to use Datadog's RUM feature.
 
-- `startView(key: string, name: string, timestamp: int, context: map)`
+- `startView(key: string, name: string, timestamp: long, context: map)`
 
     Start tracking a RUM View.
 
@@ -81,7 +81,7 @@ The entry point to use Datadog's RUM feature.
     - `timestamp`: The timestamp when the view started.
     - `context`: The additional context to send.
 
-- `stopView(key: string, timestamp: int, context: map)`
+- `stopView(key: string, timestamp: long, context: map)`
 
     Stop tracking a RUM View.
 
@@ -89,7 +89,7 @@ The entry point to use Datadog's RUM feature.
     - `timestamp`: The timestamp when the view stopped.
     - `context`: The additional context to send.
 
-- `startAction(type: string, name: string, timestamp: int, context: map)`
+- `startAction(type: string, name: string, timestamp: long, context: map)`
 
     Start tracking a RUM Action.
 
@@ -98,14 +98,14 @@ The entry point to use Datadog's RUM feature.
     - `timestamp`: The timestamp when the action started.
     - `context`: The additional context to send.
 
-- `stopAction(timestamp: int, context: map)`
+- `stopAction(timestamp: long, context: map)`
 
     Stop tracking the ongoing RUM Action.
 
     - `timestamp`: The timestamp when the action stopped.
     - `context`: The additional context to send.
 
-- `addAction(type: string, name: string, timestamp: int, context: map)`
+- `addAction(type: string, name: string, timestamp: long, context: map)`
 
     Add a RUM Action.
 
@@ -114,7 +114,7 @@ The entry point to use Datadog's RUM feature.
     - `timestamp`: The timestamp when the action occured.
     - `context`: The additional context to send.
 
-- `startResource(key: string, method: string, url: string, timestamp: int, context: map)`
+- `startResource(key: string, method: string, url: string, timestamp: long, context: map)`
 
     Start tracking a RUM Resource.
 
@@ -124,16 +124,17 @@ The entry point to use Datadog's RUM feature.
     - `timestamp`: The timestamp when the resource started.
     - `context`: The additional context to send.
 
-- `stopResource(key: string, timestamp: int, statusCode: int, context: map)`
+- `stopResource(key: string, statusCode: long, kind: string, timestamp: long, context: map)`
 
     Stop tracking a RUM Resource.
 
     - `key`: The resource unique key identifier.
-    - `timestamp`: The timestamp when the resource stopped.
     - `statusCode`: The resource status code.
+    - `kind`: The resource's kind (xhr, document, image, css, font, …).
+    - `timestamp`: The timestamp when the resource stopped.
     - `context`: The additional context to send.
 
-- `addError(message: string, source: string, stacktrace: string, timestamp: int, context: map)`
+- `addError(message: string, source: string, stacktrace: string, timestamp: long, context: map)`
 
     Add a RUM Error.
 

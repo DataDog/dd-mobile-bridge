@@ -6,7 +6,8 @@
 
 package com.datadog.reactnative
 
-import com.datadog.android.bridge.Setter
+import com.datadog.android.bridge.DdBridge
+import com.datadog.android.bridge.Setter as SDKSetter
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
@@ -17,9 +18,9 @@ import com.facebook.react.bridge.ReadableMap
 /**
  * An interface to test setting types
  */
-class RNSetter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class Setter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
-    private val nativeInstance: Setter = Setter(reactContext)
+    private val nativeInstance: SDKSetter = DdBridge.getSetter(reactContext)
 
     override fun getName(): String = "Setter"
 
@@ -34,22 +35,22 @@ class RNSetter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModu
     }
 
     /**
-     * Empty method, int param, returns void
-     * @param value An int param
+     * Empty method, long param, returns void
+     * @param value A long param
      */
     @ReactMethod
-    fun setInt(value: Int, promise: Promise) {
-        nativeInstance.setInt(value)
+    fun setLong(value: Long, promise: Promise) {
+        nativeInstance.setLong(value)
         promise.resolve(null)
     }
 
     /**
-     * Empty method, float param, returns void
-     * @param value A float param
+     * Empty method, double param, returns void
+     * @param value A double param
      */
     @ReactMethod
-    fun setFloat(value: Float, promise: Promise) {
-        nativeInstance.setFloat(value)
+    fun setDouble(value: Double, promise: Promise) {
+        nativeInstance.setDouble(value)
         promise.resolve(null)
     }
 

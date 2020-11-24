@@ -5,7 +5,7 @@
  */
 
 import { NativeModules } from 'react-native';
-import { DataStructure, DataStructureOptional }  from './types';
+import { DataStructure, DataStructureOptional } from './types';
 
 
 export { DataStructure, DataStructureOptional };

@@ -9,17 +9,17 @@ OUTPUT_TS_FOLDER = "src"
 OUTPUT_TS_TYPES = "types.tsx"
 OUTPUT_TS_INDEX = "index.tsx"
 
-OUTPUT_AND_FOLDER = "android/src/main/java/com/datadog/reactnative"
+OUTPUT_RN_AND_FOLDER = os.path.join("android", "src", "main", "java", "com", "datadog", "reactnative")
 OUTPUT_AND_PACKAGE = "DdSdkReactNativePackage.kt"
 OUTPUT_AND_BRIDGE = "DdSdkBridgeExt.kt"
 
-OUTPUT_IOS_FOLDER = "ios"
+OUTPUT_RN_IOS_FOLDER = "ios"
 
 TS_TYPES = {
     TYPE_VOID: 'void',
     TYPE_BOOL: 'boolean',
-    TYPE_INT: 'number',
-    TYPE_FLOAT: 'number',
+    TYPE_LONG: 'number',
+    TYPE_DOUBLE: 'number',
     TYPE_MAP: 'object',
     TYPE_LIST: 'array',
     TYPE_STRING: 'string'
@@ -28,8 +28,8 @@ TS_TYPES = {
 AND_TYPES = {
     TYPE_VOID: 'Unit',
     TYPE_BOOL: 'Boolean',
-    TYPE_INT: 'Int',
-    TYPE_FLOAT: 'Float',
+    TYPE_LONG: 'Long',
+    TYPE_DOUBLE: 'Double',
     TYPE_MAP: 'ReadableMap',
     TYPE_LIST: 'ReadableArray',
     TYPE_STRING: 'String'
@@ -38,8 +38,8 @@ AND_TYPES = {
 IOS_TYPES_SWIFT = {
     TYPE_VOID: 'Void',
     TYPE_BOOL: 'Bool',
-    TYPE_INT: 'Int',
-    TYPE_FLOAT: 'Float',
+    TYPE_LONG: 'Int64',
+    TYPE_DOUBLE: 'Double',
     TYPE_MAP: 'NSDictionary',
     TYPE_LIST: 'NSArray',
     TYPE_STRING: 'NSString'
@@ -48,8 +48,8 @@ IOS_TYPES_SWIFT = {
 IOS_TYPES_OBJC = {
     TYPE_VOID: 'void',
     TYPE_BOOL: 'BOOL',
-    TYPE_INT: 'NSInteger',
-    TYPE_FLOAT: 'float',
+    TYPE_LONG: 'NSInteger',
+    TYPE_DOUBLE: 'float',
     TYPE_MAP: 'NSDictionary',
     TYPE_LIST: 'NSArray',
     TYPE_STRING: 'NSString'
@@ -124,7 +124,7 @@ class RNGenerator:
                     output.write(definition['name'] + "Type")
                 elif definition['type'] == "data":
                     output.write(definition['name'])
-            output.write(" }  from './types';\n\n")
+            output.write(" } from './types';\n\n")
 
             for definition in definitions:
                 if definition['type'] == "interface":
@@ -134,7 +134,7 @@ class RNGenerator:
                     output.write(definition['name'] + "Type")
                     output.write(" = NativeModules.")
                     output.write(definition['name'])
-                    output.write('\n')
+                    output.write(';\n')
 
             output.write('\n')
 
@@ -209,16 +209,18 @@ class RNGenerator:
             output.write(prop['name'] + ": " + _get_ts_type(prop['type']))
 
         output.write("\n  ) {}\n")
-        output.write("};\n\n")
+        output.write("}\n\n")
 
     def _generate_and_implementation(self, definition: dict):
-        file_name = "RN" + definition['name'] + ".kt"
-        output_path = prepare_output_path(self.output_folder, OUTPUT_AND_FOLDER, file_name)
+        class_name = definition['name']
+        file_name = class_name + ".kt"
+        output_path = prepare_output_path(self.output_folder, OUTPUT_RN_AND_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("package com.datadog.reactnative\n\n")
 
-            output.write("import com.datadog.android.bridge." + definition['name'] + "\n")
+            output.write("import com.datadog.android.bridge.DdBridge\n")
+            output.write("import com.datadog.android.bridge." + class_name + " as SDK" + class_name + "\n")
             output.write("import com.facebook.react.bridge.Promise\n")
             output.write("import com.facebook.react.bridge.ReactApplicationContext\n")
             output.write("import com.facebook.react.bridge.ReactContextBaseJavaModule\n")
@@ -231,17 +233,17 @@ class RNGenerator:
             output.write(" * " + definition['documentation'] + '\n')
             output.write(" */\n")
 
-            output.write("class RN" + definition['name'])
+            output.write("class " + class_name)
             output.write("(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {\n\n")
 
-            output.write("    private val nativeInstance: ")
-            output.write(definition['name'])
-            output.write(" = ")
-            output.write(definition['name'])
+            output.write("    private val nativeInstance: SDK")
+            output.write(class_name)
+            output.write(" = DdBridge.get")
+            output.write(class_name)
             output.write("(reactContext)\n\n")
 
             output.write("    override fun getName(): String = \"")
-            output.write(definition['name'])
+            output.write(class_name)
             output.write("\"\n\n")
 
             for method in definition['methods']:
@@ -297,14 +299,14 @@ class RNGenerator:
             output.write("        promise.resolve(result.toWritableMap())\n")
         elif return_type == TYPE_LIST:
             output.write("        promise.resolve(result.toWritableArray())\n")
-        elif return_type in [TYPE_BOOL, TYPE_INT, TYPE_FLOAT, TYPE_STRING]:
+        elif return_type in [TYPE_BOOL, TYPE_LONG, TYPE_DOUBLE, TYPE_STRING]:
             output.write("        promise.resolve(result)\n")
         else:
             output.write("        promise.resolve(result.toReadableMap())\n")
         output.write("    }\n\n")
 
     def _generate_and_bridge_ext(self, definitions: list):
-        output_path = prepare_output_path(self.output_folder, OUTPUT_AND_FOLDER, OUTPUT_AND_BRIDGE)
+        output_path = prepare_output_path(self.output_folder, OUTPUT_RN_AND_FOLDER, OUTPUT_AND_BRIDGE)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("package com.datadog.reactnative\n\n")
@@ -319,7 +321,9 @@ class RNGenerator:
             output.write("        when (it) {\n")
             output.write("            null -> list.pushNull()\n")
             output.write("            is Int -> list.pushInt(it)\n")
+            output.write("            is Long -> list.pushDouble(it.toDouble())\n")
             output.write("            is Float -> list.pushDouble(it.toDouble())\n")
+            output.write("            is Double -> list.pushDouble(it)\n")
             output.write("            is String -> list.pushString(it)\n")
             output.write("            is List<*> -> list.pushArray(it.toWritableArray())\n")
             output.write("            is Map<*, *> -> list.pushMap(it.toWritableMap())\n")
@@ -336,6 +340,7 @@ class RNGenerator:
             output.write("        when (v) {\n")
             output.write("            null -> map.putNull(key)\n")
             output.write("            is Int -> map.putInt(key, v)\n")
+            output.write("            is Long -> map.putDouble(key, v.toDouble())\n")
             output.write("            is Float -> map.putDouble(key, v.toDouble())\n")
             output.write("            is Double -> map.putDouble(key, v)\n")
             output.write("            is String -> map.putString(key, v)\n")
@@ -352,8 +357,8 @@ class RNGenerator:
                     pass
 
     def _generate_and_data_ext(self, definition: dict):
-        file_name = "RN" + definition['name'] + ".kt"
-        output_path = prepare_output_path(self.output_folder, OUTPUT_AND_FOLDER, file_name)
+        file_name = definition['name'] + "Ext.kt"
+        output_path = prepare_output_path(self.output_folder, OUTPUT_RN_AND_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("package com.datadog.reactnative\n\n")
@@ -396,18 +401,14 @@ class RNGenerator:
                 output.write("getBoolean(\"")
                 output.write(property_name)
                 output.write("\")")
-            elif property_type == TYPE_INT:
-                output.write("getInt(\"")
+            elif property_type == TYPE_LONG:
+                output.write("getDouble(\"")
                 output.write(property_name)
-                output.write("\")")
-            elif property_type == "double":
+                output.write("\").toLong()")
+            elif property_type == TYPE_DOUBLE:
                 output.write("getDouble(\"")
                 output.write(property_name)
                 output.write("\")")
-            elif property_type == TYPE_FLOAT:
-                output.write("getDouble(\"")
-                output.write(property_name)
-                output.write("\").toFloat()")
             elif property_type == TYPE_LIST:
                 output.write("getArray(\"")
                 output.write(property_name)
@@ -461,19 +462,19 @@ class RNGenerator:
                 output.write("\", ")
                 output.write(property_name)
                 output.write(")")
-            elif property_type == TYPE_INT:
-                output.write("map.putInt(\"")
+            elif property_type == TYPE_LONG:
+                output.write("map.putDouble(\"")
                 output.write(property_name)
                 output.write("\", ")
                 output.write(property_name)
-                output.write(")")
+                output.write(".toDouble())")
             elif property_type == "double":
                 output.write("map.putDouble(\"")
                 output.write(property_name)
                 output.write("\", ")
                 output.write(property_name)
                 output.write(")")
-            elif property_type == TYPE_FLOAT:
+            elif property_type == TYPE_DOUBLE:
                 output.write("map.putDouble(\"")
                 output.write(property_name)
                 output.write("\", ")
@@ -502,7 +503,7 @@ class RNGenerator:
         output.write("}\n")
 
     def _generate_and_package(self, definitions: list):
-        output_path = prepare_output_path(self.output_folder, OUTPUT_AND_FOLDER, OUTPUT_AND_PACKAGE)
+        output_path = prepare_output_path(self.output_folder, OUTPUT_RN_AND_FOLDER, OUTPUT_AND_PACKAGE)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("package com.datadog.reactnative\n\n")
@@ -522,15 +523,15 @@ class RNGenerator:
             output.write("    override fun createNativeModules(\n")
             output.write("        reactContext: ReactApplicationContext\n")
             output.write("    ): List<NativeModule> {\n")
-            output.write("        return listOf(\n")
+            output.write("        return listOf(")
 
             i = 0
             for definition in definitions:
                 if definition['type'] == "interface":
                     if i > 0:
-                        output.write(",\n")
+                        output.write(",")
                     i = i + 1
-                    output.write("            RN" + definition['name'] + "(reactContext)")
+                    output.write("\n            " + definition['name'] + "(reactContext)")
 
             output.write("\n        )\n")
             output.write("    }\n")
@@ -539,7 +540,7 @@ class RNGenerator:
 
     def _generate_ios_interface(self, definition: dict):
         file_name = definition['name'] + ".m"
-        output_path = prepare_output_path(self.output_folder, OUTPUT_IOS_FOLDER, file_name)
+        output_path = prepare_output_path(self.output_folder, OUTPUT_RN_IOS_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("#import <React/RCTBridgeModule.h>\n\n")
@@ -570,8 +571,7 @@ class RNGenerator:
 
     def _generate_ios_swift_implementation(self, definition: dict):
         file_name = definition['name'] + ".swift"
-        output_path = prepare_output_path(self.output_folder, OUTPUT_IOS_FOLDER, file_name)
-        print("writing to " + output_path)
+        output_path = prepare_output_path(self.output_folder, OUTPUT_RN_IOS_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("import Foundation\n\n")
@@ -634,7 +634,7 @@ class RNGenerator:
 
     def _generate_ios_struct_ext(self, definition: dict):
         file_name = "RN" + definition['name'] + ".swift"
-        output_path = prepare_output_path(self.output_folder, OUTPUT_IOS_FOLDER, file_name)
+        output_path = prepare_output_path(self.output_folder, OUTPUT_RN_IOS_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("import Foundation\n\n")
@@ -685,9 +685,9 @@ class RNGenerator:
                     output.write("NSString()")
                 elif property_type == TYPE_BOOL:
                     output.write("false")
-                elif property_type == TYPE_INT:
+                elif property_type == TYPE_LONG:
                     output.write("0")
-                elif property_type == TYPE_FLOAT:
+                elif property_type == TYPE_DOUBLE:
                     output.write("0.0")
                 elif property_type == TYPE_LIST:
                     output.write("NSArray()")

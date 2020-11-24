@@ -5,8 +5,8 @@
     "documentation": "A data structure to test data transfer through the bridge",
     "properties": [
       {
-        "name": "someInt",
-        "type": "int",
+        "name": "someLong",
+        "type": "long",
         "mandatory": true,
         "documentation": "A mandatory int property"
       },

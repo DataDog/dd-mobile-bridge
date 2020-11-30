@@ -574,10 +574,15 @@ class RNGenerator:
         output_path = prepare_output_path(self.output_folder, OUTPUT_RN_IOS_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
-            output.write("import Foundation\n\n")
+            output.write("import Foundation\n")
+            output.write("import Datadog\n\n")
             output.write("@objc(" + definition['name'] + ")\n")
             output.write("class RN" + definition['name'] + ": NSObject {\n\n")
-            output.write("    let nativeInstance = " + definition['name'] + "()\n\n")
+            output.write("    let nativeInstance: ")
+            output.write(definition['name'])
+            output.write(" = Bridge.get")
+            output.write(definition['name'])
+            output.write("()\n\n")
 
             for method in definition['methods']:
                 self._generate_ios_swift_method(method, output)
@@ -637,7 +642,8 @@ class RNGenerator:
         output_path = prepare_output_path(self.output_folder, OUTPUT_RN_IOS_FOLDER, file_name)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
-            output.write("import Foundation\n\n")
+            output.write("import Foundation\n")
+            output.write("import Datadog\n\n")
 
             output.write("extension NSDictionary {\n\n")
 

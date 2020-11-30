@@ -5,11 +5,12 @@
  */
 
 import Foundation
+import Datadog
 
 @objc(Getter)
 class RNGetter: NSObject {
 
-    let nativeInstance = Getter()
+    let nativeInstance: Getter = Bridge.getGetter()
 
     @objc(emptyMethodwithResolver:withRejecter:)
     func emptyMethod(resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {

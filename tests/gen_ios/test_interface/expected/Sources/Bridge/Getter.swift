@@ -10,7 +10,7 @@ import Foundation
    An interface to test return types
  */
 @objc(Getter)
-protocol Getter {
+public protocol Getter {
 
     /**
        Empty method, returns void
@@ -35,16 +35,16 @@ protocol Getter {
     /**
        Empty method, returns string
      */
-    func getString() -> String
+    func getString() -> NSString
 
     /**
        Empty method, returns map
      */
-    func getMap() -> Dictionary<String, Any?>
+    func getMap() -> NSDictionary
 
     /**
        Empty method, returns list
      */
-    func getList() -> Array<Any?>
+    func getList() -> NSArray
 
 }

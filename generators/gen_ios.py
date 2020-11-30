@@ -4,16 +4,16 @@
 import os
 from .gen_utils import *
 
-OUTPUT_IOS_FOLDER = os.path.join("dd-sdk-ios", "Sources", "Datadog", "Bridge")
+OUTPUT_IOS_FOLDER = os.path.join("Sources", "Bridge")
 
 IOS_TYPES_SWIFT = {
     TYPE_VOID: 'Void',
     TYPE_BOOL: 'Bool',
     TYPE_LONG: 'Int64',
     TYPE_DOUBLE: 'Double',
-    TYPE_MAP: 'Dictionary<String, Any?>',
-    TYPE_LIST: 'Array<Any?>',
-    TYPE_STRING: 'String'
+    TYPE_MAP: 'NSDictionary',
+    TYPE_LIST: 'NSArray',
+    TYPE_STRING: 'NSString'
 }
 
 
@@ -51,7 +51,7 @@ class IOSGenerator:
                 output.write(" */\n")
 
             output.write("@objc(" + definition['name'] + ")\n")
-            output.write("protocol " + definition['name'] + " {\n\n")
+            output.write("public protocol " + definition['name'] + " {\n\n")
 
             for method in definition['methods']:
                 if 'documentation' in method:
@@ -91,23 +91,60 @@ class IOSGenerator:
                     output.write("\n")
             output.write(" */\n")
 
-            output.write("struct ")
+            output.write("@objc(")
             output.write(definition['name'])
-            output.write("{\n")
+            output.write(")\n")
+            output.write("public class ")
+            output.write(definition['name'])
+            output.write(": NSObject{\n")
             for i, prop in enumerate(definition['properties']):
                 if i > 0:
                     output.write("\n")
                 property_name = prop['name']
                 property_type = prop['type']
                 property_mandatory = prop['mandatory']
+                output.write("    public var ")
+                output.write(property_name)
+                output.write(": ")
+                output.write(_get_ios_type_swift(property_type))
                 if property_mandatory:
-                    output.write("    let ")
+                    if property_type == TYPE_BOOL:
+                        output.write(" = false")
+                    elif property_type == TYPE_LONG:
+                        output.write(" = 0")
+                    elif property_type == TYPE_DOUBLE:
+                        output.write(" = 0.0")
+                    elif property_type == TYPE_STRING:
+                        output.write(" = \"\"")
+                    elif property_type == TYPE_MAP:
+                        output.write(" = NSDictionary()")
+                    elif property_type == TYPE_LIST:
+                        output.write(" = NSArray()")
                 else:
-                    output.write("    var ")
+                    output.write("? = nil")
+
+            output.write("\n\n    public init(")
+            for i, prop in enumerate(definition['properties']):
+                if i > 0:
+                    output.write(",")
+                property_name = prop['name']
+                property_type = prop['type']
+                property_mandatory = prop['mandatory']
+                output.write("\n        ")
                 output.write(property_name)
                 output.write(": ")
                 output.write(_get_ios_type_swift(property_type))
                 if not property_mandatory:
-                    output.write("? = nil")
+                    output.write("?")
 
-            output.write("\n}\n")
+            output.write("\n    ) {\n")
+            for prop in definition['properties']:
+                property_name = prop['name']
+                output.write("        self.")
+                output.write(property_name)
+                output.write(" = ")
+                output.write(property_name)
+                output.write("\n")
+            output.write("    }\n")
+
+            output.write("}\n")

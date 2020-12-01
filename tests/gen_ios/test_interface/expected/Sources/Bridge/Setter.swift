@@ -10,7 +10,7 @@ import Foundation
    An interface to test setting types
  */
 @objc(Setter)
-protocol Setter {
+public protocol Setter {
 
     /**
        Empty method, boolean param, returns void
@@ -30,16 +30,16 @@ protocol Setter {
     /**
        Empty method, string param, returns void
      */
-    func setString(value: String) -> Void
+    func setString(value: NSString) -> Void
 
     /**
        Empty method, map param, returns void
      */
-    func setMap(value: Dictionary<String, Any?>) -> Void
+    func setMap(value: NSDictionary) -> Void
 
     /**
        Empty method, list param, returns void
      */
-    func setList(value: Array<Any?>) -> Void
+    func setList(value: NSArray) -> Void
 
 }

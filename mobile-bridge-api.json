@@ -1,7 +1,7 @@
 [
   {
     "type": "data",
-    "name": "DatadogConfiguration",
+    "name": "DdSdkConfiguration",
     "documentation": "A configuration object to initialize Datadog's features.",
     "properties": [
       {
@@ -26,7 +26,7 @@
   },
   {
     "type": "interface",
-    "name": "Datadog",
+    "name": "DdSdk",
     "documentation": "The entry point to initialize Datadog's features.",
     "methods": [
       {
@@ -36,7 +36,7 @@
         "parameters": [
           {
             "name": "configuration",
-            "type": "DatadogConfiguration",
+            "type": "DdSdkConfiguration",
             "documentation": "The configuration to use."
           }
         ]

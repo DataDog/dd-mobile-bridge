@@ -6,11 +6,11 @@ JSON description of mobile bridges used by cross-platform or hybrid mobile frame
 
 ### Interfaces
 
-#### Datadog
+#### DdSdk
 
 The entry point to initialize Datadog's features.
 
-- `initialize(configuration: DatadogConfiguration)`
+- `initialize(configuration: DdSdkConfiguration)`
 
     Initializes Datadog's features.
 
@@ -146,7 +146,7 @@ The entry point to use Datadog's RUM feature.
 
 ### Data structures
 
-#### DatadogConfiguration
+#### DdSdkConfiguration
 
 A configuration object to initialize Datadog's features.
 

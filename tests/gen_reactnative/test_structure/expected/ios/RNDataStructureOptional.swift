@@ -5,6 +5,7 @@
  */
 
 import Foundation
+import Datadog
 
 extension NSDictionary {
 

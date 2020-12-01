@@ -13,8 +13,19 @@ import Foundation
      - someString: An optional string property
      - someMap: A mandatory map property
  */
-struct ComplexDataStructure{
-    let someLong: Int64
-    var someString: String? = nil
-    let someMap: Dictionary<String, Any?>
+@objc(ComplexDataStructure)
+public class ComplexDataStructure: NSObject{
+    public var someLong: Int64 = 0
+    public var someString: NSString? = nil
+    public var someMap: NSDictionary = NSDictionary()
+
+    public init(
+        someLong: Int64,
+        someString: NSString?,
+        someMap: NSDictionary
+    ) {
+        self.someLong = someLong
+        self.someString = someString
+        self.someMap = someMap
+    }
 }

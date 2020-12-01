@@ -5,11 +5,12 @@
  */
 
 import Foundation
+import Datadog
 
 @objc(Setter)
 class RNSetter: NSObject {
 
-    let nativeInstance = Setter()
+    let nativeInstance: Setter = Bridge.getSetter()
 
     @objc(setBoolean:withResolver:withRejecter:)
     func setBoolean(value: Bool, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {

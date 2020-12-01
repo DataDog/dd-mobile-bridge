@@ -10,7 +10,7 @@ import Foundation
    An interface to test transferring complex types
  */
 @objc(BridgeWithData)
-protocol BridgeWithData {
+public protocol BridgeWithData {
 
     /**
        Empty method, ComplexDataStructure param, returns void

@@ -5,11 +5,12 @@
  */
 
 import Foundation
+import Datadog
 
 @objc(BridgeWithData)
 class RNBridgeWithData: NSObject {
 
-    let nativeInstance = BridgeWithData()
+    let nativeInstance: BridgeWithData = Bridge.getBridgeWithData()
 
     @objc(setData:withResolver:withRejecter:)
     func setData(value: NSDictionary, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {

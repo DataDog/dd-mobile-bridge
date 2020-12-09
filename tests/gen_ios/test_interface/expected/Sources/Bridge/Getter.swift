@@ -11,11 +11,10 @@ import Foundation
  */
 @objc(Getter)
 public protocol Getter {
-
     /**
        Empty method, returns void
      */
-    func emptyMethod() -> Void
+    func emptyMethod()
 
     /**
        Empty method, returns boolean
@@ -46,5 +45,4 @@ public protocol Getter {
        Empty method, returns list
      */
     func getList() -> NSArray
-
 }

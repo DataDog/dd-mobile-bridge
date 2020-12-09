@@ -17,7 +17,7 @@ import Foundation
      - someMap: An optional map property
  */
 @objc(DataStructureOptional)
-public class DataStructureOptional: NSObject{
+public class DataStructureOptional: NSObject {
     public var someBoolean: Bool? = nil
     public var someLong: Int64? = nil
     public var someDouble: Double? = nil

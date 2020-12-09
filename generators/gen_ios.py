@@ -51,25 +51,36 @@ class IOSGenerator:
                 output.write(" */\n")
 
             output.write("@objc(" + definition['name'] + ")\n")
-            output.write("public protocol " + definition['name'] + " {\n\n")
+            output.write("public protocol " + definition['name'] + " {\n")
 
-            for method in definition['methods']:
-                if 'documentation' in method:
-                    output.write("    /**\n")
-                    output.write("       " + method['documentation'] + '\n')
-                    output.write("     */\n")
-
-                output.write("    func " + method['name'] + "(")
-
-                for i, param in enumerate(method['parameters']):
-                    if i > 0:
-                        output.write(", ")
-                    output.write(param['name'] + ": " + _get_ios_type_swift(param['type']))
-                output.write(") -> ")
-                output.write(_get_ios_type_swift(method['type']))
-                output.write("\n\n")
-
+            method_signatures = map(self._ios_method_signature, definition['methods'])
+            output.write("\n".join(method_signatures))
             output.write("}\n")
+
+    def _ios_method_signature(self, method):
+        output = ""
+        if 'documentation' in method:
+            output += "    /**\n"
+            output += "       " + method['documentation'] + '\n'
+            output += "     */\n"
+
+        output += "    func " + method['name'] + "("
+
+        for i, param in enumerate(method['parameters']):
+            if i > 0:
+                output += ", "
+
+            output += param['name'] + ": " + _get_ios_type_swift(param['type'])
+
+        output += ")"
+
+        method_type = _get_ios_type_swift(method['type'])
+        if method_type is not IOS_TYPES_SWIFT[TYPE_VOID]:
+            output += " -> "
+            output += _get_ios_type_swift(method_type)
+
+        output += "\n"
+        return output
 
     def _generate_ios_data(self, definition: dict):
         file_name = definition['name'] + ".swift"
@@ -96,7 +107,7 @@ class IOSGenerator:
             output.write(")\n")
             output.write("public class ")
             output.write(definition['name'])
-            output.write(": NSObject{\n")
+            output.write(": NSObject {\n")
             for i, prop in enumerate(definition['properties']):
                 if i > 0:
                     output.write("\n")

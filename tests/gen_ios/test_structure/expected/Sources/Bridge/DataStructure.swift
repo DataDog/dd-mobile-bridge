@@ -17,7 +17,7 @@ import Foundation
      - someMap: A mandatory map property
  */
 @objc(DataStructure)
-public class DataStructure: NSObject{
+public class DataStructure: NSObject {
     public var someBoolean: Bool = false
     public var someLong: Int64 = 0
     public var someDouble: Double = 0.0

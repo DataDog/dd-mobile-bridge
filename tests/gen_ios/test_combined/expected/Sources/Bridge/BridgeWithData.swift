@@ -11,15 +11,13 @@ import Foundation
  */
 @objc(BridgeWithData)
 public protocol BridgeWithData {
-
     /**
        Empty method, ComplexDataStructure param, returns void
      */
-    func setData(value: ComplexDataStructure) -> Void
+    func setData(value: ComplexDataStructure)
 
     /**
        Empty method, returns ComplexDataStructure
      */
     func getData() -> ComplexDataStructure
-
 }

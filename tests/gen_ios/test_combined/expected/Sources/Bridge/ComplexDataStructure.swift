@@ -14,7 +14,7 @@ import Foundation
      - someMap: A mandatory map property
  */
 @objc(ComplexDataStructure)
-public class ComplexDataStructure: NSObject{
+public class ComplexDataStructure: NSObject {
     public var someLong: Int64 = 0
     public var someString: NSString? = nil
     public var someMap: NSDictionary = NSDictionary()

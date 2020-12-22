@@ -39,7 +39,7 @@ class BridgeWithData(reactContext: ReactApplicationContext) : ReactContextBaseJa
      */
     @ReactMethod
     fun getData(promise: Promise) {
-                val result = nativeInstance.getData()
+        val result = nativeInstance.getData()
         promise.resolve(result.toReadableMap())
     }
 

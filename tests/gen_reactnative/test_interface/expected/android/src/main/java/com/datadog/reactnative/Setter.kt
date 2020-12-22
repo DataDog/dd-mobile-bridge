@@ -39,8 +39,8 @@ class Setter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule
      * @param value A long param
      */
     @ReactMethod
-    fun setLong(value: Long, promise: Promise) {
-        nativeInstance.setLong(value)
+    fun setLong(value: Double, promise: Promise) {
+        nativeInstance.setLong(value.toLong())
         promise.resolve(null)
     }
 

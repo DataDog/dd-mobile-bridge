@@ -38,7 +38,7 @@ class Getter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule
      */
     @ReactMethod
     fun getBoolean(promise: Promise) {
-                val result = nativeInstance.getBoolean()
+        val result = nativeInstance.getBoolean()
         promise.resolve(result)
     }
 
@@ -47,8 +47,8 @@ class Getter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule
      */
     @ReactMethod
     fun getLong(promise: Promise) {
-                val result = nativeInstance.getLong()
-        promise.resolve(result)
+        val result = nativeInstance.getLong()
+        promise.resolve(result.toDouble())
     }
 
     /**
@@ -56,7 +56,7 @@ class Getter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule
      */
     @ReactMethod
     fun getDouble(promise: Promise) {
-                val result = nativeInstance.getDouble()
+        val result = nativeInstance.getDouble()
         promise.resolve(result)
     }
 
@@ -65,7 +65,7 @@ class Getter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule
      */
     @ReactMethod
     fun getString(promise: Promise) {
-                val result = nativeInstance.getString()
+        val result = nativeInstance.getString()
         promise.resolve(result)
     }
 
@@ -74,7 +74,7 @@ class Getter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule
      */
     @ReactMethod
     fun getMap(promise: Promise) {
-                val result = nativeInstance.getMap()
+        val result = nativeInstance.getMap()
         promise.resolve(result.toWritableMap())
     }
 
@@ -83,7 +83,7 @@ class Getter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule
      */
     @ReactMethod
     fun getList(promise: Promise) {
-                val result = nativeInstance.getList()
+        val result = nativeInstance.getList()
         promise.resolve(result.toWritableArray())
     }
 

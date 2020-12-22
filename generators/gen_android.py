@@ -4,7 +4,7 @@
 import os
 from .gen_utils import *
 
-OUTPUT_AND_FOLDER = os.path.join("dd-sdk-android", "src", "main", "kotlin", "com", "datadog", "android", "bridge")
+OUTPUT_AND_FOLDER = os.path.join("dd-bridge-android", "src", "main", "kotlin", "com", "datadog", "android", "bridge")
 
 AND_TYPES = {
     TYPE_VOID: 'Unit',

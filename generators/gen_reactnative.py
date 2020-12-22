@@ -28,7 +28,7 @@ TS_TYPES = {
 AND_TYPES = {
     TYPE_VOID: 'Unit',
     TYPE_BOOL: 'Boolean',
-    TYPE_LONG: 'Long',
+    TYPE_LONG: 'Double',
     TYPE_DOUBLE: 'Double',
     TYPE_MAP: 'ReadableMap',
     TYPE_LIST: 'ReadableArray',
@@ -275,7 +275,7 @@ class RNGenerator:
 
         output.write("        ")
         if return_type != TYPE_VOID:
-            output.write("        val result = ")
+            output.write("val result = ")
         output.write("nativeInstance.")
         output.write(method['name'])
         output.write('(')
@@ -287,6 +287,8 @@ class RNGenerator:
                 output.write('.toHashMap()')
             elif param['type'] == TYPE_LIST:
                 output.write('.toArrayList()')
+            elif param['type'] == TYPE_LONG:
+                output.write('.toLong()')
             elif param['type'] not in AND_TYPES:
                 output.write('.as')
                 output.write(param['type'])
@@ -299,8 +301,10 @@ class RNGenerator:
             output.write("        promise.resolve(result.toWritableMap())\n")
         elif return_type == TYPE_LIST:
             output.write("        promise.resolve(result.toWritableArray())\n")
-        elif return_type in [TYPE_BOOL, TYPE_LONG, TYPE_DOUBLE, TYPE_STRING]:
+        elif return_type in [TYPE_BOOL, TYPE_DOUBLE, TYPE_STRING]:
             output.write("        promise.resolve(result)\n")
+        elif return_type == TYPE_LONG:
+            output.write("        promise.resolve(result.toDouble())\n")
         else:
             output.write("        promise.resolve(result.toReadableMap())\n")
         output.write("    }\n\n")

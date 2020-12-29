@@ -98,6 +98,9 @@ def update_dependant(source_path: str, platform: str, version: str, gh_token: st
 
 def run_main() -> int:
     cli_args = parse_arguments(sys.argv[1:])
+
+    # This script expects to have a valid Github Token in a "gh_token" text file
+    # The token needs the `repo` permissions, and for now is a PAT
     with open('gh_token', 'r') as f:
         gh_token = f.read().strip()
 

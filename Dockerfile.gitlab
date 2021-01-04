@@ -24,3 +24,6 @@ RUN set -x \
 
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
+
+RUN set -x \
+ && pip install awscli

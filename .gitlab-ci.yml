@@ -8,6 +8,7 @@ variables:
 stages:
   - ci-image
   - test
+  - publish
 
 # CI IMAGE
 
@@ -49,3 +50,44 @@ test:readme:
   script:
     - pip3 install -r requirements/readme.txt
     - python3 test_readme.py
+
+# PUBLISH
+
+publish:dd-bridge-android:
+  tags: [ "runner:main", "size:large" ]
+  only:
+    - tags
+  image: $CI_IMAGE_DOCKER
+  stage: publish
+  timeout: 30m
+  script:
+    - pip3 install -r requirements/dependants.txt
+    - aws ssm get-parameter --region us-east-1 --name ci.dd-mobile-bridge.gh_token --with-decryption --query "Parameter.Value" --out text >> ./gh_token
+    - git fetch --depth=1 origin master
+    - python3 update_dependants.py -s mobile-bridge-api.json -p android -v $CI_COMMIT_TAG
+
+publish:dd-bridge-ios:
+  tags: [ "runner:main", "size:large" ]
+  only:
+    - tags
+  image: $CI_IMAGE_DOCKER
+  stage: publish
+  timeout: 30m
+  script:
+    - pip3 install -r requirements/dependants.txt
+    - aws ssm get-parameter --region us-east-1 --name ci.dd-mobile-bridge.gh_token --with-decryption --query "Parameter.Value" --out text >> ./gh_token
+    - git fetch --depth=1 origin master
+    - python3 update_dependants.py -s mobile-bridge-api.json -p ios -v $CI_COMMIT_TAG
+
+publish:dd-sdk-reactnative:
+  tags: [ "runner:main", "size:large" ]
+  only:
+    - tags
+  image: $CI_IMAGE_DOCKER
+  stage: publish
+  timeout: 30m
+  script:
+    - pip3 install -r requirements/dependants.txt
+    - aws ssm get-parameter --region us-east-1 --name ci.dd-mobile-bridge.gh_token --with-decryption --query "Parameter.Value" --out text >> ./gh_token
+    - git fetch --depth=1 origin master
+    - python3 update_dependants.py -s mobile-bridge-api.json -p reactnative -v $CI_COMMIT_TAG

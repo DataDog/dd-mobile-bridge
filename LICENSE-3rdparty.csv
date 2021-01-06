@@ -1,0 +1,5 @@
+Component,Origin,License,Copyright
+test_format.py,jsonschema,MIT,"Copyright (c) 2012 Julian Berman"
+test_readme.py,GitPython,BSD-3-Clause,"Copyright (C) 2008, 2009 Michael Trier and contributors"
+update_dependants.py,GitPython,BSD-3-Clause,"Copyright (C) 2008, 2009 Michael Trier and contributors"
+update_dependants.py,requests,Apache-2.0,"Copyright (c) 2011 Kenneth Reitz"

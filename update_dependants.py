@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# Unless explicitly stated otherwise all files in this repository are licensed under the Apache License Version 2.0.
+# This product includes software developed at Datadog (https://www.datadoghq.com/).
+# Copyright 2019-Present Datadog, Inc
+
 
 import subprocess
 import sys
@@ -41,7 +45,7 @@ def github_create_pr(repository: str, branch_name: str, base_name: str, version:
     }
     data = '{"body": "This PR has been created automatically by the CI", ' \
            '"title": "Update to version ' + version + '", ' \
-           '"base":"' + base_name + '", "head":"' + branch_name + '"}'
+                                                      '"base":"' + base_name + '", "head":"' + branch_name + '"}'
 
     url = "https://api.github.com/repos/DataDog/" + repository + "/pulls"
     response = requests.post(url=url, headers=headers, data=data)

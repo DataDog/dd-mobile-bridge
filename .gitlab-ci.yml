@@ -42,7 +42,7 @@ test:generators:
     - pip3 install -r requirements/generators.txt
     - python3 test_generators.py
 
-test:readme:
+test:docs:
   tags: [ "runner:main", "size:large" ]
   image: $CI_IMAGE_DOCKER
   stage: test

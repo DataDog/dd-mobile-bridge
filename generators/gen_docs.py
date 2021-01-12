@@ -9,13 +9,9 @@ import os
 from typing import TextIO
 from .gen_utils import *
 
-OUTPUT_FILE = "README.md"
+OUTPUT_FILE = 'API_REFERENCE.md'
 
-HEADER = """# dd-mobile-bridge
-
-JSON description of mobile bridges used by cross-platform or hybrid mobile frameworks (React Native, Xamarin, …)
-
-## Bridge API
+HEADER = """# Bridge API Reference
 
 """
 
@@ -32,12 +28,12 @@ class ReadmeGenerator:
         with open(output_path, 'w') as output:
             output.write(HEADER)
 
-            output.write("### Interfaces\n\n")
+            output.write("## Interfaces\n\n")
             for definition in definitions:
                 if definition['type'] == "interface":
                     self._generate_interface(definition, output)
 
-            output.write("### Data structures\n\n")
+            output.write("## Data structures\n\n")
             for definition in definitions:
                 if definition['type'] == "data":
                     self._generate_structure(definition, output)

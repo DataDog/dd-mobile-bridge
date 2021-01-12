@@ -1,12 +1,8 @@
-# dd-mobile-bridge
+# Bridge API Reference
 
-JSON description of mobile bridges used by cross-platform or hybrid mobile frameworks (React Native, Xamarin, …)
+## Interfaces
 
-## Bridge API
-
-### Interfaces
-
-### Data structures
+## Data structures
 
 #### DataStructure
 

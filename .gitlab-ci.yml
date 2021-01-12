@@ -48,8 +48,8 @@ test:readme:
   stage: test
   timeout: 1h
   script:
-    - pip3 install -r requirements/readme.txt
-    - python3 test_readme.py
+    - pip3 install -r requirements/docs.txt
+    - python3 test_docs.py
 
 # PUBLISH
 

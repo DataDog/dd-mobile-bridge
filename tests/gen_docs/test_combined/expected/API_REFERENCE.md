@@ -1,10 +1,6 @@
-# dd-mobile-bridge
+# Bridge API Reference
 
-JSON description of mobile bridges used by cross-platform or hybrid mobile frameworks (React Native, Xamarin, …)
-
-## Bridge API
-
-### Interfaces
+## Interfaces
 
 #### BridgeWithData
 
@@ -21,7 +17,7 @@ An interface to test transferring complex types
     Empty method, returns ComplexDataStructure
 
 
-### Data structures
+## Data structures
 
 #### ComplexDataStructure
 

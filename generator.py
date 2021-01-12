@@ -14,8 +14,9 @@ from typing import Any
 PLATFORM_RN = "reactnative"
 PLATFORM_AND = "android"
 PLATFORM_IOS = "ios"
-PLATFORM_README = "readme"
+PLATFORM_DOCS = "docs"
 
+PLATFORMS = [PLATFORM_AND, PLATFORM_IOS, PLATFORM_DOCS, PLATFORM_RN]
 
 def parse_arguments(args: list) -> Namespace:
     parser = ArgumentParser()
@@ -23,7 +24,7 @@ def parse_arguments(args: list) -> Namespace:
     parser.add_argument("-s", "--source", required=True, help="the source Json definition of the API")
     parser.add_argument("-o", "--output", required=False, default=".", help="the output folder")
     parser.add_argument("-p", "--platform", required=True,
-                        choices=[PLATFORM_AND, PLATFORM_IOS, PLATFORM_README, PLATFORM_RN],
+                        choices=PLATFORMS,
                         help="the target platform")
 
     return parser.parse_args(args)
@@ -41,8 +42,8 @@ def load_generator(platform: str, output_folder: str) -> Any:
     if platform == PLATFORM_IOS:
         from generators.gen_ios import IOSGenerator
         return IOSGenerator(output_folder)
-    if platform == PLATFORM_README:
-        from generators.gen_readme import ReadmeGenerator
+    if platform == PLATFORM_DOCS:
+        from generators.gen_docs import ReadmeGenerator
         return ReadmeGenerator(output_folder)
     if platform == PLATFORM_RN:
         from generators.gen_reactnative import RNGenerator

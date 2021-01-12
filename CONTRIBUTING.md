@@ -21,7 +21,7 @@ You can install all requirements using the following lines:
 pip3 install -r requirements/dependants.txt
 pip3 install -r requirements/format.txt
 pip3 install -r requirements/generators.txt
-pip3 install -r requirements/readme.txt
+pip3 install -r requirements/docs.txt
 ```
 
 ### Running the tests
@@ -35,8 +35,8 @@ python3 test_format.py
 # run the tests on the generators (ensure the generated code matches the expected format for each platform)
 python3 test_generators.py
 
-# run the test on the README.md file (ensure it does match the mobile-bridge-api.json definition)
-python3 test_readme.py
+# run the test on the API_REFERENCE.md file (ensure it does match the mobile-bridge-api.json definition)
+python3 test_docs.py
 ```
 
 ## Submitting Issues

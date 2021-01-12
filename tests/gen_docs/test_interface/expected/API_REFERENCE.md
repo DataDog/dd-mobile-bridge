@@ -1,10 +1,6 @@
-# dd-mobile-bridge
+# Bridge API Reference
 
-JSON description of mobile bridges used by cross-platform or hybrid mobile frameworks (React Native, Xamarin, …)
-
-## Bridge API
-
-### Interfaces
+## Interfaces
 
 #### Getter
 
@@ -85,5 +81,5 @@ An interface to test setting types
 
     - `value`: A list param
 
-### Data structures
+## Data structures
 

@@ -12,7 +12,7 @@ import shutil
 import subprocess
 import sys
 
-PROJECTS = ['readme', 'android', 'ios', 'reactnative']
+from generator import PLATFORMS
 
 
 def _report_file_diff(output_file_path, expected_file_path):
@@ -30,7 +30,6 @@ def _report_file_diff(output_file_path, expected_file_path):
 
 def _compare_folders(output_dir_path, expected_dir_path):
     comparison = filecmp.dircmp(output_dir_path, expected_dir_path)
-    common = sorted(comparison.common)
     output = sorted(comparison.left_list)
     expected = sorted(comparison.right_list)
     invalid_count = 0
@@ -44,10 +43,10 @@ def _compare_folders(output_dir_path, expected_dir_path):
     diff_files = comparison.diff_files
     if len(diff_files) > 0:
         print("  ✘ Invalid output in " + output_dir_path)
-        for subfile in diff_files:
-            print("     File " + subfile + " content didn't meet expectations")
+        for sub_file in diff_files:
+            print("     File " + sub_file + " content didn't meet expectations")
             invalid_count = invalid_count + 1
-            _report_file_diff(os.path.join(output_dir_path, subfile), os.path.join(expected_dir_path, subfile))
+            _report_file_diff(os.path.join(output_dir_path, sub_file), os.path.join(expected_dir_path, sub_file))
 
     for subdir in comparison.common_dirs:
         output_subdir = os.path.join(output_dir_path, subdir)
@@ -94,8 +93,8 @@ def _validate_generator(platform):
 
 def _validate_project():
     invalid_count = 0
-    for project in PROJECTS:
-        invalid_count = invalid_count + _validate_generator(project)
+    for platform in PLATFORMS:
+        invalid_count = invalid_count + _validate_generator(platform)
     return invalid_count
 
 

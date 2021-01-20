@@ -8,7 +8,7 @@
 import os
 from .gen_utils import *
 
-OUTPUT_IOS_FOLDER = os.path.join("Sources", "Bridge")
+OUTPUT_IOS_FOLDER = os.path.join("DatadogSDKBridge", "Classes", "Interface")
 
 IOS_TYPES_SWIFT = {
     TYPE_VOID: 'Void',

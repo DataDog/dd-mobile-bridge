@@ -134,9 +134,9 @@
             "documentation": "The operation name of the span."
           },
           {
-            "name": "timestamp",
+            "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the operation started."
+            "documentation": "The timestamp when the operation started (in milliseconds)."
           },
           {
             "name": "context",
@@ -156,9 +156,9 @@
             "documentation": "The unique identifier of the span."
           },
           {
-            "name": "timestamp",
+            "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the operation stopped."
+            "documentation": "The timestamp when the operation stopped (in milliseconds)."
           },
           {
             "name": "context",
@@ -190,9 +190,9 @@
             "documentation": "The view name."
           },
           {
-            "name": "timestamp",
+            "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the view started."
+            "documentation": "The timestamp when the view started (in milliseconds)."
           },
           {
             "name": "context",
@@ -212,9 +212,9 @@
             "documentation": "The view unique key identifier."
           },
           {
-            "name": "timestamp",
+            "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the view stopped."
+            "documentation": "The timestamp when the view stopped (in milliseconds)."
           },
           {
             "name": "context",
@@ -239,9 +239,9 @@
             "documentation": "The action name."
           },
           {
-            "name": "timestamp",
+            "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the action started."
+            "documentation": "The timestamp when the action started (in milliseconds)."
           },
           {
             "name": "context",
@@ -256,9 +256,9 @@
         "documentation": "Stop tracking the ongoing RUM Action.",
         "parameters": [
           {
-            "name": "timestamp",
+            "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the action stopped."
+            "documentation": "The timestamp when the action stopped (in milliseconds)."
           },
           {
             "name": "context",
@@ -283,9 +283,9 @@
             "documentation": "The action name."
           },
           {
-            "name": "timestamp",
+            "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the action occured."
+            "documentation": "The timestamp when the action occurred (in milliseconds)."
           },
           {
             "name": "context",
@@ -315,9 +315,9 @@
             "documentation": "The resource url."
           },
           {
-            "name": "timestamp",
+            "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the resource started."
+            "documentation": "The timestamp when the resource started (in milliseconds)."
           },
           {
             "name": "context",
@@ -347,9 +347,9 @@
             "documentation": "The resource's kind (xhr, document, image, css, font, …)."
           },
           {
-            "name": "timestamp",
+            "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the resource stopped."
+            "documentation": "The timestamp when the resource stopped (in milliseconds)."
           },
           {
             "name": "context",
@@ -379,9 +379,9 @@
             "documentation": "The error stacktrace."
           },
           {
-            "name": "timestamp",
+            "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the error occured."
+            "documentation": "The timestamp when the error occurred (in milliseconds)."
           },
           {
             "name": "context",

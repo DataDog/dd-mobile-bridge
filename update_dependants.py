@@ -59,8 +59,12 @@ def github_create_pr(repository: str, branch_name: str, base_name: str, version:
 
 def generate_target_code(platform: str, source_path: str, temp_dir_path: str) -> int:
     cmd_args = ['./generator.py', '-s', source_path, '-o', temp_dir_path, '-p', platform]
-    result = subprocess.call(cmd_args, shell=False, stdout=subprocess.DEVNULL)
-    return result
+    result = subprocess.run(cmd_args, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if result.returncode > 0:
+        print(result.stderr.decode('utf-8'))
+    else:
+        print(result.stdout.decode('utf-8'))
+    return result.returncode
 
 
 def git_clone_repository(repo_name: str, gh_token: str, temp_dir_path: str, branch_name: str) -> Tuple[Repo, str]:

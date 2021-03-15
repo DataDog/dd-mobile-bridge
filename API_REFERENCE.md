@@ -12,6 +12,12 @@ The entry point to initialize Datadog's features.
 
     - `configuration`: The configuration to use.
 
+- `setUser(user: map)`
+
+    Set the user information.
+
+    - `user`: The user object (use builtin attributes: 'id', 'email', 'name', and/or any custom attribute).
+
 #### DdLogs
 
 The entry point to use Datadog's Logs feature.

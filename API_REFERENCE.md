@@ -152,12 +152,6 @@ The entry point to use Datadog's RUM feature.
     - `timestampMs`: The timestamp when the error occurred (in milliseconds).
     - `context`: The additional context to send.
 
-- `setSampleRate(sampleRate: double)`
-
-    Sets the RUM sample rate.
-
-    - `sampleRate`: The sample rate (between 0 and 100) of sessions kept.
-
 ## Data structures
 
 #### DdSdkConfiguration
@@ -167,4 +161,5 @@ A configuration object to initialize Datadog's features.
 - `clientToken` (string): A valid Datadog client token.
 - `env` (string): The application’s environment, for example: prod, pre-prod, staging, etc.
 - `applicationId` (string): The RUM application ID.
+- `sampleRate` (double): The sample rate (between 0 and 100) of RUM sessions kept.
 

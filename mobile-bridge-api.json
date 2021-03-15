@@ -21,6 +21,12 @@
         "type": "string",
         "documentation": "The RUM application ID.",
         "mandatory": false
+      },
+      {
+        "name": "sampleRate",
+        "type": "double",
+        "documentation": "The sample rate (between 0 and 100) of RUM sessions kept.",
+        "mandatory": false
       }
     ]
   },
@@ -411,18 +417,6 @@
             "name": "context",
             "type": "map",
             "documentation": "The additional context to send."
-          }
-        ]
-      },
-      {
-        "name": "setSampleRate",
-        "type": "void",
-        "documentation": "Sets the RUM sample rate.",
-        "parameters": [
-          {
-            "name": "sampleRate",
-            "type": "double",
-            "documentation": "The sample rate (between 0 and 100) of sessions kept."
           }
         ]
       }

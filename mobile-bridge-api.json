@@ -187,6 +187,18 @@
     "documentation": "The entry point to use Datadog's RUM feature.",
     "methods": [
       {
+        "name": "setContext",
+        "type": "void",
+        "documentation": "Sets the global RUM context (set of attributes) attachd with all future RUM events.",
+        "parameters": [
+          {
+            "name": "context",
+            "type": "map",
+            "documentation": "The global RUM context."
+          }
+        ]
+      },
+      {
         "name": "startView",
         "type": "void",
         "documentation": "Start tracking a RUM View.",

@@ -74,6 +74,12 @@ The entry point to use Datadog's Trace feature.
 
 The entry point to use Datadog's RUM feature.
 
+- `setContext(context: map)`
+
+    Sets the global RUM context (set of attributes) attachd with all future RUM events.
+
+    - `context`: The global RUM context.
+
 - `startView(key: string, name: string, timestampMs: long, context: map)`
 
     Start tracking a RUM View.

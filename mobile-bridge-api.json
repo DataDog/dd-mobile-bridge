@@ -42,6 +42,18 @@
         ]
       },
       {
+        "name": "setAttributes",
+        "type": "void",
+        "documentation": "Sets the global context (set of attributes) attached with all future Logs, Spans and RUM events.",
+        "parameters": [
+          {
+            "name": "attributes",
+            "type": "map",
+            "documentation": "The global context attributes."
+          }
+        ]
+      },
+      {
         "name": "setUser",
         "type": "void",
         "documentation": "Set the user information.",
@@ -186,18 +198,6 @@
     "name": "DdRum",
     "documentation": "The entry point to use Datadog's RUM feature.",
     "methods": [
-      {
-        "name": "setContext",
-        "type": "void",
-        "documentation": "Sets the global RUM context (set of attributes) attachd with all future RUM events.",
-        "parameters": [
-          {
-            "name": "context",
-            "type": "map",
-            "documentation": "The global RUM context."
-          }
-        ]
-      },
       {
         "name": "startView",
         "type": "void",

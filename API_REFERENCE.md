@@ -12,6 +12,12 @@ The entry point to initialize Datadog's features.
 
     - `configuration`: The configuration to use.
 
+- `setAttributes(attributes: map)`
+
+    Sets the global context (set of attributes) attached with all future Logs, Spans and RUM events.
+
+    - `attributes`: The global context attributes.
+
 - `setUser(user: map)`
 
     Set the user information.
@@ -73,12 +79,6 @@ The entry point to use Datadog's Trace feature.
 #### DdRum
 
 The entry point to use Datadog's RUM feature.
-
-- `setContext(context: map)`
-
-    Sets the global RUM context (set of attributes) attachd with all future RUM events.
-
-    - `context`: The global RUM context.
 
 - `startView(key: string, name: string, timestampMs: long, context: map)`
 

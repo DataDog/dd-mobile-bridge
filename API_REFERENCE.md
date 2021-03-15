@@ -152,6 +152,12 @@ The entry point to use Datadog's RUM feature.
     - `timestampMs`: The timestamp when the error occurred (in milliseconds).
     - `context`: The additional context to send.
 
+- `setSampleRate(sampleRate: double)`
+
+    Sets the RUM sample rate.
+
+    - `sampleRate`: The sample rate (between 0 and 100) of sessions kept.
+
 ## Data structures
 
 #### DdSdkConfiguration

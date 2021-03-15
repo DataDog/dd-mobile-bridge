@@ -40,6 +40,18 @@
             "documentation": "The configuration to use."
           }
         ]
+      },
+      {
+        "name": "setUser",
+        "type": "void",
+        "documentation": "Set the user information.",
+        "parameters": [
+          {
+            "name": "user",
+            "type": "map",
+            "documentation": "The user object (use builtin attributes: 'id', 'email', 'name', and/or any custom attribute)."
+          }
+        ]
       }
     ]
   },

@@ -42,6 +42,18 @@
         ]
       },
       {
+        "name": "setAttributes",
+        "type": "void",
+        "documentation": "Sets the global context (set of attributes) attached with all future Logs, Spans and RUM events.",
+        "parameters": [
+          {
+            "name": "attributes",
+            "type": "map",
+            "documentation": "The global context attributes."
+          }
+        ]
+      },
+      {
         "name": "setUser",
         "type": "void",
         "documentation": "Set the user information.",

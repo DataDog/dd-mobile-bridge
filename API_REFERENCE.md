@@ -12,6 +12,12 @@ The entry point to initialize Datadog's features.
 
     - `configuration`: The configuration to use.
 
+- `setAttributes(attributes: map)`
+
+    Sets the global context (set of attributes) attached with all future Logs, Spans and RUM events.
+
+    - `attributes`: The global context attributes.
+
 - `setUser(user: map)`
 
     Set the user information.

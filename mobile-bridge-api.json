@@ -27,6 +27,12 @@
         "type": "double",
         "documentation": "The sample rate (between 0 and 100) of RUM sessions kept.",
         "mandatory": false
+      },
+      {
+        "name": "additionalConfig",
+        "type": "map",
+        "documentation": "Additional configuration parameters.",
+        "mandatory": false
       }
     ]
   },

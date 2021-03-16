@@ -161,4 +161,5 @@ A configuration object to initialize Datadog's features.
 - `clientToken` (string): A valid Datadog client token.
 - `env` (string): The application’s environment, for example: prod, pre-prod, staging, etc.
 - `applicationId` (string): The RUM application ID.
+- `sampleRate` (double): The sample rate (between 0 and 100) of RUM sessions kept.
 

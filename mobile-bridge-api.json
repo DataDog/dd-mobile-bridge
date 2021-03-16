@@ -23,6 +23,12 @@
         "mandatory": false
       },
       {
+        "name": "nativeCrashReportEnabled",
+        "type": "boolean",
+        "documentation": "Whether the SDK should track native (pure iOS or pure Android) crashes (default is false).",
+        "mandatory": false
+      },
+      {
         "name": "sampleRate",
         "type": "double",
         "documentation": "The sample rate (between 0 and 100) of RUM sessions kept.",

@@ -7,5 +7,7 @@
 import { NativeModules } from 'react-native';
 import { DataStructure, DataStructureOptional } from './types';
 
+console.log("index.tsx was re-generated; make sure you include any missing code")
+
 
 export { DataStructure, DataStructureOptional };

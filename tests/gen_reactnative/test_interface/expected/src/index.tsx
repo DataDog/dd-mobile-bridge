@@ -7,6 +7,8 @@
 import { NativeModules } from 'react-native';
 import { GetterType, SetterType } from './types';
 
+console.log("index.tsx was re-generated; make sure you include any missing code")
+
 const Getter: GetterType = NativeModules.Getter;
 const Setter: SetterType = NativeModules.Setter;
 

@@ -59,6 +59,7 @@ IOS_TYPES_OBJC = {
     TYPE_STRING: 'NSString'
 }
 
+INDEX_TSX_WARNING = "console.log(\"index.tsx was re-generated; make sure you include any missing code\")\n\n"
 
 def _get_ts_type(typename: str) -> str:
     if typename in TS_TYPES:
@@ -129,6 +130,8 @@ class RNGenerator:
                 elif definition['type'] == "data":
                     output.write(definition['name'])
             output.write(" } from './types';\n\n")
+
+            output.write(INDEX_TSX_WARNING)
 
             for definition in definitions:
                 if definition['type'] == "interface":

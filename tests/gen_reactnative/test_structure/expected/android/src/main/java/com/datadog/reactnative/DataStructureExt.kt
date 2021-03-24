@@ -11,7 +11,7 @@ import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.WritableNativeMap
 
-fun ReadableMap.asDataStructure(): DataStructure{
+fun ReadableMap.asDataStructure(): DataStructure {
     return DataStructure(
         someBoolean = getBoolean("someBoolean"),
         someLong = getDouble("someLong").toLong(),

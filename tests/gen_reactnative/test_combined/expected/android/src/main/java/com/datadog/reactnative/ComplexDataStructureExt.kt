@@ -11,7 +11,7 @@ import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.WritableNativeMap
 
-fun ReadableMap.asComplexDataStructure(): ComplexDataStructure{
+fun ReadableMap.asComplexDataStructure(): ComplexDataStructure {
     return ComplexDataStructure(
         someLong = getDouble("someLong").toLong(),
         someString = getString("someString"),
@@ -22,7 +22,7 @@ fun ReadableMap.asComplexDataStructure(): ComplexDataStructure{
 fun ComplexDataStructure.toReadableMap(): WritableNativeMap {
     val map = WritableNativeMap()
     map.putDouble("someLong", someLong.toDouble())
-    if (someString != null) map.putString("someString", someString)
+    someString?.let{ map.putString("someString", it) }
     map.putMap("someMap", someMap.toWritableMap())
     return map
 }

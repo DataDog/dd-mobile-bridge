@@ -385,7 +385,7 @@ class RNGenerator:
         output.write(definition['name'])
         output.write("(): ")
         output.write(definition['name'])
-        output.write("{\n")
+        output.write(" {\n")
 
         output.write("    return ")
         output.write(definition['name'])
@@ -453,59 +453,63 @@ class RNGenerator:
             property_type = prop['type']
             property_mandatory = prop['mandatory']
             output.write("    ")
+            property_ref = property_name
             if not property_mandatory:
-                output.write("if (")
                 output.write(property_name)
-                output.write(" != null) ")
+                output.write("?.let{ ")
+                property_ref = "it"
 
             if property_type == TYPE_STRING:
                 output.write("map.putString(\"")
                 output.write(property_name)
                 output.write("\", ")
-                output.write(property_name)
+                output.write(property_ref)
                 output.write(")")
             elif property_type == TYPE_BOOL:
                 output.write("map.putBoolean(\"")
                 output.write(property_name)
                 output.write("\", ")
-                output.write(property_name)
+                output.write(property_ref)
                 output.write(")")
             elif property_type == TYPE_LONG:
                 output.write("map.putDouble(\"")
                 output.write(property_name)
                 output.write("\", ")
-                output.write(property_name)
+                output.write(property_ref)
                 output.write(".toDouble())")
             elif property_type == "double":
                 output.write("map.putDouble(\"")
                 output.write(property_name)
                 output.write("\", ")
-                output.write(property_name)
+                output.write(property_ref)
                 output.write(")")
             elif property_type == TYPE_DOUBLE:
                 output.write("map.putDouble(\"")
                 output.write(property_name)
                 output.write("\", ")
-                output.write(property_name)
+                output.write(property_ref)
                 output.write(".toDouble())")
             elif property_type == TYPE_LIST:
                 output.write("map.putArray(\"")
                 output.write(property_name)
                 output.write("\", ")
-                output.write(property_name)
+                output.write(property_ref)
                 output.write(".toWritableArray())")
             elif property_type == TYPE_MAP:
                 output.write("map.putMap(\"")
                 output.write(property_name)
                 output.write("\", ")
-                output.write(property_name)
+                output.write(property_ref)
                 output.write(".toWritableMap())")
             else:
                 output.write("map.putMap(\"")
                 output.write(property_name)
                 output.write("\", ")
-                output.write(property_name)
+                output.write(property_ref)
                 output.write(".toReadableMap())")
+
+            if not property_mandatory:
+                output.write(" }")    
             output.write("\n")
         output.write("    return map\n")
         output.write("}\n")
@@ -583,7 +587,7 @@ class RNGenerator:
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("import Foundation\n")
-            output.write("import Datadog\n\n")
+            output.write("import DatadogSDKBridge\n\n")
             output.write("@objc(" + definition['name'] + ")\n")
             output.write("class RN" + definition['name'] + ": NSObject {\n\n")
             output.write("    let nativeInstance: ")
@@ -651,7 +655,7 @@ class RNGenerator:
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("import Foundation\n")
-            output.write("import Datadog\n\n")
+            output.write("import DatadogSDKBridge\n\n")
 
             output.write("extension NSDictionary {\n\n")
 

@@ -10,6 +10,11 @@ import DatadogSDKBridge
 @objc(Getter)
 class RNGetter: NSObject {
 
+    @objc(requiresMainQueueSetup)
+    static func requiresMainQueueSetup() -> Bool {
+        return false
+    }
+
     let nativeInstance: Getter = Bridge.getGetter()
 
     @objc(emptyMethodwithResolver:withRejecter:)

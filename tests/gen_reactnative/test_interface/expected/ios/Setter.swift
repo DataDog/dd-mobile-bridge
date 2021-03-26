@@ -10,6 +10,11 @@ import DatadogSDKBridge
 @objc(Setter)
 class RNSetter: NSObject {
 
+    @objc(requiresMainQueueSetup)
+    static func requiresMainQueueSetup() -> Bool {
+        return false
+    }
+
     let nativeInstance: Setter = Bridge.getSetter()
 
     @objc(setBoolean:withResolver:withRejecter:)

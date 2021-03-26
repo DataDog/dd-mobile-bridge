@@ -10,6 +10,11 @@ import DatadogSDKBridge
 @objc(BridgeWithData)
 class RNBridgeWithData: NSObject {
 
+    @objc(requiresMainQueueSetup)
+    static func requiresMainQueueSetup() -> Bool {
+        return false
+    }
+
     let nativeInstance: BridgeWithData = Bridge.getBridgeWithData()
 
     @objc(setData:withResolver:withRejecter:)

@@ -35,6 +35,12 @@
         "mandatory": false
       },
       {
+        "name": "site",
+        "type": "string",
+        "documentation": "The Datadog site of your organization (can be 'US', 'EU' or 'GOV', default is 'US').",
+        "mandatory": false
+      },
+      {
         "name": "additionalConfig",
         "type": "map",
         "documentation": "Additional configuration parameters.",

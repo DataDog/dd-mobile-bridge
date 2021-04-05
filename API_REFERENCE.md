@@ -163,5 +163,6 @@ A configuration object to initialize Datadog's features.
 - `applicationId` (string): The RUM application ID.
 - `nativeCrashReportEnabled` (boolean): Whether the SDK should track native (pure iOS or pure Android) crashes (default is false).
 - `sampleRate` (double): The sample rate (between 0 and 100) of RUM sessions kept.
+- `site` (string): The Datadog site of your organization (can be 'US', 'EU' or 'GOV', default is 'US').
 - `additionalConfig` (map): Additional configuration parameters.
 

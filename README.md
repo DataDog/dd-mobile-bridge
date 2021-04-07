@@ -12,7 +12,7 @@ You can also see the definition in a more readable format in [API_REFERENCE.md](
 ## Code generation
 
 To ensure that all SDKs do follow the same API definition, python scripts are used to generate the relevant source code 
-in all the dependants project. Code generation is triggered automatically whenever a new Tag is created on this 
+in all the dependent projects. Code generation is triggered automatically whenever a new Tag is created on this 
 repository. 
 
 ## Contributing

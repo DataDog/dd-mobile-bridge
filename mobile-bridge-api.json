@@ -40,7 +40,8 @@
         "documentation": "Additional configuration parameters.",
         "mandatory": false
       }
-    ]
+    ],
+    "exposed": false
   },
   {
     "type": "interface",
@@ -83,7 +84,8 @@
           }
         ]
       }
-    ]
+    ],
+    "exposed": false
   },
   {
     "type": "interface",
@@ -158,7 +160,8 @@
           }
         ]
       }
-    ]
+    ],
+    "exposed": true
   },
   {
     "type": "interface",
@@ -209,7 +212,8 @@
           }
         ]
       }
-    ]
+    ],
+    "exposed": true
   },
   {
     "type": "interface",
@@ -432,6 +436,7 @@
           }
         ]
       }
-    ]
+    ],
+    "exposed": true
   }
 ]

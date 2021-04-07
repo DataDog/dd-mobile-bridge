@@ -12,6 +12,7 @@ from .gen_utils import *
 OUTPUT_TS_FOLDER = "src"
 OUTPUT_TS_TYPES = "types.tsx"
 OUTPUT_TS_INDEX = "index.tsx"
+OUTPUT_TS_DD_FOUNDATION = "foundation.tsx"
 
 OUTPUT_RN_AND_FOLDER = os.path.join("android", "src", "main", "java", "com", "datadog", "reactnative")
 OUTPUT_AND_PACKAGE = "DdSdkReactNativePackage.kt"
@@ -103,6 +104,7 @@ class RNGenerator:
 
     def generate(self, definitions: list):
         self._generate_ts_index(definitions)
+        self._generate_ts_foundation(definitions)
         self._generate_ts_types(definitions)
         self._generate_and_package(definitions)
         self._generate_and_bridge_ext(definitions)
@@ -117,6 +119,28 @@ class RNGenerator:
 
     def _generate_ts_index(self, definitions: list):
         output_path = prepare_output_path(self.output_folder, OUTPUT_TS_FOLDER, OUTPUT_TS_INDEX)
+        definitions = list(filter(lambda definition: (definition['exposed']), definitions))
+        with open(output_path, 'w') as output:
+            output.write(LICENSE_HEADER)
+
+            output.write("import { ")
+            for i, definition in enumerate(definitions):
+                if i > 0:
+                    output.write(", ")
+                output.write(definition['name'])
+            output.write(" } from './foundation';\n\n")
+
+            output.write(INDEX_TSX_WARNING)
+
+            output.write("export { ")
+            for i, definition in enumerate(definitions):
+                if i > 0:
+                    output.write(", ")
+                output.write(definition['name'])
+            output.write(" };\n")
+
+    def _generate_ts_foundation(self, definitions: list):
+        output_path = prepare_output_path(self.output_folder, OUTPUT_TS_FOLDER, OUTPUT_TS_DD_FOUNDATION)
         with open(output_path, 'w') as output:
             output.write(LICENSE_HEADER)
             output.write("import { NativeModules } from 'react-native';\n")
@@ -130,8 +154,6 @@ class RNGenerator:
                 elif definition['type'] == "data":
                     output.write(definition['name'])
             output.write(" } from './types';\n\n")
-
-            output.write(INDEX_TSX_WARNING)
 
             for definition in definitions:
                 if definition['type'] == "interface":
@@ -181,7 +203,7 @@ class RNGenerator:
         output.write("  /**\n")
         output.write("   * " + method['documentation'] + '\n')
         for param in params:
-            output.write("   * " + param['name'] + ": " + param['documentation'] + '\n')
+            output.write("   * @param " + param['name'] + ": " + param['documentation'] + '\n')
         output.write("   */\n")
 
         # Method signature
@@ -448,7 +470,7 @@ class RNGenerator:
         output.write("\n")
         output.write("fun ")
         output.write(definition['name'])
-        output.write(".toReadableMap(): WritableNativeMap {\n")
+        output.write(".toReadableMap(): ReadableMap {\n")
         output.write("    val map = WritableNativeMap()\n")
 
         for prop in definition['properties']:

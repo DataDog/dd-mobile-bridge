@@ -22,7 +22,7 @@ fun ReadableMap.asDataStructure(): DataStructure {
     )
 }
 
-fun DataStructure.toReadableMap(): WritableNativeMap {
+fun DataStructure.toReadableMap(): ReadableMap {
     val map = WritableNativeMap()
     map.putBoolean("someBoolean", someBoolean)
     map.putDouble("someLong", someLong.toDouble())

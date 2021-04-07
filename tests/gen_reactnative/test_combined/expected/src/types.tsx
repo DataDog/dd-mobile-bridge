@@ -16,12 +16,40 @@ export class ComplexDataStructure {
 }
 
 /**
+ * A data structure test exclusion
+ */
+export class NotExposedDataStructure {
+  constructor(
+    readonly someLong: number,
+    readonly someString: string,
+    readonly someMap: object
+  ) {}
+}
+
+/**
+ * An interface to test exclusion
+ */
+export type NotExposedBridgeType = {
+  /**
+   * Empty method, ComplexDataStructure param, returns void
+   * @param value: A ComplexDataStructure param
+   */
+  setData(value: ComplexDataStructure): Promise<void>;
+
+  /**
+   * Empty method, returns ComplexDataStructure
+   */
+  getData(): Promise<ComplexDataStructure>;
+
+};
+
+/**
  * An interface to test transferring complex types
  */
 export type BridgeWithDataType = {
   /**
    * Empty method, ComplexDataStructure param, returns void
-   * value: A ComplexDataStructure param
+   * @param value: A ComplexDataStructure param
    */
   setData(value: ComplexDataStructure): Promise<void>;
 

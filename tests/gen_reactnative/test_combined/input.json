@@ -22,7 +22,60 @@
         "mandatory": true,
         "documentation": "A mandatory map property"
       }
-    ]
+    ],
+    "exposed": true
+  },
+  {
+    "type": "data",
+    "name": "NotExposedDataStructure",
+    "documentation": "A data structure test exclusion",
+    "properties": [
+      {
+        "name": "someLong",
+        "type": "long",
+        "mandatory": true,
+        "documentation": "A mandatory int property"
+      },
+      {
+        "name": "someString",
+        "type": "string",
+        "mandatory": false,
+        "documentation": "An optional string property"
+      },
+      {
+        "name": "someMap",
+        "type": "map",
+        "mandatory": true,
+        "documentation": "A mandatory map property"
+      }
+    ],
+    "exposed": false
+  },
+  {
+    "type": "interface",
+    "name": "NotExposedBridge",
+    "documentation": "An interface to test exclusion",
+    "methods": [
+      {
+        "name": "setData",
+        "type": "void",
+        "documentation": "Empty method, ComplexDataStructure param, returns void",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "ComplexDataStructure",
+            "documentation": "A ComplexDataStructure param"
+          }
+        ]
+      },
+      {
+        "name": "getData",
+        "type": "ComplexDataStructure",
+        "parameters": [],
+        "documentation": "Empty method, returns ComplexDataStructure"
+      }
+    ],
+    "exposed": false
   },
   {
     "type": "interface",
@@ -47,6 +100,7 @@
         "parameters": [],
         "documentation": "Empty method, returns ComplexDataStructure"
       }
-    ]
+    ],
+    "exposed": true
   }
 ]

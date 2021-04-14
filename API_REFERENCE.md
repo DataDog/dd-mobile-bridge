@@ -24,6 +24,12 @@ The entry point to initialize Datadog's features.
 
     - `user`: The user object (use builtin attributes: 'id', 'email', 'name', and/or any custom attribute).
 
+- `setTrackingConsent(trackingConsent: string)`
+
+    Set the tracking consent regarding the data collection.
+
+    - `trackingConsent`: Consent, which can take one of the following values: 'pending', 'granted', 'not_granted'.
+
 #### DdLogs
 
 The entry point to use Datadog's Logs feature.
@@ -164,5 +170,6 @@ A configuration object to initialize Datadog's features.
 - `nativeCrashReportEnabled` (boolean): Whether the SDK should track native (pure iOS or pure Android) crashes (default is false).
 - `sampleRate` (double): The sample rate (between 0 and 100) of RUM sessions kept.
 - `site` (string): The Datadog site of your organization (can be 'US', 'EU' or 'GOV', default is 'US').
+- `trackingConsent` (string): Consent, which can take one of the following values: 'pending', 'granted', 'not_granted'.
 - `additionalConfig` (map): Additional configuration parameters.
 

@@ -41,6 +41,12 @@
         "mandatory": false
       },
       {
+        "name": "trackingConsent",
+        "type": "string",
+        "documentation": "Consent, which can take one of the following values: 'pending', 'granted', 'not_granted'.",
+        "mandatory": false
+      },
+      {
         "name": "additionalConfig",
         "type": "map",
         "documentation": "Additional configuration parameters.",
@@ -86,6 +92,18 @@
             "name": "user",
             "type": "map",
             "documentation": "The user object (use builtin attributes: 'id', 'email', 'name', and/or any custom attribute)."
+          }
+        ]
+      },
+      {
+        "name": "setTrackingConsent",
+        "type": "void",
+        "documentation": "Set the tracking consent regarding the data collection.",
+        "parameters": [
+          {
+            "name": "trackingConsent",
+            "type": "string",
+            "documentation": "Consent, which can take one of the following values: 'pending', 'granted', 'not_granted'."
           }
         ]
       }

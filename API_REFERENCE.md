@@ -158,6 +158,12 @@ The entry point to use Datadog's RUM feature.
     - `timestampMs`: The timestamp when the error occurred (in milliseconds).
     - `context`: The additional context to send.
 
+- `addTiming(name: string)`
+
+    Adds a specific timing in the active View. The timing duration will be computed as the difference between the time the View was started and the time this function was called.
+
+    - `name`: The name of the new custom timing attribute. Timings can be nested up to 8 levels deep. Names using more than 8 levels will be sanitized by SDK.
+
 ## Data structures
 
 #### DdSdkConfiguration

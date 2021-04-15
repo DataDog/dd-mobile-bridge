@@ -481,7 +481,7 @@ class RNGenerator:
             property_ref = property_name
             if not property_mandatory:
                 output.write(property_name)
-                output.write("?.let{ ")
+                output.write("?.let { ")
                 property_ref = "it"
 
             if property_type == TYPE_STRING:

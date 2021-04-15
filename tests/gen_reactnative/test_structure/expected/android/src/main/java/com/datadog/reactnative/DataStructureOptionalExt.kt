@@ -24,11 +24,11 @@ fun ReadableMap.asDataStructureOptional(): DataStructureOptional {
 
 fun DataStructureOptional.toReadableMap(): ReadableMap {
     val map = WritableNativeMap()
-    someBoolean?.let{ map.putBoolean("someBoolean", it) }
-    someLong?.let{ map.putDouble("someLong", it.toDouble()) }
-    someDouble?.let{ map.putDouble("someDouble", it) }
-    someString?.let{ map.putString("someString", it) }
-    someList?.let{ map.putArray("someList", it.toWritableArray()) }
-    someMap?.let{ map.putMap("someMap", it.toWritableMap()) }
+    someBoolean?.let { map.putBoolean("someBoolean", it) }
+    someLong?.let { map.putDouble("someLong", it.toDouble()) }
+    someDouble?.let { map.putDouble("someDouble", it) }
+    someString?.let { map.putString("someString", it) }
+    someList?.let { map.putArray("someList", it.toWritableArray()) }
+    someMap?.let { map.putMap("someMap", it.toWritableMap()) }
     return map
 }

@@ -22,7 +22,7 @@ fun ReadableMap.asComplexDataStructure(): ComplexDataStructure {
 fun ComplexDataStructure.toReadableMap(): WritableNativeMap {
     val map = WritableNativeMap()
     map.putDouble("someLong", someLong.toDouble())
-    someString?.let{ map.putString("someString", it) }
+    someString?.let { map.putString("someString", it) }
     map.putMap("someMap", someMap.toWritableMap())
     return map
 }

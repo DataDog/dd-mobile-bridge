@@ -38,12 +38,18 @@
           "items": {
             "$ref": "#/definitions/method"
           }
+        },
+        "exposed": {
+          "type": "boolean",
+          "default": true,
+          "description": "Flag showing if this item should be exposed as part of public API or not."
         }
       },
       "required": [
         "type",
         "name",
-        "documentation"
+        "documentation",
+        "exposed"
       ]
     },
     "method": {
@@ -122,12 +128,18 @@
           "items": {
             "$ref": "#/definitions/property"
           }
+        },
+        "exposed": {
+          "type": "boolean",
+          "default": true,
+          "description": "Flag showing if this item should be exposed as part of public API or not."
         }
       },
       "required": [
         "type",
         "name",
-        "documentation"
+        "documentation",
+        "exposed"
       ]
     },
     "property": {

@@ -23,6 +23,7 @@ class DdSdkReactNativePackage : ReactPackage {
         reactContext: ReactApplicationContext
     ): List<NativeModule> {
         return listOf(
+            NotExposedBridge(reactContext),
             BridgeWithData(reactContext)
         )
     }

@@ -6,20 +6,20 @@
 
 package com.datadog.reactnative
 
-import com.datadog.android.bridge.ComplexDataStructure
+import com.datadog.android.bridge.NotExposedDataStructure
 import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.WritableNativeMap
 
-fun ReadableMap.asComplexDataStructure(): ComplexDataStructure {
-    return ComplexDataStructure(
+fun ReadableMap.asNotExposedDataStructure(): NotExposedDataStructure {
+    return NotExposedDataStructure(
         someLong = getDouble("someLong").toLong(),
         someString = getString("someString"),
         someMap = getMap("someMap")?.toHashMap()!!
     )
 }
 
-fun ComplexDataStructure.toReadableMap(): ReadableMap {
+fun NotExposedDataStructure.toReadableMap(): ReadableMap {
     val map = WritableNativeMap()
     map.putDouble("someLong", someLong.toDouble())
     someString?.let{ map.putString("someString", it) }

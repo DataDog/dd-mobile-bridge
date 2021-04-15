@@ -22,6 +22,7 @@
         "mandatory": false,
         "documentation" : "Whether the message should be kept"
       }
-    ]
+    ],
+    "exposed": true
   }
 ]

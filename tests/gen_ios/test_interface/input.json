@@ -46,7 +46,8 @@
         "parameters": [],
         "documentation": "Empty method, returns list"
       }
-    ]
+    ],
+    "exposed": true
   },
   {
     "type": "interface",
@@ -125,6 +126,7 @@
           }
         ]
       }
-    ]
+    ],
+    "exposed": true
   }
 ]

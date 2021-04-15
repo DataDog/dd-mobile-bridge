@@ -4,8 +4,8 @@
  * Copyright 2016-Present Datadog, Inc.
  */
 
-import { Getter, Setter } from './foundation';
+import { NativeModules } from 'react-native';
+import { DataStructure, DataStructureOptional } from './types';
 
-console.log("index.tsx was re-generated; make sure you include any missing code")
 
-export { Getter, Setter };
+export { DataStructure, DataStructureOptional };

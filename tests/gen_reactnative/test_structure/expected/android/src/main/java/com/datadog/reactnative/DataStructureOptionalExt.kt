@@ -22,7 +22,7 @@ fun ReadableMap.asDataStructureOptional(): DataStructureOptional {
     )
 }
 
-fun DataStructureOptional.toReadableMap(): WritableNativeMap {
+fun DataStructureOptional.toReadableMap(): ReadableMap {
     val map = WritableNativeMap()
     someBoolean?.let{ map.putBoolean("someBoolean", it) }
     someLong?.let{ map.putDouble("someLong", it.toDouble()) }

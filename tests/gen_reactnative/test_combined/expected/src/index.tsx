@@ -4,11 +4,8 @@
  * Copyright 2016-Present Datadog, Inc.
  */
 
-import { NativeModules } from 'react-native';
-import { ComplexDataStructure, BridgeWithDataType } from './types';
+import { ComplexDataStructure, BridgeWithData } from './foundation';
 
 console.log("index.tsx was re-generated; make sure you include any missing code")
-
-const BridgeWithData: BridgeWithDataType = NativeModules.BridgeWithData;
 
 export { ComplexDataStructure, BridgeWithData };

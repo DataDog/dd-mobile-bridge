@@ -40,7 +40,8 @@
         "mandatory": true,
         "documentation": "A mandatory map property"
       }
-    ]
+    ],
+    "exposed": true
   },
   {
     "type": "data",
@@ -83,6 +84,7 @@
         "mandatory": false,
         "documentation": "An optional map property"
       }
-    ]
+    ],
+    "exposed": true
   }
 ]

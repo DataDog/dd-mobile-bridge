@@ -22,7 +22,8 @@
         "mandatory": true,
         "documentation": "A mandatory map property"
       }
-    ]
+    ],
+    "exposed": true
   },
   {
     "type": "interface",
@@ -47,6 +48,7 @@
         "parameters": [],
         "documentation": "Empty method, returns ComplexDataStructure"
       }
-    ]
+    ],
+    "exposed": true
   }
 ]

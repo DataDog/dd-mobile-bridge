@@ -7,7 +7,7 @@ To propose improvements, feel free to submit a PR or open an Issue.
 
 ## Setup your developer Environment
 
-This repository relies mostyl on python, make sure your computer has an up to date version of Python 3 installed.
+This repository relies mostly on python, make sure your computer has an up to date version of Python 3 installed.
 You can also use [PyCharm](https://www.jetbrains.com/pycharm/) as IDE.
 
 **Note**: you can also compile and develop using your IDE of choice, e.g.: VStudio, Vim, etc.

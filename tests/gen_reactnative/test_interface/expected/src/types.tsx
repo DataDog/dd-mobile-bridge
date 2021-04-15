@@ -51,37 +51,37 @@ export type GetterType = {
 export type SetterType = {
   /**
    * Empty method, boolean param, returns void
-   * value: A boolean param
+   * @param value: A boolean param
    */
   setBoolean(value: boolean): Promise<void>;
 
   /**
    * Empty method, long param, returns void
-   * value: A long param
+   * @param value: A long param
    */
   setLong(value: number): Promise<void>;
 
   /**
    * Empty method, double param, returns void
-   * value: A double param
+   * @param value: A double param
    */
   setDouble(value: number): Promise<void>;
 
   /**
    * Empty method, string param, returns void
-   * value: A string param
+   * @param value: A string param
    */
   setString(value: string): Promise<void>;
 
   /**
    * Empty method, map param, returns void
-   * value: A map param
+   * @param value: A map param
    */
   setMap(value: object): Promise<void>;
 
   /**
    * Empty method, list param, returns void
-   * value: A list param
+   * @param value: A list param
    */
   setList(value: array): Promise<void>;
 

@@ -22,7 +22,7 @@ fun ReadableMap.asNotExposedDataStructure(): NotExposedDataStructure {
 fun NotExposedDataStructure.toReadableMap(): ReadableMap {
     val map = WritableNativeMap()
     map.putDouble("someLong", someLong.toDouble())
-    someString?.let{ map.putString("someString", it) }
+    someString?.let { map.putString("someString", it) }
     map.putMap("someMap", someMap.toWritableMap())
     return map
 }

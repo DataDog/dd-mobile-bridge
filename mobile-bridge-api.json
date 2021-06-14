@@ -51,12 +51,6 @@
         "type": "map",
         "documentation": "Additional configuration parameters.",
         "mandatory": false
-      },
-      {
-        "name": "manualTracingEnabled",
-        "type": "boolean",
-        "documentation": "Whether the SDK should enable tracer to be able to submit spans from the user (default is false).",
-        "mandatory": false
       }
     ],
     "exposed": false

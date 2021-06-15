@@ -178,5 +178,4 @@ A configuration object to initialize Datadog's features.
 - `site` (string): The Datadog site of your organization (can be 'US', 'EU' or 'GOV', default is 'US').
 - `trackingConsent` (string): Consent, which can take one of the following values: 'pending', 'granted', 'not_granted'.
 - `additionalConfig` (map): Additional configuration parameters.
-- `manualTracingEnabled` (boolean): Whether the SDK should enable tracer to be able to submit spans from the user (default is false).
 

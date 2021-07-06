@@ -14,6 +14,7 @@ from typing import Tuple
 
 import requests
 from git import Repo
+from git.exc import GitCommandError
 
 PLATFORM_AND = "android"
 PLATFORM_IOS = "ios"
@@ -112,8 +113,20 @@ def run_main() -> int:
     with open('gh_token', 'r') as f:
         gh_token = f.read().strip()
 
-    return update_dependant(cli_args.source, cli_args.platform, cli_args.version, gh_token)
+    try:
+        return update_dependant(cli_args.source, cli_args.platform, cli_args.version, gh_token)
+    except GitCommandError as e:
+        raise SanitizedGitCommandError(gh_token, e).with_traceback(e.__traceback__) from None
 
+
+class SanitizedGitCommandError(Exception):
+
+    def __init__(self, gh_token, original_ex):
+        self.gh_token = gh_token
+        self.original = original_ex
+
+    def __str__(self) -> str:
+        return str(self.original).replace(self.gh_token, "******")
 
 if __name__ == "__main__":
     sys.exit(run_main())

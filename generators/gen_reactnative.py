@@ -9,16 +9,17 @@ import os
 from typing import TextIO
 from .gen_utils import *
 
-OUTPUT_TS_FOLDER = "src"
+OUTPUT_RN_CORE_MODULE_FOLDER = os.path.join("packages", "core")
+OUTPUT_TS_FOLDER = os.path.join(OUTPUT_RN_CORE_MODULE_FOLDER, "src")
 OUTPUT_TS_TYPES = "types.tsx"
 OUTPUT_TS_INDEX = "index.tsx"
 OUTPUT_TS_DD_FOUNDATION = "foundation.tsx"
 
-OUTPUT_RN_AND_FOLDER = os.path.join("android", "src", "main", "java", "com", "datadog", "reactnative")
+OUTPUT_RN_AND_FOLDER = os.path.join(OUTPUT_RN_CORE_MODULE_FOLDER, "android", "src", "main", "java", "com", "datadog", "reactnative")
 OUTPUT_AND_PACKAGE = "DdSdkReactNativePackage.kt"
 OUTPUT_AND_BRIDGE = "DdSdkBridgeExt.kt"
 
-OUTPUT_RN_IOS_FOLDER = "ios"
+OUTPUT_RN_IOS_FOLDER = os.path.join(OUTPUT_RN_CORE_MODULE_FOLDER, "ios")
 
 TS_TYPES = {
     TYPE_VOID: 'void',

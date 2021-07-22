@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM registry.ddbuild.io/images/mirror/ubuntu:18.04
 LABEL maintainer="Team Mobile Rum <team-mobile-rum@datadoghq.com>"
 
 RUN set -x \

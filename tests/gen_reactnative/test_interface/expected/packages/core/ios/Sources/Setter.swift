@@ -17,6 +17,9 @@ class RNSetter: NSObject {
 
     let nativeInstance: Setter = Bridge.getSetter()
 
+    @objc(methodQueue)
+    let methodQueue: DispatchQueue = sharedQueue
+
     @objc(setBoolean:withResolver:withRejecter:)
     func setBoolean(value: Bool, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
         nativeInstance.setBoolean(value: value)

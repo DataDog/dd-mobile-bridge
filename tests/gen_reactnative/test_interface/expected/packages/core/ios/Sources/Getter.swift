@@ -17,6 +17,9 @@ class RNGetter: NSObject {
 
     let nativeInstance: Getter = Bridge.getGetter()
 
+    @objc(methodQueue)
+    let methodQueue: DispatchQueue = sharedQueue
+
     @objc(emptyMethodwithResolver:withRejecter:)
     func emptyMethod(resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
         nativeInstance.emptyMethod()

@@ -17,6 +17,9 @@ class RNBridgeWithData: NSObject {
 
     let nativeInstance: BridgeWithData = Bridge.getBridgeWithData()
 
+    @objc(methodQueue)
+    let methodQueue: DispatchQueue = sharedQueue
+
     @objc(setData:withResolver:withRejecter:)
     func setData(value: NSDictionary, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
         nativeInstance.setData(value: value.asComplexDataStructure())

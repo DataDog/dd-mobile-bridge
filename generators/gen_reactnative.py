@@ -19,7 +19,7 @@ OUTPUT_RN_AND_FOLDER = os.path.join(OUTPUT_RN_CORE_MODULE_FOLDER, "android", "sr
 OUTPUT_AND_PACKAGE = "DdSdkReactNativePackage.kt"
 OUTPUT_AND_BRIDGE = "DdSdkBridgeExt.kt"
 
-OUTPUT_RN_IOS_FOLDER = os.path.join(OUTPUT_RN_CORE_MODULE_FOLDER, "ios")
+OUTPUT_RN_IOS_FOLDER = os.path.join(OUTPUT_RN_CORE_MODULE_FOLDER, "ios", "Sources")
 
 TS_TYPES = {
     TYPE_VOID: 'void',
@@ -625,6 +625,8 @@ class RNGenerator:
             output.write(" = Bridge.get")
             output.write(definition['name'])
             output.write("()\n\n")
+            output.write("    @objc(methodQueue)\n")
+            output.write("    let methodQueue: DispatchQueue = sharedQueue\n\n")
 
             for method in definition['methods']:
                 self._generate_ios_swift_method(method, output)

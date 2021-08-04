@@ -20,4 +20,9 @@ public protocol BridgeWithData {
        Empty method, returns ComplexDataStructure
      */
     func getData() -> ComplexDataStructure
+
+    /**
+       Empty method, optional long param, returns void
+     */
+    func setTimestamp(value: Int64)
 }

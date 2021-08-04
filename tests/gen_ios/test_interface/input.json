@@ -125,6 +125,22 @@
             "documentation": "A list param"
           }
         ]
+      },
+      {
+        "name": "setTimestamp",
+        "type": "void",
+        "documentation": "Empty method, optional long param, returns void",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "long",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "Date.now()"
+            },
+            "documentation": "An optional long param"
+          }
+        ]
       }
     ],
     "exposed": true

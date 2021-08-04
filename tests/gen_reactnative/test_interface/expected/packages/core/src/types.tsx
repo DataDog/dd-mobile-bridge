@@ -41,7 +41,7 @@ export type GetterType = {
   /**
    * Empty method, returns list
    */
-  getList(): Promise<array>;
+  getList(): Promise<Array<any>>;
 
 };
 
@@ -83,7 +83,13 @@ export type SetterType = {
    * Empty method, list param, returns void
    * @param value: A list param
    */
-  setList(value: array): Promise<void>;
+  setList(value: Array<any>): Promise<void>;
+
+  /**
+   * Empty method, optional long param, returns void
+   * @param value: An optional long param
+   */
+  setTimestamp(value?: number): Promise<void>;
 
 };
 

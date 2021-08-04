@@ -13,7 +13,7 @@ export class DataStructure {
     readonly someLong: number,
     readonly someDouble: number,
     readonly someString: string,
-    readonly someList: array,
+    readonly someList: Array<any>,
     readonly someMap: object
   ) {}
 }
@@ -27,7 +27,7 @@ export class DataStructureOptional {
     readonly someLong: number,
     readonly someDouble: number,
     readonly someString: string,
-    readonly someList: array,
+    readonly someList: Array<any>,
     readonly someMap: object
   ) {}
 }

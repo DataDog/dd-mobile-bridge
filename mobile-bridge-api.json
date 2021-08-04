@@ -129,6 +129,10 @@
           {
             "name": "context",
             "type": "map",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "{}"
+            },
             "documentation": "The additional context to send."
           }
         ]
@@ -146,6 +150,10 @@
           {
             "name": "context",
             "type": "map",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "{}"
+            },
             "documentation": "The additional context to send."
           }
         ]
@@ -163,6 +171,10 @@
           {
             "name": "context",
             "type": "map",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "{}"
+            },
             "documentation": "The additional context to send."
           }
         ]
@@ -180,6 +192,10 @@
           {
             "name": "context",
             "type": "map",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "{}"
+            },
             "documentation": "The additional context to send."
           }
         ]
@@ -205,11 +221,19 @@
           {
             "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the operation started (in milliseconds)."
+            "optional": true,
+            "defaultValue": {
+              "react-native": "Date.now()"
+            },
+            "documentation": "The timestamp when the operation started (in milliseconds). If not provided, current timestamp will be used."
           },
           {
             "name": "context",
             "type": "map",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "{}"
+            },
             "documentation": "The additional context to send."
           }
         ]
@@ -227,11 +251,19 @@
           {
             "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the operation stopped (in milliseconds)."
+            "optional": true,
+            "defaultValue": {
+              "react-native": "Date.now()"
+            },
+            "documentation": "The timestamp when the operation stopped (in milliseconds). If not provided, current timestamp will be used."
           },
           {
             "name": "context",
             "type": "map",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "{}"
+            },
             "documentation": "The additional context to send."
           }
         ]
@@ -262,11 +294,19 @@
           {
             "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the view started (in milliseconds)."
+            "optional": true,
+            "defaultValue": {
+              "react-native": "Date.now()"
+            },
+            "documentation": "The timestamp when the view started (in milliseconds). If not provided, current timestamp will be used."
           },
           {
             "name": "context",
             "type": "map",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "{}"
+            },
             "documentation": "The additional context to send."
           }
         ]
@@ -284,11 +324,19 @@
           {
             "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the view stopped (in milliseconds)."
+            "optional": true,
+            "defaultValue": {
+              "react-native": "Date.now()"
+            },
+            "documentation": "The timestamp when the view stopped (in milliseconds). If not provided, current timestamp will be used."
           },
           {
             "name": "context",
             "type": "map",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "{}"
+            },
             "documentation": "The additional context to send."
           }
         ]
@@ -311,11 +359,19 @@
           {
             "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the action started (in milliseconds)."
+            "optional": true,
+            "defaultValue": {
+              "react-native": "Date.now()"
+            },
+            "documentation": "The timestamp when the action started (in milliseconds). If not provided, current timestamp will be used."
           },
           {
             "name": "context",
             "type": "map",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "{}"
+            },
             "documentation": "The additional context to send."
           }
         ]
@@ -328,11 +384,19 @@
           {
             "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the action stopped (in milliseconds)."
+            "optional": true,
+            "defaultValue": {
+              "react-native": "Date.now()"
+            },
+            "documentation": "The timestamp when the action stopped (in milliseconds). If not provided, current timestamp will be used."
           },
           {
             "name": "context",
             "type": "map",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "{}"
+            },
             "documentation": "The additional context to send."
           }
         ]
@@ -355,11 +419,19 @@
           {
             "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the action occurred (in milliseconds)."
+            "optional": true,
+            "defaultValue": {
+              "react-native": "Date.now()"
+            },
+            "documentation": "The timestamp when the action occurred (in milliseconds). If not provided, current timestamp will be used."
           },
           {
             "name": "context",
             "type": "map",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "{}"
+            },
             "documentation": "The additional context to send."
           }
         ]
@@ -387,11 +459,19 @@
           {
             "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the resource started (in milliseconds)."
+            "optional": true,
+            "defaultValue": {
+              "react-native": "Date.now()"
+            },
+            "documentation": "The timestamp when the resource started (in milliseconds). If not provided, current timestamp will be used."
           },
           {
             "name": "context",
             "type": "map",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "{}"
+            },
             "documentation": "The additional context to send."
           }
         ]
@@ -419,11 +499,19 @@
           {
             "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the resource stopped (in milliseconds)."
+            "optional": true,
+            "defaultValue": {
+              "react-native": "Date.now()"
+            },
+            "documentation": "The timestamp when the resource stopped (in milliseconds). If not provided, current timestamp will be used."
           },
           {
             "name": "context",
             "type": "map",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "{}"
+            },
             "documentation": "The additional context to send."
           }
         ]
@@ -451,11 +539,19 @@
           {
             "name": "timestampMs",
             "type": "long",
-            "documentation": "The timestamp when the error occurred (in milliseconds)."
+            "optional": true,
+            "defaultValue": {
+              "react-native": "Date.now()"
+            },
+            "documentation": "The timestamp when the error occurred (in milliseconds). If not provided, current timestamp will be used."
           },
           {
             "name": "context",
             "type": "map",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "{}"
+            },
             "documentation": "The additional context to send."
           }
         ]

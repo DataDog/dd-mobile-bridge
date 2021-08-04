@@ -27,7 +27,8 @@ TS_TYPES = {
     TYPE_LONG: 'number',
     TYPE_DOUBLE: 'number',
     TYPE_MAP: 'object',
-    TYPE_LIST: 'array',
+    # TODO support exact generic type
+    TYPE_LIST: 'Array<any>',
     TYPE_STRING: 'string'
 }
 
@@ -156,15 +157,35 @@ class RNGenerator:
                     output.write(definition['name'])
             output.write(" } from './types';\n\n")
 
+            # Wrappers generation, if needed
+            for definition in definitions:
+                if definition['type'] == "interface" and interface_definition_has_optional_params(definition):
+                    output.write("class ")
+                    output.write(definition['name'] + "Wrapper")
+                    output.write(" implements ")
+                    output.write(definition['name'] + "Type {\n\n")
+                    output.write("  private native")
+                    output.write(definition['name'] + ": ")
+                    output.write(definition['name'] + "Type")
+                    output.write(" = NativeModules." + definition['name'] + ";\n\n")
+                    for method in definition['methods']:
+                        self._generate_ts_wrapper_method(definition['name'], method, output)
+                    output.write("}\n\n")
+
             for definition in definitions:
                 if definition['type'] == "interface":
                     output.write("const ")
                     output.write(definition['name'])
                     output.write(": ")
                     output.write(definition['name'] + "Type")
-                    output.write(" = NativeModules.")
-                    output.write(definition['name'])
-                    output.write(';\n')
+                    if interface_definition_has_optional_params(definition):
+                        output.write(" = new ")
+                        output.write(definition['name'] + "Wrapper()")
+                        output.write(';\n')
+                    else:
+                        output.write(" = NativeModules.")
+                        output.write(definition['name'])
+                        output.write(';\n')
 
             output.write('\n')
 
@@ -174,6 +195,37 @@ class RNGenerator:
                     output.write(", ")
                 output.write(definition['name'])
             output.write(" };\n")
+
+    def _generate_ts_wrapper_method(self, type_name: str, method: dict, output: TextIO):
+        return_type = method['type']
+        params = method['parameters']
+
+        # Method signature
+        output.write("  " + method['name'] + "(")
+
+        for i, param in enumerate(params):
+            if i > 0:
+                output.write(", ")
+            output.write(param['name'])
+            if param.get("optional"):
+                output.write(": " + _get_ts_type(param['type']) + " = " + param['defaultValue']['react-native'])
+            else:
+                output.write(": " + _get_ts_type(param['type']))
+
+        output.write("): ")
+        output.write("Promise<")
+        output.write(_get_ts_type(return_type))
+        output.write("> {\n")
+
+        # Method body
+        output.write("    return this.native" + type_name)
+        output.write("." + method['name'] + "(")
+        for i, param in enumerate(params):
+            if i > 0:
+                output.write(", ")
+            output.write(param['name'])
+        output.write(");\n")
+        output.write("  }\n\n")
 
     def _generate_ts_types(self, definitions: list):
         output_path = prepare_output_path(self.output_folder, OUTPUT_TS_FOLDER, OUTPUT_TS_TYPES)
@@ -192,11 +244,11 @@ class RNGenerator:
         output.write("export type " + definition['name'] + "Type = {\n")
 
         for method in definition['methods']:
-            self._generate_ts_method(method, output)
+            self._generate_ts_interface_method(method, output)
 
         output.write("};\n\n")
 
-    def _generate_ts_method(self, method: dict, output: TextIO):
+    def _generate_ts_interface_method(self, method: dict, output: TextIO):
         return_type = method['type']
         params = method['parameters']
 
@@ -214,6 +266,8 @@ class RNGenerator:
             if i > 0:
                 output.write(", ")
             output.write(param['name'])
+            if param.get("optional"):
+                output.write("?")
             output.write(": " + _get_ts_type(param['type']))
 
         output.write("): ")

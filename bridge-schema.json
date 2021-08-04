@@ -49,6 +49,7 @@
         "type",
         "name",
         "documentation",
+        "methods",
         "exposed"
       ]
     },
@@ -98,6 +99,22 @@
         "documentation": {
           "type": "string",
           "description": "A documenting description of the property."
+        },
+        "optional": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the property is optional or not. Supported only for the target platform code generation, but not for native, because of the method dispatch logic."
+        },
+        "defaultValue": {
+          "type": "object",
+          "description": "Default values for different implementations.",
+          "additionalProperties": false,
+          "properties": {
+            "react-native": {
+              "type": "string",
+              "description": "Default value for React Native implementation"
+            }
+          }
         }
       },
       "required": [

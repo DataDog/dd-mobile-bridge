@@ -84,4 +84,14 @@ class Setter(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule
         promise.resolve(null)
     }
 
+    /**
+     * Empty method, optional long param, returns void
+     * @param value An optional long param
+     */
+    @ReactMethod
+    fun setTimestamp(value: Double, promise: Promise) {
+        nativeInstance.setTimestamp(value.toLong())
+        promise.resolve(null)
+    }
+
 }

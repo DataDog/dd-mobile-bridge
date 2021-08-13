@@ -7,7 +7,25 @@
 import { NativeModules } from 'react-native';
 import { ComplexDataStructure, NotExposedDataStructure, NotExposedBridgeType, BridgeWithDataType } from './types';
 
+class BridgeWithDataWrapper implements BridgeWithDataType {
+
+  private nativeBridgeWithData: BridgeWithDataType = NativeModules.BridgeWithData;
+
+  setData(value: ComplexDataStructure): Promise<void> {
+    return this.nativeBridgeWithData.setData(value);
+  }
+
+  getData(): Promise<ComplexDataStructure> {
+    return this.nativeBridgeWithData.getData();
+  }
+
+  setTimestamp(value: number = Date.now()): Promise<void> {
+    return this.nativeBridgeWithData.setTimestamp(value);
+  }
+
+}
+
 const NotExposedBridge: NotExposedBridgeType = NativeModules.NotExposedBridge;
-const BridgeWithData: BridgeWithDataType = NativeModules.BridgeWithData;
+const BridgeWithData: BridgeWithDataType = new BridgeWithDataWrapper();
 
 export { ComplexDataStructure, NotExposedDataStructure, NotExposedBridge, BridgeWithData };

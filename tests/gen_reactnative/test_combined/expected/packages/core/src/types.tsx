@@ -58,5 +58,11 @@ export type BridgeWithDataType = {
    */
   getData(): Promise<ComplexDataStructure>;
 
+  /**
+   * Empty method, optional long param, returns void
+   * @param value: An optional long param
+   */
+  setTimestamp(value?: number): Promise<void>;
+
 };
 

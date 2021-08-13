@@ -43,4 +43,9 @@ interface Setter {
      */
     fun setList(value: List<Any?>): Unit
 
+    /**
+     * Empty method, optional long param, returns void
+     */
+    fun setTimestamp(value: Long): Unit
+
 }

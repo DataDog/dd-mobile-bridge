@@ -40,4 +40,9 @@ public protocol Setter {
        Empty method, list param, returns void
      */
     func setList(value: NSArray)
+
+    /**
+       Empty method, optional long param, returns void
+     */
+    func setTimestamp(value: Int64)
 }

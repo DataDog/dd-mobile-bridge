@@ -32,4 +32,10 @@ class RNBridgeWithData: NSObject {
         resolve(result)
     }
 
+    @objc(setTimestamp:withResolver:withRejecter:)
+    func setTimestamp(value: Int64, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
+        nativeInstance.setTimestamp(value: value)
+        resolve(nil)
+    }
+
 }

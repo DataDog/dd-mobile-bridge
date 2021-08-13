@@ -39,124 +39,124 @@ The entry point to use Datadog's Logs feature.
     Send a log with level debug.
 
     - `message`: The message to send.
-    - `context`: The additional context to send.
+    - `context`: Optional. The additional context to send.
 
 - `info(message: string, context: map)`
 
     Send a log with level info.
 
     - `message`: The message to send.
-    - `context`: The additional context to send.
+    - `context`: Optional. The additional context to send.
 
 - `warn(message: string, context: map)`
 
     Send a log with level warn.
 
     - `message`: The message to send.
-    - `context`: The additional context to send.
+    - `context`: Optional. The additional context to send.
 
 - `error(message: string, context: map)`
 
     Send a log with level error.
 
     - `message`: The message to send.
-    - `context`: The additional context to send.
+    - `context`: Optional. The additional context to send.
 
 #### DdTrace
 
 The entry point to use Datadog's Trace feature.
 
-- `startSpan(operation: string, timestampMs: long, context: map)`
+- `startSpan(operation: string, context: map, timestampMs: long)`
 
     Start a span, and returns a unique identifier for the span.
 
     - `operation`: The operation name of the span.
-    - `timestampMs`: The timestamp when the operation started (in milliseconds).
-    - `context`: The additional context to send.
+    - `context`: Optional. The additional context to send.
+    - `timestampMs`: Optional. The timestamp when the operation started (in milliseconds). If not provided, current timestamp will be used.
 
-- `finishSpan(spanId: string, timestampMs: long, context: map)`
+- `finishSpan(spanId: string, context: map, timestampMs: long)`
 
     Finish a started span.
 
     - `spanId`: The unique identifier of the span.
-    - `timestampMs`: The timestamp when the operation stopped (in milliseconds).
-    - `context`: The additional context to send.
+    - `context`: Optional. The additional context to send.
+    - `timestampMs`: Optional. The timestamp when the operation stopped (in milliseconds). If not provided, current timestamp will be used.
 
 #### DdRum
 
 The entry point to use Datadog's RUM feature.
 
-- `startView(key: string, name: string, timestampMs: long, context: map)`
+- `startView(key: string, name: string, context: map, timestampMs: long)`
 
     Start tracking a RUM View.
 
     - `key`: The view unique key identifier.
     - `name`: The view name.
-    - `timestampMs`: The timestamp when the view started (in milliseconds).
-    - `context`: The additional context to send.
+    - `context`: Optional. The additional context to send.
+    - `timestampMs`: Optional. The timestamp when the view started (in milliseconds). If not provided, current timestamp will be used.
 
-- `stopView(key: string, timestampMs: long, context: map)`
+- `stopView(key: string, context: map, timestampMs: long)`
 
     Stop tracking a RUM View.
 
     - `key`: The view unique key identifier.
-    - `timestampMs`: The timestamp when the view stopped (in milliseconds).
-    - `context`: The additional context to send.
+    - `context`: Optional. The additional context to send.
+    - `timestampMs`: Optional. The timestamp when the view stopped (in milliseconds). If not provided, current timestamp will be used.
 
-- `startAction(type: string, name: string, timestampMs: long, context: map)`
+- `startAction(type: string, name: string, context: map, timestampMs: long)`
 
     Start tracking a RUM Action.
 
     - `type`: The action type (tap, scroll, swipe, click, custom).
     - `name`: The action name.
-    - `timestampMs`: The timestamp when the action started (in milliseconds).
-    - `context`: The additional context to send.
+    - `context`: Optional. The additional context to send.
+    - `timestampMs`: Optional. The timestamp when the action started (in milliseconds). If not provided, current timestamp will be used.
 
-- `stopAction(timestampMs: long, context: map)`
+- `stopAction(context: map, timestampMs: long)`
 
     Stop tracking the ongoing RUM Action.
 
-    - `timestampMs`: The timestamp when the action stopped (in milliseconds).
-    - `context`: The additional context to send.
+    - `context`: Optional. The additional context to send.
+    - `timestampMs`: Optional. The timestamp when the action stopped (in milliseconds). If not provided, current timestamp will be used.
 
-- `addAction(type: string, name: string, timestampMs: long, context: map)`
+- `addAction(type: string, name: string, context: map, timestampMs: long)`
 
     Add a RUM Action.
 
     - `type`: The action type (tap, scroll, swipe, click, custom).
     - `name`: The action name.
-    - `timestampMs`: The timestamp when the action occurred (in milliseconds).
-    - `context`: The additional context to send.
+    - `context`: Optional. The additional context to send.
+    - `timestampMs`: Optional. The timestamp when the action occurred (in milliseconds). If not provided, current timestamp will be used.
 
-- `startResource(key: string, method: string, url: string, timestampMs: long, context: map)`
+- `startResource(key: string, method: string, url: string, context: map, timestampMs: long)`
 
     Start tracking a RUM Resource.
 
     - `key`: The resource unique key identifier.
     - `method`: The resource method (GET, POST, …).
     - `url`: The resource url.
-    - `timestampMs`: The timestamp when the resource started (in milliseconds).
-    - `context`: The additional context to send.
+    - `context`: Optional. The additional context to send.
+    - `timestampMs`: Optional. The timestamp when the resource started (in milliseconds). If not provided, current timestamp will be used.
 
-- `stopResource(key: string, statusCode: long, kind: string, timestampMs: long, context: map)`
+- `stopResource(key: string, statusCode: long, kind: string, context: map, timestampMs: long)`
 
     Stop tracking a RUM Resource.
 
     - `key`: The resource unique key identifier.
     - `statusCode`: The resource status code.
     - `kind`: The resource's kind (xhr, document, image, css, font, …).
-    - `timestampMs`: The timestamp when the resource stopped (in milliseconds).
-    - `context`: The additional context to send.
+    - `context`: Optional. The additional context to send.
+    - `timestampMs`: Optional. The timestamp when the resource stopped (in milliseconds). If not provided, current timestamp will be used.
 
-- `addError(message: string, source: string, stacktrace: string, timestampMs: long, context: map)`
+- `addError(message: string, source: string, stacktrace: string, context: map, timestampMs: long)`
 
     Add a RUM Error.
 
     - `message`: The error message.
     - `source`: The error source (network, source, console, logger, …).
     - `stacktrace`: The error stacktrace.
-    - `timestampMs`: The timestamp when the error occurred (in milliseconds).
-    - `context`: The additional context to send.
+    - `context`: Optional. The additional context to send.
+    - `timestampMs`: Optional. The timestamp when the error occurred (in milliseconds). If not provided, current timestamp will be used.
 
 - `addTiming(name: string)`
 

@@ -56,4 +56,10 @@ class RNSetter: NSObject {
         resolve(nil)
     }
 
+    @objc(setTimestamp:withResolver:withRejecter:)
+    func setTimestamp(value: Int64, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
+        nativeInstance.setTimestamp(value: value)
+        resolve(nil)
+    }
+
 }

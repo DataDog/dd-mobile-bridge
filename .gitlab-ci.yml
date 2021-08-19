@@ -16,7 +16,7 @@ ci-image:
   stage: ci-image
   when: manual
   except: [tags, schedules]
-  tags: ["runner:docker", "size:large"]
+  tags: ["runner:docker"]
   image: 486234852809.dkr.ecr.us-east-1.amazonaws.com/docker:18.03.1
   script:
     - docker build --tag $CI_IMAGE_DOCKER -f Dockerfile.gitlab .
@@ -25,7 +25,7 @@ ci-image:
 # TESTS
 
 test:format:
-  tags: [ "runner:main", "size:large" ]
+  tags: [ "runner:main" ]
   image: $CI_IMAGE_DOCKER
   stage: test
   timeout: 1h
@@ -34,7 +34,7 @@ test:format:
     - python3 test_format.py
 
 test:generators:
-  tags: [ "runner:main", "size:large" ]
+  tags: [ "runner:main" ]
   image: $CI_IMAGE_DOCKER
   stage: test
   timeout: 1h
@@ -43,7 +43,7 @@ test:generators:
     - python3 test_generators.py
 
 test:docs:
-  tags: [ "runner:main", "size:large" ]
+  tags: [ "runner:main" ]
   image: $CI_IMAGE_DOCKER
   stage: test
   timeout: 1h
@@ -54,7 +54,7 @@ test:docs:
 # PUBLISH
 
 publish:dd-bridge-android:
-  tags: [ "runner:main", "size:large" ]
+  tags: [ "runner:main" ]
   only:
     - tags
   image: $CI_IMAGE_DOCKER
@@ -67,7 +67,7 @@ publish:dd-bridge-android:
     - python3 update_dependants.py -s mobile-bridge-api.json -p android -v $CI_COMMIT_TAG
 
 publish:dd-bridge-ios:
-  tags: [ "runner:main", "size:large" ]
+  tags: [ "runner:main" ]
   only:
     - tags
   image: $CI_IMAGE_DOCKER
@@ -80,7 +80,7 @@ publish:dd-bridge-ios:
     - python3 update_dependants.py -s mobile-bridge-api.json -p ios -v $CI_COMMIT_TAG
 
 publish:dd-sdk-reactnative:
-  tags: [ "runner:main", "size:large" ]
+  tags: [ "runner:main" ]
   only:
     - tags
   image: $CI_IMAGE_DOCKER

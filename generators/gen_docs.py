@@ -70,6 +70,8 @@ class ReadmeGenerator:
             output.write("    - `")
             output.write(param['name'])
             output.write("`: ")
+            if param.get('optional'):
+                output.write("Optional. ")
             output.write(param['documentation'])
             output.write('\n')
         output.write('\n')

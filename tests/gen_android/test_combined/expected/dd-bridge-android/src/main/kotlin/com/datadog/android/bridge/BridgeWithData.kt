@@ -23,4 +23,9 @@ interface BridgeWithData {
      */
     fun getData(): ComplexDataStructure
 
+    /**
+     * Empty method, optional long param, returns void
+     */
+    fun setTimestamp(value: Long): Unit
+
 }

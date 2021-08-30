@@ -27,7 +27,24 @@
             "documentation" : "A string param"
           }
         ]
+      },
+      {
+        "name": "setWithOptionalParam",
+        "type": "void",
+        "documentation": "Performs an operation with optional param, returns void",
+        "parameters": [
+          {
+            "name": "optionalParam",
+            "type": "long",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "123"
+            },
+            "documentation": "An optional long param"
+          }
+        ]
       }
+
     ],
     "exposed": true
   }

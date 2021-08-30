@@ -29,3 +29,10 @@ def prepare_output_path(root_folder: str, output_folder: str, file_name: str) ->
     if not os.path.exists(output_folder_path):
         os.makedirs(output_folder_path)
     return os.path.join(output_folder_path, file_name)
+
+def interface_definition_has_optional_params(definition: dict) -> bool:
+    for method in definition['methods']:
+        for parameter in method['parameters']:
+            if parameter.get("optional"):
+                return True
+    return False

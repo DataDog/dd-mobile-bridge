@@ -138,13 +138,14 @@ The entry point to use Datadog's RUM feature.
     - `context`: Optional. The additional context to send.
     - `timestampMs`: Optional. The timestamp when the resource started (in milliseconds). If not provided, current timestamp will be used.
 
-- `stopResource(key: string, statusCode: long, kind: string, context: map, timestampMs: long)`
+- `stopResource(key: string, statusCode: long, kind: string, size: long, context: map, timestampMs: long)`
 
     Stop tracking a RUM Resource.
 
     - `key`: The resource unique key identifier.
     - `statusCode`: The resource status code.
     - `kind`: The resource's kind (xhr, document, image, css, font, …).
+    - `size`: Optional. The resource size in bytes.
     - `context`: Optional. The additional context to send.
     - `timestampMs`: Optional. The timestamp when the resource stopped (in milliseconds). If not provided, current timestamp will be used.
 

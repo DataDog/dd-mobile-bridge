@@ -497,6 +497,15 @@
             "documentation": "The resource's kind (xhr, document, image, css, font, …)."
           },
           {
+            "name": "size",
+            "type": "long",
+            "optional": true,
+            "defaultValue": {
+              "react-native": "-1"
+            },
+            "documentation": "The resource size in bytes."
+          },
+          {
             "name": "context",
             "type": "map",
             "optional": true,

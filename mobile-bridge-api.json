@@ -37,7 +37,7 @@
       {
         "name": "site",
         "type": "string",
-        "documentation": "The Datadog site of your organization (can be 'US', 'EU' or 'GOV', default is 'US').",
+        "documentation": "The Datadog site of your organization (can be 'US1', 'US1_FED', 'US3', 'US5', or 'EU1', default is 'US1').",
         "mandatory": false
       },
       {

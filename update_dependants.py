@@ -46,7 +46,7 @@ def github_create_pr(repository: str, branch_name: str, base_name: str, version:
     }
     data = '{"body": "This PR has been created automatically by the CI", ' \
            '"title": "Update to version ' + version + '", ' \
-                                                      '"base":"' + base_name + '", "head":"' + branch_name + '"}'
+           '"base":"' + base_name + '", "draft": true, "head":"' + branch_name + '"}'
 
     url = "https://api.github.com/repos/DataDog/" + repository + "/pulls"
     response = requests.post(url=url, headers=headers, data=data)
